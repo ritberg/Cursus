@@ -24,12 +24,24 @@ int	main()
 //	printf("%d\n", ft_toupper(122));
 //	printf("%d\n", ft_tolower(126));
 
-//	printf("%d\n", ft_strncmp("This is just a String", "This", 6));
-//	printf("%d\n", strncmp("This is just a String", "This", 6));
 
-	printf("%s\n", ft_strchr("This is just a String", 'u'));
+	
+//	char s[5] = "Salut";
+//	ft_memset(s, '.', 3);
+//	printf("%s\n", s);
 
-//	printf("%s\n", ft_memset(b[10], '.', 2));
+//	printf("%s\n", ft_strchr("This is just a String", 'S'));
+
+
+	printf("%s\n", ft_strrchr("This-is-just-a-String", '-'));
+
+//	printf("%d\n", ft_strncmp("This is just a String", "This ", 7));
+//	printf("%d\n", strncmp("This is just a String", "This ", 7));
+
+
+//	printf("%s\n", ft_strstr("This is just a String", "is"));
+//	printf("%s\n", strstr("This is just a String", "is"));
+
 
 	return (0);
 }
