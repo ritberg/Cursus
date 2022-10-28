@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 13:59:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/27 15:58:22 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:51:57 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ char	*ft_strchr(const char *s, int c)
 			return (0);
 		s++;
 	}
-	return (char *)s;
+	return ((char *)s);
 }
