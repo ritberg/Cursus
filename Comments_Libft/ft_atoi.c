@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:57:27 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/29 13:12:38 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/26 16:36:18 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/27 11:31:03 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	ft_atoi(const char *str)
 {
 	int	i;
-	char	*destin;
-	const char	*source;
+	int	min;
+	int	result;
 
 	i = 0;
-	destin = dst;
-	source = src;
-	while (source[i] && i < len - 1)
-		i++;
-	while (i >= 0)
+	min = 0;
+	result = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'\
+			|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+		str++;
+	while (str[i] == '+' || str[i] == '-')
 	{
-		destin[i] = source[i];
-		i--;
+		if (str[i] == '-')
+			min++;
+		i++;
 	}
-	destin[i] = '\0';
-	return (destin);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	if (min % 2 == 0)
+		return (result);
+	return (-result);
 }

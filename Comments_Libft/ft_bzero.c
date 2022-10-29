@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:57:27 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/29 13:12:38 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/28 11:55:46 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/28 16:49:24 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
-	char	*destin;
-	const char	*source;
+	char	*str;
 
-	i = 0;
-	destin = dst;
-	source = src;
-	while (source[i] && i < len - 1)
-		i++;
-	while (i >= 0)
+	str = s;
+	while (n > 0)
 	{
-		destin[i] = source[i];
-		i--;
+		*str = '\0';
+		str++;
+		n--;
 	}
-	destin[i] = '\0';
-	return (destin);
 }

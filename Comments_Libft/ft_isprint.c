@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:57:27 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/29 13:12:38 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/24 18:20:14 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/27 12:28:48 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	ft_isprint(int c)
 {
-	int	i;
-	char	*destin;
-	const char	*source;
-
-	i = 0;
-	destin = dst;
-	source = src;
-	while (source[i] && i < len - 1)
-		i++;
-	while (i >= 0)
-	{
-		destin[i] = source[i];
-		i--;
-	}
-	destin[i] = '\0';
-	return (destin);
+	if (!(c >= 32 && c <= 126))
+		return (0);
+	return (1);
 }

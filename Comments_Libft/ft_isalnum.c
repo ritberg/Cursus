@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:57:27 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/29 13:12:38 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/24 17:49:06 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/27 12:01:09 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	ft_isalnum(int c)
 {
-	int	i;
-	char	*destin;
-	const char	*source;
-
-	i = 0;
-	destin = dst;
-	source = src;
-	while (source[i] && i < len - 1)
-		i++;
-	while (i >= 0)
-	{
-		destin[i] = source[i];
-		i--;
-	}
-	destin[i] = '\0';
-	return (destin);
+	if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')\
+			&& !(c >= '0' && c <= '9'))
+		return (0);
+	return (1);
 }
