@@ -42,7 +42,7 @@ int	main()
 
 //don't work:
 
-//	printf("%s\n", ft_strnstr("This is just a String", "just", 4));
+	printf("%s\n", ft_strnstr("This is just a String", "just", 7));
 //	printf("%s\n", strnstr("This is just a String", "just", 4));
 
 	return (0);
