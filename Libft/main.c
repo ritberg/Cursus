@@ -26,9 +26,10 @@ int	main()
 //	printf("%s\n", ft_strchr("This is just a String", 'S'));
 //	printf("%s\n", ft_strrchr("This-is-just-a-String", '-'));
 //	printf("%d\n", ft_strncmp("This is", "This is", 100));
-	printf("%s\n", ft_strnstr("nannb", "nanb", 7));
-	printf("%s\n", ft_strnstr("wawawb", "wawb", 7));
-	printf("%s\n", ft_strnstr("Privet kak dela", "kak", 10));
+
+//	printf("%s\n", ft_strnstr("nannb", "nanb", 7));
+//	printf("%s\n", ft_strnstr("wawawb", "wawb", 7));
+//	printf("%s\n", ft_strnstr("Thii is a string", "is", 10));
 
 //	char s[5] = "Salut";
 //	ft_memset(s, '.', 3);
@@ -48,14 +49,14 @@ int	main()
 //	ft_memmove(dst, src, 9);
 //	printf("%s\n", dst);
 
-//	char src[30] = "is a string";
-//	char dst[30] = "This ";
-//	ft_strlcpy(dst, src, 10);
-//	printf("%s\n", dst);
+	char src[30] = "is a string";
+	char dst[30] = "This ";
+	ft_strlcpy(dst, src, 10);
+	printf("%s\n", dst);
 
 //	char src[30] = "is a string";
 //	char dst[30] = "This ";
-//	ft_strlcat(dst, src, 19);
+//	ft_strlcat(dst, src, 30);
 //	printf("%s\n", dst);
 
 //	printf("%s\n", ft_memchr("This.is.just.a.String", '.', 90));
