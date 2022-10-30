@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:23:17 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/29 17:48:04 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/10/30 12:46:38 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int	main()
 //	ft_memmove(dst, src, 9);
 //	printf("%s\n", dst);
 
-	char src[30] = "is a string";
-	char dst[30] = "This ";
-	ft_strlcpy(dst, src, 10);
-	printf("%s\n", dst);
+//	char src[30] = "is a string";
+//	char dst[30] = "This ";
+//	ft_strlcpy(dst, src, 30);
+//	printf("%s\n", dst);
 
 //	char src[30] = "is a string";
 //	char dst[30] = "This ";
-//	ft_strlcat(dst, src, 30);
+//	ft_strlcat(dst, src, 0);
 //	printf("%s\n", dst);
 
 //	printf("%s\n", ft_memchr("This.is.just.a.String", '.', 90));
@@ -64,6 +64,11 @@ int	main()
 
 //	printf("%d\n", ft_memcmp("This is a", "This is", 100));
 //	printf("%d\n", memcmp("This is a", "This is", 100));
+
+
+	char	*s1 = "Salut";
+	char	*s2;
+	printf("%s\n", ft_strdup(s1));
 
 	return (0);
 }
