@@ -1,37 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 12:17:12 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/31 12:34:53 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/31 16:48:42 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/31 18:18:42 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_strlen(const char *str)
 {
-	char	*dst;
-	char	*src;
 	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+char	*ft_strcpy(char *dst, char *src)
+{
 	int	i;
 
-	src = (char *)s1;
-	len = 0;
-	while (src[len])
-		len++;
-	dst = malloc(sizeof(*src) * (len + 1));
-	if (src == 0)
-		return (0);
-	i = 0;
-	while (i < len)
+	i = 1; // because the first and last characters are not copied
+	while (src[i])
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
 	return (dst);
+}
+
+char *ft_strtrim(char const *s1, char const *set)
+{
+	char	*dst;
+	char	*str2;
+	char	*str1;
+	int	len;
+	int	i;
+	int	j;
+
+	str1 = (char *)s1;
+	len = ft_strlen(str1);
+	while (set[i])
+	{
+		if (str1[0] != set[i])
+			*str2 = ft_strcpy(str1);
+		i++;
+	}
+	
 }

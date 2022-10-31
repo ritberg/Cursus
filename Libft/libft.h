@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:36:26 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/30 12:38:27 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:51:50 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+
+
+////// Part I ////
 
 //int	ft_isalpha(int i);
 //int	ft_isdigit(int c);
@@ -35,11 +38,24 @@
 //char	*ft_strnstr(const char *haystack, const char *needle, size_t len);	
 //void	*ft_memmove(void *dst, const void *src, size_t len);
 //size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+//int	ft_strlen(const char *str);                                    //!! auxiliere
 //size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 //void	*ft_memchr(const void *s, int c, size_t n);
 //int	ft_memcmp(const void *s1, const void *s2, size_t n);
 
-char	*ft_strdup(const char *s1);
+//char	*ft_strdup(const char *s1);
+//void	*ft_calloc(size_t count, size_t size);
+
+
+/////// Part II ////
+
+//char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+//char	*ft_strjoin(char const *s1, char const *s2);            
+//char	*ft_strcpy(char *dst, char *src);                //auxiliere
+//char	*ft_strcat(char *dst, char *src);                //auxiliere
+
+char	*ft_strtrim(char const *s1, char const *set);
 
 int	main();
 
