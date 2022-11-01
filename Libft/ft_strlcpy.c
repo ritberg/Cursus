@@ -24,7 +24,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	if (i < dstsize)    //counter i = len of src
 		dst[i] = '\0';
-	while (src[i]) //questo non capisco
+	while (src[i]) //siccome bisogna return lenght of src, conto la conto con i qui
 		i++;
 	return (i);
 }

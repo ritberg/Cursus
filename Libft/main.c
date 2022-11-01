@@ -48,10 +48,10 @@ int	main()
 //	ft_memcpy(dst, src, 6);
 //	printf("%s\n", dst);
 
-//	char src[30] = "This is a string";
-//	char *dst = src + 4;
-//	ft_memmove(dst, src, 9);
-//	printf("%s\n", dst);
+	char src[30] = "This is a string";
+	char *dst = src + 4;
+	ft_memmove(dst, src, 9);
+	printf("%s\n", dst);
 
 //	char src[30] = "is a string";
 //	char dst[30] = "This ";
@@ -88,9 +88,9 @@ int	main()
 //	printf("%s\n", ft_strjoin(s1, s2));
 
 
-	char	*s1 = "This is a stupid.sentence.";
-	char	*sep = "' ', '.'";
-	printf("%s\n", ft_strtrim(s1, sep));
+//	char	*s1 = "     This is a stupid sentence. ....";
+//	char	*set = " .";
+//	printf("%s\n", ft_strtrim(s1, set));
 
 
 

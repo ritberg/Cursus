@@ -36,7 +36,7 @@
 //int	ft_strncmp(const char *s1, const char *s2, size_t n);
 //void	*ft_memcpy(void *dst, const void *src, size_t n);
 //char	*ft_strnstr(const char *haystack, const char *needle, size_t len);	
-//void	*ft_memmove(void *dst, const void *src, size_t len);
+void	*ft_memmove(void *dst, const void *src, size_t len);
 //size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 //int	ft_strlen(const char *str);                                    //!! auxiliere
 //size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -55,7 +55,7 @@
 //char	*ft_strcpy(char *dst, char *src);                //auxiliere
 //char	*ft_strcat(char *dst, char *src);                //auxiliere
 
-char	*ft_strtrim(char const *s1, char const *set);
+//char	*ft_strtrim(char const *s1, char const *set);
 
 int	main();
 

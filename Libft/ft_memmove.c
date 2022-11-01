@@ -24,6 +24,31 @@ output 012345
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
+	char	*destin;
+	char	*source;
+	char	temp[len];
+	size_t	i;
+
+	i = 0;
+	source = (char *)src;
+	destin = dst;
+	while (source[i] && i < len - 1)
+	{
+		temp[i] = source[i];
+		i++;
+	}
+	temp[i] = '\0';
+	i = 0;
+	while (temp[i])
+	{
+		destin[i] = temp[i];
+		i++;
+	}
+	destin[i] = '\0';
+	return (destin);
+}
+
+/*
 	int	i;
 	char	*destin;
 	const char	*source;
@@ -39,4 +64,4 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		i--;
 	}
 	return (destin);
-}
+*/
