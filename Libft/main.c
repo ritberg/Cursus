@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:23:17 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/31 18:18:46 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:38:48 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int	main()
 //	ft_memcpy(dst, src, 6);
 //	printf("%s\n", dst);
 
-	char src[30] = "This is a string";
-	char *dst = src + 4;
-	ft_memmove(dst, src, 9);
-	printf("%s\n", dst);
+//	char src[30] = "012345678";
+//	char *dst = src + 4;
+//	ft_memmove(dst, src, 6);
+//	printf("%s\n", dst);
 
 //	char src[30] = "is a string";
 //	char dst[30] = "This ";
@@ -92,7 +92,11 @@ int	main()
 //	char	*set = " .";
 //	printf("%s\n", ft_strtrim(s1, set));
 
+//char	*s = "  This is a cat";
+//char	c = ' ';
+//printf("%s\n", *ft_split(s, c));
 
+printf("%s\n", *ft_itoa(-42));
 
 	return (0);
 }

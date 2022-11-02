@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:57:27 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/29 17:45:37 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:54:05 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	i = 0;
 	source = (char *)src;
 	destin = dst;
-	while (source[i] && i < len - 1)
+	while (source[i] && i < len)
 	{
 		temp[i] = source[i];
 		i++;
