@@ -92,11 +92,20 @@ int	main()
 //	char	*set = " .";
 //	printf("%s\n", ft_strtrim(s1, set));
 
-//char	*s = "  This is a cat";
-//char	c = ' ';
-//printf("%s\n", *ft_split(s, c));
+char	**tab;
+char	*s = "   This  is a cat ";
+char	c = ' ';
+int	i;
 
-printf("%s\n", *ft_itoa(-42));
+i = 0;
+tab = ft_split(s, c);
+while (i < 4) //change while testing!!!!
+{
+	printf("%s\n", tab[i]);
+	i++;
+}
+
+//printf("%s\n", *ft_itoa(-42));
 
 	return (0);
 }

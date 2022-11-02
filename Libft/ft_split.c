@@ -33,21 +33,35 @@ int	ft_n_words(char *str, char c)
 	return (count);
 }
 
-int	*ft_malloc_n_words(int count) // malloc for n words
+int	*ft_len_strs(char *str, char c, int n_words)
 {
-	int	j;
-	int	*size;
+	int	i;
+	int	count;
+	int	len;
+	int	*len_strs;
 
-	j = 0;
-	size = malloc(sizeof(int*) * ft_n_words(src, c));
-	if (size == 0)
-		return (0);
-	while (j < count)
+	len_strs = malloc(sizeof(int)* n_words); //len of each word
+	i = 0;
+	len = 0;
+	count = 0;
+	while (str[i])
 	{
-		size[j] = j;
-		j++;
+		if (str[i] != c)
+		{
+			while (str[i] && str[i] != c)
+			{
+				i++;
+				len++;
+			}
+			len_strs[count] = len;
+			len = 0;
+			count++;
+
+		}
+		else
+			i++;
 	}
-	return (size);
+	return (len_strs);
 }
 
 char	**ft_split(char const *s, char c)
@@ -56,21 +70,30 @@ char	**ft_split(char const *s, char c)
 	char	**dst;
 	int	i;
 	int	j;
+	int	count;
+	int	*lens;
 
 	src = (char *)s;
-	dst = malloc(sizeof(char *) * ft_malloc_n_words(count) + 1);
+	count = ft_n_words(src, c);  // how many words
+	lens = ft_len_strs(src, c, count);  //how long are the words. this is an array. ex, "This is" {4, 2}
+	dst = malloc(sizeof(char *) * count); //dst deve avere una riga per ogni parola
 	i = 0;
 	j = 0;
+	count = 0; //count is 0 again. to avoid to declare a new variable
 	while (src[i])
 	{
 		if (src[i] != c)
 		{
-			while (src[i] && src[i] != c)
+			dst[count] = malloc(sizeof(char) * lens[count]); // memory for len of each word (row, i. e. horiz.)
+			j = 0;
+			while (src[i] && src[i] != c)  //this while loop is needed to fill the rows..
 			{
-				dst[i][j] = src[i];
-				i++;
-				j++;
+				dst[count][j] = src[i]; // ..for j columns
+				i++; // go to the next letter
+				j++; // go to the next column (vertic.)
 			}
+			dst[count][j] = '\0';
+			count++; //count is index for words (in dst) and i is index for characters (in src)
 		}
 		else
 			i++;

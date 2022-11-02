@@ -25,16 +25,18 @@ void	ft_mod(int n)
 
 char	*ft_itoa(int n)
 {
+	char	*result;
+
 	if (n > 0)
 		ft_mod(n);
 	else if (n == 0)
-		return ("0");
+		result = "0";
 	else if (n == -2147483648)
-		return ("-2147483648");
+		result = "-2147483648";
 	else if (n < 0)
 	{
 		n = n * (-1);
-		return ("-");
-		ft_mod(n);
+		result = "-" + ft_mod(n);
 	}
+	return (result);
 }
