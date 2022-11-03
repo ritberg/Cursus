@@ -58,12 +58,14 @@
 //char	*ft_strtrim(char const *s1, char const *set);
 //int	ft_check(char c, const char *str);
 
-char	**ft_split(char const *s, char c);
-int	*ft_len_strs(char *str, char c, int n_words);
-int	ft_n_words(char *str, char c);
+//char	**ft_split(char const *s, char c);
+//int	*ft_len_strs(char *str, char c, int n_words);
+//int	ft_n_words(char *str, char c);
 
-//char	*ft_itoa(int n);
-//void	ft_mod(int n);
+char	*ft_itoa(int n);
+int	ft_size(int n);                               //auxilière
+char	*ft_strcat(char *src, char *dst);             //auxilière
+void	ft_mod(int n, char *result);                  //auxilière
 
 int	main();
 
