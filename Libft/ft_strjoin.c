@@ -6,13 +6,13 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:56:17 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/31 17:01:56 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:11:07 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+static int	ft_strlen(const char *str)
 {
 	int	len;
 
@@ -22,7 +22,7 @@ int	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_strcpy(char *dst, char *src)
+static char	*ft_strcpy(char *dst, char *src)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ char	*ft_strcpy(char *dst, char *src)
 	return (dst);
 }
 
-char	*ft_strcat(char *dst, char *src)
+static char	*ft_strcat(char *dst, char *src)
 {
 	int	i;
 	int	j;

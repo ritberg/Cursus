@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:58:59 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 16:13:57 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/11/04 11:14:11 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/11/04 16:42:13 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,28 @@ static int	ft_strlen(const char *str)
 	return (len);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-	size_t	j;
-	size_t	srclen;
-	size_t	dstlen;
+char	ft_function(unsigned int i, char c) //delete before submission!!!!
+{  
+	printf("index %d for character %c\n", i, c);
+	return (c - 32);
+}
 
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	unsigned int	i;
+	char	*str;
+
+	if (s == NULL)
+		return (NULL);
+	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (str == NULL)
+		return (NULL);
 	i = 0;
-	j = 0;
-	while (dst[i])
-		i++;
-	dstlen = i;
-	srclen = ft_strlen(src);
-	if (dstsize == 0 || dstsize <= dstlen) //dstsize is max. dstlen can't exceed the max. if it exceeds, I return srclen + dstsize
-		return (srclen + dstsize);
-	while (src[j] && i < dstsize - dstlen- 1)
+	while (s[i]) //the same as while (i < ft_strlen(s))
 	{
-		dst[i] = src[j];
+		str[i] = f(i, s[i]); //what is this?!
 		i++;
-		j++;
 	}
-	dst[i] = '\0';
-	return (dstlen + srclen);
+	str[i] = '\0';
+	return (str);
 }

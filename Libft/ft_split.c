@@ -6,13 +6,13 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:57:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/02 19:24:21 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:31:43 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_n_words(char *str, char c)
+static int	ft_n_words(char *str, char c)
 {
 	int	i;
 	int	count;
@@ -33,7 +33,7 @@ int	ft_n_words(char *str, char c)
 	return (count);
 }
 
-int	*ft_len_strs(char *str, char c, int n_words)
+static int	*ft_len_strs(char *str, char c, int n_words)
 {
 	int	i;
 	int	count;

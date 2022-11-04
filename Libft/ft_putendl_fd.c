@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 12:22:40 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 16:30:48 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/11/04 15:14:37 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/11/04 15:23:07 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	*ft_bzero(void *s, size_t n)
+void ft_putendl_fd(char *s, int fd)
 {
-	char	*str;
-
-	str = s;
-	while (n > 0)
+	while (*s)
 	{
-		*str = '\0';
-		str++;
-		n--;
+		write(fd, s, 1);
+		s++;
 	}
-	return ((void *)str); // why return? it's a void function, non?
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(count * size);
-	if (ptr == 0)
-		return (0);
-	ptr = ft_bzero(ptr, count * size);
-	return (ptr);
+	write(fd, "\n", 1);
 }

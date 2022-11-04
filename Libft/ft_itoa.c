@@ -6,90 +6,67 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:24:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/02 19:39:43 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:16:27 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_size(int n)
+static int	ft_size(int n)
 {
 	int	size;  //len of the str (called result)
 
 	if (n < 0)
 	{
 		n = (-1) * n;
-		size = 1;
+		size = 1; //size starts from 1 if negative 
 	}
 	else
 		size = 0;
-	while (n > 0)
+	while (n != 0)
 	{
 		n = n / 10;
 		size++;
-	}
-	
+	}	
 	return (size);
 }
-	
-char	*ft_strcat(char *src, char *dst)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	j = 0;
-	while (dst[j])
-		j++;
-	while (src[i])
-	{
-		dst[j] = src[i];
-		j++;
-		i++;
-	}
-	return (dst);
-}
-
-void	ft_mod(int n, char *result)
+static void	ft_mod(int n, char *result, int size)
 {
 	int	mod;
-	int	i;
-
+	
 	if (n < 0)
 	{
-		i = 1;
-		n = (-1) * n;
+		n = n * (-1);
+		result[0] = '-'; // if negative, put - at the beginning
 	}
-	else
-		i = 0;
-	while (n > 0)
+	if (n != 0)
 	{
-		n = n / 10;
+		ft_mod(n / 10, result, size - 1); //why [size-1]?
 		mod = n % 10 + '0';
-		result[i] = mod;
-		i++;
-	}
+		result[size] = mod; //[size] car cf. ft_size au-dessus (?)
+	}	
 }
 
 char	*ft_itoa(int n)
 {
 	char	*result;
 	int	size;
+	int	i;
 
+	i = 0;
+	if (n == -2147483648)
+		return ("-2147483648");
 	if (n == 0)
 		return ("0");
 	else
 	{
 		size = ft_size(n);
-		result = malloc(sizeof(char) * size);
-		ft_mod(n, result);
-	}
-//	else if (n == -2147483648)
-//		result = "-2147483648";
-	if (n < 0)
-	{
-		n = n * (-1);
-		result[0] = '-';
+		result = malloc(sizeof(char) * (size + 1)); //+1 for '\0'!
+		if (result == 0)
+			return (NULL);
+		ft_mod(n, result, size - 1); //why not size?
+		result[size] = '\0'; //why not size?
 	}
 	return (result);
 }

@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 12:22:40 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 16:30:48 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/11/04 14:31:33 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/11/04 14:51:16 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	*ft_bzero(void *s, size_t n)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char	*str;
+	unsigned int	i;
 
-	str = s;
-	while (n > 0)
+	i = 0;
+	if (s != NULL && f != NULL)
 	{
-		*str = '\0';
-		str++;
-		n--;
+		while (s[i])
+		{
+			f(i, &s[i]); // Same thing as striter except we're also passing the index to the function this time
+			i++;
+		}
 	}
-	return ((void *)str); // why return? it's a void function, non?
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(count * size);
-	if (ptr == 0)
-		return (0);
-	ptr = ft_bzero(ptr, count * size);
-	return (ptr);
 }

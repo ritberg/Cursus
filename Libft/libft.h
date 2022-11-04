@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:36:26 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/02 19:39:25 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/04 16:42:24 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stdio.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 
@@ -38,7 +39,6 @@
 //char	*ft_strnstr(const char *haystack, const char *needle, size_t len);	
 //void	*ft_memmove(void *dst, const void *src, size_t len);
 //size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-//int	ft_strlen(const char *str);                                    //!! auxiliere
 //size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 //void	*ft_memchr(const void *s, int c, size_t n);
 //int	ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -52,20 +52,29 @@
 //char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 //char	*ft_strjoin(char const *s1, char const *s2);            
-//char	*ft_strcpy(char *dst, char *src);                //auxiliere
-//char	*ft_strcat(char *dst, char *src);                //auxiliere
 
 //char	*ft_strtrim(char const *s1, char const *set);
-//int	ft_check(char c, const char *str);
 
 //char	**ft_split(char const *s, char c);
-//int	*ft_len_strs(char *str, char c, int n_words);
-//int	ft_n_words(char *str, char c);
 
-char	*ft_itoa(int n);
-int	ft_size(int n);                               //auxilière
-char	*ft_strcat(char *src, char *dst);             //auxilière
-void	ft_mod(int n, char *result);                  //auxilière
+//char	*ft_itoa(int n);
+
+
+/*
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char	ft_function(unsigned int i, char c);  //delete before submission !!!
+*/
+
+
+//void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+//void	ft_putchar_fd(char c, int fd);
+
+//void ft_putstr_fd(char *s, int fd);
+
+//void ft_putendl_fd(char *s, int fd);
+
+//void	ft_putnbr_fd(int n, int fd);
 
 int	main();
 
