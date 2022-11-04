@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:56:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 17:57:52 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/30 12:17:12 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/31 12:34:53 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//memcpy does overlap
-
-/*
-char src[60] = "012345678";
-char *dst = src + 4;
-ft_memcpy(dst, src, 6);
-print  dst
-output: 012301
-*/
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strdup(const char *s1)
 {
-	size_t	i;
-	char	*destin;
-	const char	*source;
+	char	*dst;
+	char	*src;
+	int	len;
+	int	i;
 
-	destin = dst;
-	source = src;
+	src = (char *)s1;
+	len = 0;
+	while (src[len])
+		len++;
+	dst = malloc(sizeof(*src) * (len + 1));
+	if (src == 0)
+		return (0);
 	i = 0;
-	while (source[i] && i < n)
+	while (i < len)
 	{
-		destin[i] = source[i];
+		dst[i] = src[i];
 		i++;
 	}
-	destin[i] = '\0';
-	return (destin);
+	dst[i] = '\0';
+	return (dst);
 }

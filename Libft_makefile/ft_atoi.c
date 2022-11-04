@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:56:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 17:57:52 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/26 16:36:18 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/27 11:31:03 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//memcpy does overlap
-
-/*
-char src[60] = "012345678";
-char *dst = src + 4;
-ft_memcpy(dst, src, 6);
-print  dst
-output: 012301
-*/
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_atoi(const char *str)
 {
-	size_t	i;
-	char	*destin;
-	const char	*source;
+	int	i;
+	int	min;
+	int	result;
 
-	destin = dst;
-	source = src;
 	i = 0;
-	while (source[i] && i < n)
+	min = 0;
+	result = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'\
+			|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+		str++;
+	while (str[i] == '+' || str[i] == '-')
 	{
-		destin[i] = source[i];
+		if (str[i] == '-')
+			min++;
 		i++;
 	}
-	destin[i] = '\0';
-	return (destin);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	if (min % 2 == 0)
+		return (result);
+	return (-result);
 }

@@ -1,41 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:56:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 17:57:52 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/24 17:59:10 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/27 12:06:30 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//memcpy does overlap
-
-/*
-char src[60] = "012345678";
-char *dst = src + 4;
-ft_memcpy(dst, src, 6);
-print  dst
-output: 012301
-*/
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_isascii(int c)
 {
-	size_t	i;
-	char	*destin;
-	const char	*source;
-
-	destin = dst;
-	source = src;
-	i = 0;
-	while (source[i] && i < n)
-	{
-		destin[i] = source[i];
-		i++;
-	}
-	destin[i] = '\0';
-	return (destin);
+	if (!(c >= 0 && c <= 0177))
+		return (0);
+	return (1);
 }

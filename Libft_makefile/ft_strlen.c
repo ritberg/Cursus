@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:56:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 17:57:52 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/26 14:59:50 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/27 12:31:24 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//memcpy does overlap
-
-/*
-char src[60] = "012345678";
-char *dst = src + 4;
-ft_memcpy(dst, src, 6);
-print  dst
-output: 012301
-*/
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+size_t	ft_strlen(const char *s)
 {
-	size_t	i;
-	char	*destin;
-	const char	*source;
+	int	len;
 
-	destin = dst;
-	source = src;
-	i = 0;
-	while (source[i] && i < n)
-	{
-		destin[i] = source[i];
-		i++;
-	}
-	destin[i] = '\0';
-	return (destin);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }

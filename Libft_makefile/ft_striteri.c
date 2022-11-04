@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:56:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 17:57:52 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/11/04 14:31:33 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/11/04 14:51:16 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//memcpy does overlap
-
-/*
-char src[60] = "012345678";
-char *dst = src + 4;
-ft_memcpy(dst, src, 6);
-print  dst
-output: 012301
-*/
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
-	char	*destin;
-	const char	*source;
+	unsigned int	i;
 
-	destin = dst;
-	source = src;
 	i = 0;
-	while (source[i] && i < n)
+	if (s != NULL && f != NULL)
 	{
-		destin[i] = source[i];
-		i++;
+		while (s[i])
+		{
+			f(i, &s[i]); // Same thing as striter except we're also passing the index to the function this time
+			i++;
+		}
 	}
-	destin[i] = '\0';
-	return (destin);
 }

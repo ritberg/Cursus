@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:56:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 17:57:52 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/11/04 15:23:39 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/11/04 16:18:19 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//memcpy does overlap
-
-/*
-char src[60] = "012345678";
-char *dst = src + 4;
-ft_memcpy(dst, src, 6);
-print  dst
-output: 012301
-*/
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+static void	ft_mod(int n, int fd)
 {
-	size_t	i;
-	char	*destin;
-	const char	*source;
+	int	mod;
 
-	destin = dst;
-	source = src;
-	i = 0;
-	while (source[i] && i < n)
+	if (n != 0)
 	{
-		destin[i] = source[i];
-		i++;
+		ft_mod(n / 10, fd);
+		mod = n % 10 + '0';
+		write(fd, &mod, 1);
 	}
-	destin[i] = '\0';
-	return (destin);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n > 0)
+		ft_mod(n, fd);
+	else if (n == 0)
+		write(fd, "0", 1);
+	else if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else if (n < 0)
+	{
+		n = n * (-1);
+		write(fd, "-", 1);
+		ft_mod(n, fd);
+	}
 }

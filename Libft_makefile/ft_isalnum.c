@@ -1,41 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:56:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 17:57:52 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/24 17:49:06 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/27 12:01:09 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//memcpy does overlap
-
-/*
-char src[60] = "012345678";
-char *dst = src + 4;
-ft_memcpy(dst, src, 6);
-print  dst
-output: 012301
-*/
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_isalnum(int c)
 {
-	size_t	i;
-	char	*destin;
-	const char	*source;
-
-	destin = dst;
-	source = src;
-	i = 0;
-	while (source[i] && i < n)
-	{
-		destin[i] = source[i];
-		i++;
-	}
-	destin[i] = '\0';
-	return (destin);
+	if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')\
+			&& !(c >= '0' && c <= '9'))
+		return (0);
+	return (1);
 }

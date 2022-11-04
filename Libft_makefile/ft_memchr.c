@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 17:56:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 17:57:52 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/10/29 14:22:54 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/10/29 16:41:08 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//memcpy does overlap
-
-/*
-char src[60] = "012345678";
-char *dst = src + 4;
-ft_memcpy(dst, src, 6);
-print  dst
-output: 012301
-*/
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t	i;
-	char	*destin;
-	const char	*source;
+	const char	*str;
 
-	destin = dst;
-	source = src;
 	i = 0;
-	while (source[i] && i < n)
+	str = s;
+	while (str[i] && i < n - 1)
 	{
-		destin[i] = source[i];
+		if (str[i] == (char)c)
+			return ((char *)str + i);
 		i++;
 	}
-	destin[i] = '\0';
-	return (destin);
+	return (NULL);
 }
