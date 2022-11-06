@@ -41,7 +41,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	while (s[i]) //the same as while (i < ft_strlen(s))
 	{
-		str[i] = f(i, s[i]); //what is this?!
+		str[i] = f(i, s[i]); // f is a pointer to ft_function, because the the main we pass ft_function as input of ft_strmapi. f(i, s[i]) corresponds to ft_function. str[i] = output of ft_function
 		i++;
 	}
 	str[i] = '\0';

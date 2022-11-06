@@ -40,11 +40,11 @@ static void	ft_mod(int n, char *result, int size)
 		n = n * (-1);
 		result[0] = '-'; // if negative, put - at the beginning
 	}
-	if (n != 0)
+	if (n != 0)  // possibly add size > 0 if there are problems with francinette
 	{
-		ft_mod(n / 10, result, size - 1); //why [size-1]?
+		ft_mod(n / 10, result, size - 1); //why [size-1]? recursion!
 		mod = n % 10 + '0';
-		result[size] = mod; //[size] car cf. ft_size au-dessus (?)
+		result[size] = mod; //[size] because we start from size - 1, then size - 2 etc (recursion!)
 	}	
 }
 
@@ -52,9 +52,7 @@ char	*ft_itoa(int n)
 {
 	char	*result;
 	int	size;
-	int	i;
 
-	i = 0;
 	if (n == -2147483648)
 		return ("-2147483648");
 	if (n == 0)
@@ -65,8 +63,8 @@ char	*ft_itoa(int n)
 		result = malloc(sizeof(char) * (size + 1)); //+1 for '\0'!
 		if (result == 0)
 			return (NULL);
-		ft_mod(n, result, size - 1); //why not size?
-		result[size] = '\0'; //why not size?
+		ft_mod(n, result, size - 1); //why not size? cf. above
+		result[size] = '\0'; //why not size? cf. above
 	}
 	return (result);
 }
