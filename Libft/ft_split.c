@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:57:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 16:31:43 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:54:55 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ char	**ft_split(char const *s, char c)
 	count = ft_n_words(src, c);  // how many words
 	lens = ft_len_strs(src, c, count);  //how long are the words. this is an array. ex, "This is" {4, 2}
 	dst = malloc(sizeof(char *) * count); //dst deve avere una riga per ogni parola
+	if (dst == NULL)
+		return (NULL);
 	i = 0;
 	j = 0;
 	count = 0; //count is 0 again. to avoid to declare a new variable

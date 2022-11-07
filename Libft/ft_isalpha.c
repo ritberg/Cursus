@@ -6,15 +6,15 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:52:37 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/27 11:39:02 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/07 15:07:54 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int i)
+int	ft_isalpha(int c)
 {
-	if (!(i >= 101 && i <= 132) && !(i >= 141 && i <= 172))
+	if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z'))
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:30 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/30 12:04:56 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/07 17:05:46 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	if (i < dstsize)    //counter i = len of src
 		dst[i] = '\0';
-	while (src[i]) //siccome bisogna return lenght of src, conto la conto con i qui
+	while (src[i]) //siccome bisogna return lenght of src, la conto con i qui
 		i++;
 	return (i);
 }

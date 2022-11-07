@@ -6,28 +6,19 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:14:11 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 16:42:13 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:44:23 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_strlen(const char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
+/*
 char	ft_function(unsigned int i, char c) //delete before submission!!!!
 {  
 	printf("index %d for character %c\n", i, c);
 	return (c - 32);
 }
-
+*/
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;

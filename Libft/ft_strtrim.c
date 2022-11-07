@@ -6,21 +6,11 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:48:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 16:13:29 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/07 13:43:59 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_strlen(const char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
 
 static int	ft_check(char c, const char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 12:17:12 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/10/31 12:34:53 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:55:42 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*ft_strdup(const char *s1)
 	while (src[len])
 		len++;
 	dst = malloc(sizeof(*src) * (len + 1));
+	if (dst == NULL)
+		return (NULL);
 	if (src == 0)
 		return (0);
 	i = 0;
