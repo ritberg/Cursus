@@ -53,10 +53,10 @@ char	*ft_itoa(int n)
 	char	*result;
 	int	size;
 
-	if (n == -2147483648)
+	if (n == -2147483648) //try without this condition
 		return ("-2147483648");
 	if (n == 0)
-		return ("0");
+		return ('0');
 	else
 	{
 		size = ft_size(n);

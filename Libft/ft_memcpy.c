@@ -33,11 +33,11 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	if (destin == NULL && source == NULL)
 		return (NULL);
-	while (source[i] && i < n)
+	while (source[i] && i < n) // without source[i]
 	{
 		destin[i] = source[i];
 		i++;
 	}
-	destin[i] = '\0';
+//	destin[i] = '\0';
 	return (destin);
 }
