@@ -23,8 +23,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	j = 0;
 	dstlen = ft_strlen(dst);
 	srclen = ft_strlen(src);
-	if (dstsize <= dstlen) //dstsize is max. dstlen can't exceed the max. if it exceeds, I return srclen + dstsize
-		return (srclen + dstsize);
 	while (src[j] && i < dstsize - dstlen- 1)
 	{
 		dst[i] = src[j];
@@ -32,5 +30,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		j++;
 	}
 	dst[i] = '\0';
+	if (dstsize <= dstlen) //dstsize is max. dstlen can't exceed the max. if it exceeds, I return srclen + dstsize
+		return (srclen + dstsize);
 	return (dstlen + srclen);
 }

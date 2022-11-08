@@ -45,7 +45,7 @@ char *ft_strtrim(char const *s1, char const *set)
 		len--;
 	if ((len - i) < 0) //len - size, i - without set characters, len - i is a piece of the source sentence
 		len = 0;
-	dst = malloc(len - i + 1);
+	dst = malloc(sizeof(char) * (len - i + 1));
 	if (dst == 0)
 		return (NULL);
 	k = 0;

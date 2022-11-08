@@ -30,7 +30,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	i = 0;
 	destin = (char *)dst;
 	source = (char *)src;
-	if (destin > source)
+	if (destin > source) //destin is on the right
 	{
 		while (len-- > 0) //the same as put len -- after destin[len] = source[len]
 			destin[len] = source[len];
