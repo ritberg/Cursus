@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:56:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/07 16:07:11 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/08 09:38:19 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	if (destin == NULL && source == NULL)
 		return (NULL);
-	while (source[i] && i < n) // without source[i]
+	while (i < n)
 	{
 		destin[i] = source[i];
 		i++;
 	}
-//	destin[i] = '\0';
 	return (destin);
 }

@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:24:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/07 17:36:40 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:23:05 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ static int	ft_size(int n)
 {
 	int	size;  //len of the str (called result)
 
+	size = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 	{
 		n = (-1) * n;
-		size = 1; //size starts from 1 if negative 
+		size++; //size = 1 if negative 
 	}
-	else
-		size = 0;
-	while (n != 0)
+	while (n > 0)
 	{
 		n = n / 10;
 		size++;
@@ -53,10 +54,10 @@ char	*ft_itoa(int n)
 	char	*result;
 	int	size;
 
-	if (n == -2147483648) //try without this condition
-		return ("-2147483648");
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	if (n == 0)
-		return ('0');
+		return (NULL);
 	else
 	{
 		size = ft_size(n);
