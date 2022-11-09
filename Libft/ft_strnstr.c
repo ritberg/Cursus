@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 11:38:53 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/04 17:59:20 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:28:07 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
-	int	j;
+	size_t	j;
 
 	i = 0;
 	j = 0;
@@ -27,7 +27,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		return ((char *)haystack);
 	while (haystack[i] != '\0' && i < len)
 	{
-		while (haystack[i + j] == needle[j] && haystack[i + j] != '\0') //internal while loop. The first round i + j = 0 and j = 0; the second round i + j = 1 and j = 1; the third i + j = 3, j = 3 etc. 
+		while (haystack[i + j] == needle[j] && haystack[i + j] != '\0'\
+				&& i + j < len) //internal while loop. The first round i + j = 0 and j = 0; the second round i + j = 1 and j = 1; the third i + j = 3, j = 3 etc. 
 			j++;
 		if (needle[j] == '\0')
 			return ((char *)haystack + i);
@@ -36,3 +37,11 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
+/*
+in the second while I added i+j < len for the test:
+
+ft_strnstr("lorem ipsum dolor sit amet", "dolor", 15)
+
+here 15 characters are "lorem ipsum dol" 
+In this case i+j > len and the function returns null
+*/

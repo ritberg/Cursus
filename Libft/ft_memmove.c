@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:57:27 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/08 10:22:27 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:49:46 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	char	*source;
 
 	i = 0;
+	if (dst == NULL && src == NULL)
+		return (NULL);
 	destin = (char *)dst;
 	source = (char *)src;
 	if (destin > source) //destin is on the right

@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 13:54:32 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/08 11:50:34 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:10:46 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	dst[i] = '\0';
 	return (dst);
 }
+// when 18446744073709551615 is tested, memory problems (MKO error)

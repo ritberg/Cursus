@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 19:24:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/08 11:23:05 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:41:07 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,19 @@ static void	ft_mod(int n, char *result, int size)
 {
 	int	mod;
 	
+	if (n == 0 && size == 1 && result[0] != '-') //when n = 0, size = 1
+		result[0] = '0';
 	if (n < 0)
 	{
 		n = n * (-1);
 		result[0] = '-'; // if negative, put - at the beginning
 	}
 	if (n != 0)  // possibly add size > 0 if there are problems with francinette
+		         // when n = 0, size = 0
 	{
 		ft_mod(n / 10, result, size - 1); //why [size-1]? recursion!
 		mod = n % 10 + '0';
-		result[size] = mod; //[size] because we start from size - 1, then size - 2 etc (recursion!)
+		result[size - 1] = mod;
 	}	
 }
 
@@ -56,16 +59,14 @@ char	*ft_itoa(int n)
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	if (n == 0)
-		return (NULL);
 	else
 	{
 		size = ft_size(n);
 		result = malloc(sizeof(char) * (size + 1)); //+1 for '\0'!
 		if (result == 0)
 			return (NULL);
-		ft_mod(n, result, size - 1); //why not size? cf. above
-		result[size] = '\0'; //why not size? cf. above
+		ft_bzero(result, size + 1); // put '\0' till the ned of the string
+		ft_mod(n, result, size);
 	}
 	return (result);
 }
