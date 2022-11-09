@@ -35,33 +35,35 @@ static int	ft_n_words(char *str, char c)
 
 static int	*ft_len_strs(char *str, char c, int n_words)
 {
-	int	index;
+	int	i;
+	int	count;
 	int	len;
 	int	*len_strs;
 
 	len_strs = malloc(sizeof(int) * n_words); //len of each word
-//	if (len_strs == 0)
-//		return (0);
-	index = 0;
-	while (*str)
+	i = 0;
+	len = 0;
+	count = 0;
+	while (str[i])
 	{
-		if (*str != c)
+		if (str[i] != c)
 		{
-			len = 0;
-			while (*str && *str != c)
+			while (str[i] && str[i] != c)
 			{
-				str++;
+				i++;
 				len++;
 			}
-			len_strs[index++] = len + 1;
+			len_strs[count] = len + 1;
+			len = 0;
+			count++;
 		}
 		else
-			str++;
+			i++;
 	}
 	return (len_strs);
 }
 
-static char	**ft_free_split(char **dst, size_t i)
+char	**ft_free_split(char **dst, size_t i)
 {
 	size_t	k;
 
@@ -72,43 +74,14 @@ static char	**ft_free_split(char **dst, size_t i)
 	return (NULL);
 }
 
-static char	**ft_fill_big_table(char *src, char c, char **dst, int *lens)
-{
-	int	j;
-	int	count;
-
-	count = 0; //count is 0 again. to avoid to declare a new variable
-	while (*src) //*srcr and src++ per isparmio dello spazio
-	{
-		if (*src != c)
-		{
-			dst[count] = malloc(sizeof(char) * lens[count]); // memory for len 
-			if (dst[count] == NULL)                  //of each word (row, i.e. horiz.
-				return (ft_free_split(dst, count));
-			j = 0;                              
-			while (*src && *src != c)  //this while loop is needed to 
-				                          //fill the rows..
-				dst[count][j++] = *src++; // ..for j columns
-		                                    	//   src++ is  go to the next letter
-			                         	// j++ is  go to the next column (vertic.)
-			dst[count++][j] = '\0';  //count is index for words (in dst) 
-			                        //and i is index for characters (in src)
-		}
-		else
-			src++;
-	}
-	dst[count] = NULL; //pointeur sur 0 qui indique que le tableau est fini
-	                   //equivalent of '\0' for *str
-	free(lens);
-	return (dst);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	char	*src;
 	char	**dst;
-	int	*lens;
+	int	i;
+	int	j;
 	int	count;
+	int	*lens;
 
 	src = (char *)s;
 	count = ft_n_words(src, c);  // how many words
@@ -117,5 +90,32 @@ char	**ft_split(char const *s, char c)
 	dst = malloc(sizeof(char *) * count); //dst deve avere una riga per ogni parola
 	if (dst == NULL)
 		return (NULL);
-	return (ft_fill_big_table(src, c, dst, lens));
+	i = 0;
+	j = 0;
+	count = 0; //count is 0 again. to avoid to declare a new variable
+	while (src[i])
+	{
+		if (src[i] != c)
+		{
+			dst[count] = malloc(sizeof(char) * lens[count]); // memory for len 
+			if (dst[count] == NULL)                  //of each word (row, i.e. horiz.
+				return (ft_free_split(dst, count));
+			j = 0;                              
+			while (src[i] && src[i] != c)  //this while loop is needed to 
+				                          //fill the rows..
+			{
+				dst[count][j] = src[i]; // ..for j columns
+				i++;        // go to the next letter
+				j++;        // go to the next column (vertic.)
+			}
+			dst[count][j] = '\0';
+			count++; //count is index for words (in dst) 
+			        //and i is index for characters (in src)
+		}
+		else
+			i++;
+	}
+	dst[count] = NULL; //pointeur sur 0 qui indique que le tableau est fini
+	free(lens);
+	return (dst);
 }
