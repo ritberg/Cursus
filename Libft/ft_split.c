@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 16:57:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/09 17:02:08 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/10 09:45:33 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static int	*ft_len_strs(char *str, char c, int n_words)
 	int	*len_strs;
 
 	len_strs = malloc(sizeof(int) * n_words); //len of each word
-//	if (len_strs == 0)
-//		return (0);
+	if (len_strs == 0)
+		return (0);
 	index = 0;
 	while (*str)
 	{

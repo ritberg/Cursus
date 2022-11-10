@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:23:17 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/09 16:02:15 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:38:43 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ printf("%s\n", ft_strtrim(s1, set));
 */
 
 ///// FT_SPLIT //////
-
+/*
 
 	char	**tab;
 	char	*s = "      split       this for   me  !";
@@ -130,7 +130,7 @@ printf("%s\n", ft_strtrim(s1, set));
 		i++;
 	}
 
-
+*/
 
 /*
 void	ft_print_result(char const *s)
@@ -183,6 +183,12 @@ int	n = -42;
 int	fd = 1;
 ft_putnbr_fd(n, fd);
 */
+
+
+
+////// BONUS ///////
+
+
 
 	return (0);
 }
