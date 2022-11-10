@@ -33,6 +33,7 @@ SRCS	= ft_isalpha.c\
 		   	ft_putstr_fd.c\
 		   	ft_putendl_fd.c\
 		   	ft_putnbr_fd.c\
+
 BONUS	= ft_lstnew.c\
 			ft_lstadd_front.c\
 			ft_lstsize.c\
@@ -50,7 +51,10 @@ BONUS_OBJS	= ${BONUS:.c=.o}
 NAME	= libft.a
 
 CC		= gcc
+
 RM		= rm -f
+
+HEADERS	= libft.h
 
 CFLAGS	= -Wall -Wextra -Werror
 
@@ -63,8 +67,8 @@ ${NAME}:	${OBJS} ${HEADERS}
 
 all:		${NAME}
 
-bonus:		${OBJS} ${BONUS_OBJS}
-			@ar rc ${NAME} ${BONUS_OBJS}
+bonus:		$ ${OBJS} ${BONUS_OBJS} ${HEADERS}
+			@ar rc ${NAME} ${OBJS} ${BONUS_OBJS}
 
 clean:
 			${RM} ${OBJS} ${BONUS_OBJS}
@@ -74,4 +78,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re bonus
