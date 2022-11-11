@@ -46,8 +46,8 @@ printf("%s\n", s);
 */
 
 /*
-char s[6] = "Salut!";
-ft_bzero(s, 5);
+char s[20] = "Salut!";
+ft_bzero(s, 3);
 printf("%s\n", s);
 */
 

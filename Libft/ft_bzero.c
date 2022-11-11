@@ -12,6 +12,8 @@
 
 #include "libft.h"
 
+// put n zeros ('\0') in the string
+
 void	ft_bzero(void *s, size_t n)
 {
 	char	*str;

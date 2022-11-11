@@ -47,13 +47,14 @@ static int	*ft_len_strs(char *str, char c, int n_words)
 	{
 		if (*str != c)
 		{
-			len = 0;
+			len = 0; //initialization of the len of a new word
 			while (*str && *str != c)
 			{
 				str++;
 				len++;
-			}
-			len_strs[index++] = len + 1;
+			}                         // when this while loop ends, the word ends
+			len_strs[index++] = len + 1; // put len of the word inside malloc + '\0'
+			                             // index is a new word
 		}
 		else
 			str++;
@@ -83,16 +84,15 @@ static char	**ft_fill_big_table(char *src, char c, char **dst, int *lens)
 		if (*src != c)
 		{
 			dst[count] = malloc(sizeof(char) * lens[count]); // memory for len 
-			if (dst[count] == NULL)                  //of each word (row, i.e. horiz.
+			if (dst[count] == NULL)                  //of each word (row, i.e. horiz. ->)
 				return (ft_free_split(dst, count));
 			j = 0;                              
 			while (*src && *src != c)  //this while loop is needed to 
-				                          //fill the rows..
-				dst[count][j++] = *src++; // ..for j columns
+				dst[count][j++] = *src++; // fill the rows of dst
 		                                    	//   src++ is  go to the next letter
 			                         	// j++ is  go to the next column (vertic.)
 			dst[count++][j] = '\0';  //count is index for words (in dst) 
-			                        //and i is index for characters (in src)
+			                        //and src++ is index for characters (in src)
 		}
 		else
 			src++;

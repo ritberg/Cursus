@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-// memmove doesn't overlap
+// memmove - copy when there is an overlap
 
 /* 
 char src[30] = "012345678";
@@ -21,6 +21,9 @@ memmove(dst, src, 6);
 print dst
 output 012345
 */
+
+// general idea of copying: if dst is on the right, we go down, if dst is on the left, we go up
+
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t	i;

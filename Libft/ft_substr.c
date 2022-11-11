@@ -12,6 +12,15 @@
 
 #include "libft.h"
 
+/*
+ *s = "This is a sentence"
+ start = 5, len  4
+
+output: "is a"
+
+similar to strnstr, but return has limits - start and len
+*/
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*dst;

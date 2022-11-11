@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-// Strnstr looks for needle in the first len characters of haystack
+// Strnstr looks for needle in the first len characters of haystack. Return - all the string after spotted characters
 
 // general idea: needle is compared to haystack from haystack[0]. when a character differs, it starts from haystack[1]. If needle dsn't correspond again, it starts from haystack[2] etc.  
 

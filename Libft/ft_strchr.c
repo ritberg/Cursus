@@ -12,6 +12,11 @@
 
 #include "libft.h"
 
+/*
+ strchr stops when it hits a null character but memchr does not; 
+ this is why the former does not need a length parameter but the latter does.
+*/
+
 char	*ft_strchr(const char *s, int c)
 {
 	while (*s != (char)c)
@@ -20,5 +25,5 @@ char	*ft_strchr(const char *s, int c)
 			return (0);
 		s++;
 	}
-	return ((char *)s);
+	return ((char *)s); //finds c and return all the *s
 }

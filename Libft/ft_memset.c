@@ -12,6 +12,8 @@
 
 #include "libft.h"
 
+// put character c in the first n elements. Ex input: *s = "Salut", n = 3 output: "...alut"
+
 void	*ft_memset(void *s, int c, size_t n)
 {
 	unsigned char *str;

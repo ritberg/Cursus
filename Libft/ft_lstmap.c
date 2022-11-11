@@ -12,6 +12,14 @@
 
 #include "libft.h"
 
+/*
+ Itère sur la liste ’lst’ et applique la fonction
+’f ’au contenu de chaque élément. Crée une nouvelle
+liste résultant des applications successives de
+’f’. La fonction ’del’ est là pour détruire le
+contenu d’un élément si nécessaire.
+*/
+
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new_list;

@@ -11,7 +11,10 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
+calloc is used to allocate a specified amount of memory 
+and then initialize it to zero
+*/
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
