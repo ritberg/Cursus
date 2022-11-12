@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 17:58:30 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/09 09:03:10 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/12 14:25:31 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	return (str_len);
 }
+/*
+the strlcpy() and strlcat() functions return the total
+length of the string they tried to create. For strlcpy() that means
+the length of src.
+*/
