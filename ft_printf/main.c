@@ -14,19 +14,18 @@
 
 int	main()
 {
-	char	*s = "cspdiuxX%";
+//	ft_printf("%d\n", 42);
+//	printf("Un nombre décimal (base 10): %d\n", 42);
 
-//	ft_printf(s, 42);
-//	printf("\n Un nombre décimal (base 10): %d\n", 42);
+//	ft_printf("%c\n", 'a');
+//	printf("Un seul caractère: %c\n", 'a');
 
-//	ft_printf(s, 'a');
-//	printf("\n Un seul caractère: %c\n", 'a');
-
-//	ft_printf(s, 2, "abc", NULL);
-//	printf("\n Chaîne de caractères: %s\n", "abc");
+//	ft_printf("%s\n", "abc"); // NULL as last arg??
+//	printf("Chaîne de caractères: %s\n", "abc");
 
 	void	*p = "abc";
-	ft_printf(s, &p);
-	printf("\n Pointeur de chaîne: %p\n", &p);
+	ft_printf("%p\n", &p);
+	printf("Pointeur de chaîne: %p\n", &p);
+
 	return (0);
 }
