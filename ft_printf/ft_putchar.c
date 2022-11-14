@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 10:50:29 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/14 16:39:03 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/11/14 14:45:21 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/11/14 14:47:39 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
-# include <stdio.h>   // to remove before submission !!
-
-int	ft_printf(const char *s, ...);
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
-void	ft_putstr(char *str);
-
-int	main();
-
-#endif
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
