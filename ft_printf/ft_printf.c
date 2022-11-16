@@ -29,7 +29,7 @@ static int	ft_check(char c, const char *str)
 	}
 	return (0);
 }
-
+/*
 static	void	ft_dec_to_hexadec_X(int i)
 {
 	int	n;
@@ -79,8 +79,8 @@ static	void	ft_dec_to_hexadec_x(int i)
 		k--;
 	}
 }
-
-static	void	ft_dec_to_hexadec_p(long int i)
+*/
+static	void	ft_dec_to_hexadec_p(long int i) // to put separately ! + in .h
 {
 	int	n;
 	char	hexadec[100];

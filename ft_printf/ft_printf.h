@@ -23,6 +23,8 @@ void	ft_putchar(char c);
 void	ft_putnbr(int nb);
 void	ft_putstr(char *str);
 
+void	ft_dec_to_hexadec_x(int i);
+void	ft_dec_to_hexadec_X(int i);
 
 int	main();
 
