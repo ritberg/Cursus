@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 10:50:48 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/14 19:30:05 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:23:59 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,20 @@ int	main()
 //	ft_printf("%s\n", "abc"); // NULL as last arg??
 //	printf("Chaîne de caractères: %s\n", "abc");
 
-	void	*p = "abc";
+	int	p = 9;
 	ft_printf("%p\n", &p);
-	printf("Pointeur de chaîne: %p\n", &p);
+	printf("Pointeur: %p\n", &p);
 
+/*
+	ft_printf("%x\n", 103087);
+	printf("Un nombre en hexadécimal (base 16) min: %x\n", 103087);
+
+	ft_printf("%X\n", 103087);
+	printf("Un nombre en hexadécimal (base 16) maj: %X\n", 103087);
+*/	
+/*
+	ft_printf("%%%%\n");
+	printf("%%%%\n");
+*/
 	return (0);
 }

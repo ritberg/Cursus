@@ -6,14 +6,14 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 10:50:09 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/14 19:29:00 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:23:54 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
- if we have a even (pair) n of %, we can print. what to do if 5 %, for ex??
+ if we have a even (pair) n of %, we can print. what to do if 5 %, for ex?? error!
 */
 
 static int	ft_check(char c, const char *str)
@@ -30,49 +30,137 @@ static int	ft_check(char c, const char *str)
 	return (0);
 }
 
+static	void	ft_dec_to_hexadec_X(int i)
+{
+	int	n;
+	char	hexadec[100];
+	int	j;
+	int	k;
+
+	j = 0;
+	while (i != 0)
+	{
+		n = i % 16;
+		if (n < 10)
+			hexadec[j++] = n + 48;
+		else
+			hexadec[j++] = n + 55; //for maj 55 (65 - 10  in ascii)
+		i = i / 16;
+	}
+	k = j - 1;
+	while (k >= 0)
+	{
+		ft_putchar(hexadec[k]);
+		k--;
+	}
+}
+
+static	void	ft_dec_to_hexadec_x(int i)
+{
+	int	n;
+	char	hexadec[100];
+	int	j;
+	int	k;
+
+	j = 0;
+	while (i != 0)
+	{
+		n = i % 16;
+		if (n < 10)
+			hexadec[j++] = n + 48;
+		else
+			hexadec[j++] = n + 87; //97 - 10 in ascci
+		i = i / 16;
+	}
+	k = j - 1;
+	while (k >= 0)
+	{
+		ft_putchar(hexadec[k]);
+		k--;
+	}
+}
+
+static	void	ft_dec_to_hexadec_p(long int i)
+{
+	int	n;
+	char	hexadec[100];
+	int	j;
+	int	k;
+
+	j = 0;
+	while (i != 0)
+	{
+		n = i % 16;
+		if (n < 10)
+			hexadec[j++] = n + 48;
+		else
+			hexadec[j++] = n + 87; //97 - 10 in ascci
+		i = i / 16;
+	}
+	k = j - 1;
+	while (k >= 0)
+	{
+		ft_putchar(hexadec[k]);
+		k--;
+	}
+}
+
 int	ft_printf(const char *s, ...)
 {
 	va_list	args;
-	int	index;
-	int	n;
+	int	ind;
 	int	i;
 	char	c;
 	char	*str;
 	void	*p;
+	long int	l;
 	
 	va_start(args, s);
 
-	index = 0;
-	while (s[index])
+	ind = 0;
+	while (s[ind])
 	{
-		if (s[index] == '%' && ft_check(s[index + 1], "diu")) // d, i and u are ok with ft_putnbr?
+		if (s[ind] == '%' && ft_check(s[ind + 1], "diu")) // d, i and u are ok with ft_putnbr?
 		{
 			i = va_arg(args, int);
 		//	ft_putnbr(i);
-			index += 2;
+			ind += 2;
 		}
-		else if (s[index] == '%' && s[index + 1] == 'c')
+		else if (s[ind] == '%' && s[ind + 1] == 'c')
 		{
 			c = va_arg(args, int);
 			//ft_putchar(c);
-			index += 2;
+			ind += 2;
 		}
-		else if (s[index] == '%' && s[index + 1] == 's')
+		else if (s[ind] == '%' && s[ind + 1] == 's')
 		{
 			str = va_arg(args, char *);
 		//	ft_putstr(str);
-			index += 2;
+			ind += 2;
 		}
-		else if (s[index] == '%' && s[index + 1] == 'p')
+		else if (s[ind] == '%' && s[ind + 1] == 'x')
 		{
-			p = va_arg(args, void *);
-			ft_putstr(p);
-			index += 2;
+			i = va_arg(args, unsigned int);
+			ft_dec_to_hexadec_x(i);
+			ind += 2;
+		}
+		else if (s[ind] == '%' && s[ind + 1] == 'X')
+		{
+			i = va_arg(args, unsigned int);
+			ft_dec_to_hexadec_X(i);
+			ind += 2;
+		}
+		else if (s[ind] == '%' && s[ind + 1] == 'p')
+		{
+			p = va_arg(args, void *); //long int? or void *?
+			p = &l;
+			ft_dec_to_hexadec_p(l);
+			ind += 2;
 		}
 		else
 		{
-		//	ft_putchar(s[index]);
-			index += 1;
+			ft_putchar(s[ind + 1]); //dsn't work well ! on imprime rien si ind % 2 != 0
+			ind += 1;
 		}
 	}
 	va_end(args);

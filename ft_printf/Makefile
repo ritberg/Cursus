@@ -13,7 +13,7 @@ RM		= rm -f
 
 HEADERS		= ft_printf.h
 
-INC_LIBFT	= ~/Documents/Cursus_rendus/rendu_libft/first_try
+INC_LIBFT	= libft
 
 CFLAGS		= -Wall -Wextra -Werror -IINC_LIBFT
 
