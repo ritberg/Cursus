@@ -123,19 +123,19 @@ int	ft_printf(const char *s, ...)
 		if (s[ind] == '%' && ft_check(s[ind + 1], "diu")) // d, i and u are ok with ft_putnbr?
 		{
 			i = va_arg(args, int);
-		//	ft_putnbr(i);
+			ft_putnbr(i);
 			ind += 2;
 		}
 		else if (s[ind] == '%' && s[ind + 1] == 'c')
 		{
 			c = va_arg(args, int);
-			//ft_putchar(c);
+			ft_putchar(c);
 			ind += 2;
 		}
 		else if (s[ind] == '%' && s[ind + 1] == 's')
 		{
 			str = va_arg(args, char *);
-		//	ft_putstr(str);
+			ft_putstr(str);
 			ind += 2;
 		}
 		else if (s[ind] == '%' && s[ind + 1] == 'x')
@@ -152,16 +152,20 @@ int	ft_printf(const char *s, ...)
 		}
 		else if (s[ind] == '%' && s[ind + 1] == 'p')
 		{
-			p = va_arg(args, void *); //long int? or void *?
-			p = &l;
+			p = va_arg(args, void *);
+			l = (long int)p; //long int or not?
+			ft_putchar('0');
+			ft_putchar('x');
 			ft_dec_to_hexadec_p(l);
 			ind += 2;
 		}
-		else
+		else if (s[ind] == '%' && s[ind + 1] == '%')
 		{
-			ft_putchar(s[ind + 1]); //dsn't work well ! on imprime rien si ind % 2 != 0
-			ind += 1;
+			ft_putchar(s[ind]);
+			ind += 2;
 		}
+		else
+			ind++;
 	}
 	va_end(args);
 	return (0); //or return (i) or return (c) ??

@@ -17,16 +17,22 @@ int	main()
 //	ft_printf("%d\n", 42);
 //	printf("Un nombre décimal (base 10): %d\n", 42);
 
+//	ft_printf("%u\n", 42);
+//	printf("Un nombre u: %u\n", 42);
+	
+	ft_printf("%i\n", 42);
+	printf("Un nombre i: %i\n", 42);
+
 //	ft_printf("%c\n", 'a');
 //	printf("Un seul caractère: %c\n", 'a');
 
 //	ft_printf("%s\n", "abc"); // NULL as last arg??
 //	printf("Chaîne de caractères: %s\n", "abc");
-
-	int	p = 9;
+/*
+	char	*p = "Salut";
 	ft_printf("%p\n", &p);
-	printf("Pointeur: %p\n", &p);
-
+	printf("\nPointeur: %p\n", &p);
+*/
 /*
 	ft_printf("%x\n", 103087);
 	printf("Un nombre en hexadécimal (base 16) min: %x\n", 103087);
@@ -35,8 +41,8 @@ int	main()
 	printf("Un nombre en hexadécimal (base 16) maj: %X\n", 103087);
 */	
 /*
-	ft_printf("%%%%\n");
-	printf("%%%%\n");
+	ft_printf("%%%%%%\n");
+	printf("%%%%%%\n");
 */
 	return (0);
 }
