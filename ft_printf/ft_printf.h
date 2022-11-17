@@ -18,21 +18,24 @@
 # include <stdarg.h>
 # include <stdio.h>   // to remove before submission !!
 
+#include "libft.h"
+
 int		ft_printf(const char *s, ...);
-int		ft_putchar(char c);
-void	ft_putstr(char *str);
+//void		ft_putchar_fd(char c, int fd);
+//void		ft_putnbr_fd(int nb, int fd);
+//void	ft_putstr_fd(char *str, int fd);
 
 int		ft_dec_to_hexadec_min(int i);
 int		ft_dec_to_hexadec_maj(int i);
 int		ft_dec_to_hexadec_p(long int i);
 
-int		ft_n(const char *s, int ind, va_list args);
-int		ft_c(const char *s, int ind, va_list args);
-int		ft_str(const char *s, int ind, va_list args);
-int		ft_hex_min(const char *s, int ind, va_list args);
-int		ft_hex_maj(const char *s, int ind, va_list args);
-int		ft_pointer(const char *s, int ind, va_list args);
+int		ft_n(va_list args);
+int		ft_c(va_list args);
+int		ft_str(va_list args);
+int		ft_hex_min(va_list args);
+int		ft_hex_maj(va_list args);
+int		ft_pointer(va_list args);
 
-int	main();
+//int	main();
 
 #endif

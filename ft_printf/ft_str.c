@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-int	ft_str(const char *s, int ind, va_list args)
+int	ft_str(va_list args)
 {
 	char	*str;
 	int	len;
 
 	str = va_arg(args, char *);
-	ft_putstr(str);
+	ft_putstr_fd(str, 1);
 	len = ft_strlen(str);
 	return (len);
 }

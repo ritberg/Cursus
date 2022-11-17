@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_hex_min(const char *s, int ind, va_list args)
+int	ft_hex_min(va_list args)
 {
 	int	i;
 

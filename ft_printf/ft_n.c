@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-int	ft_n(const char *s, int ind, va_list args)
+int	ft_n(va_list args)
 {
 	int		i;
 	int		len;
 	char	*str;
 
 	i = va_arg(args, int);
-	//ft_putnbr(i);
+	ft_putnbr_fd(i, 1);
 	str = ft_itoa(i);
 	len = ft_strlen(str);
 	return (len);

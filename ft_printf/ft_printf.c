@@ -33,19 +33,23 @@ static int	ft_check(char c, const char *str)
 static int	ft_output_type(const char *s, int ind, va_list args)
 {
 	if (ft_check(s[ind + 1], "diu")) //putnbr works for d i u?
-		return(ft_n(s, ind, args)); // to check. itoa instead of putnbr
+		ft_n(args); // to check. itoa instead of putnbr
 	else if (s[ind + 1] == 'c')
-		return(ft_c(s, ind, args)); //to check
+		return (ft_c(args));
 	else if (s[ind + 1] == 's')
-		return (ft_str(s, ind, args)); // +
+		return (ft_str(args)); // +
 	else if (s[ind + 1] == 'x')
-		return (ft_hex_min(s, ind, args)); //to check
+		return (ft_hex_min(args)); //to check
 	else if (s[ind + 1] == 'X')
-		return (ft_hex_maj(s, ind, args)); //to check
+		return (ft_hex_maj(args)); //to check
 	else if (s[ind + 1] == 'p')
-		return (ft_pointer(s, ind, args)); //to check
+		return (ft_pointer(args)); //to check
 	else if (s[ind + 1] == '%') //to check
-		return (ft_putchar(s[ind])); //return un char apres l'autre
+	{
+		ft_putchar_fd(s[ind], 1); //return un char apres l'autre
+		return (1);
+	}
+	return (0);
 }
 
 int	ft_printf(const char *s, ...)
@@ -66,13 +70,13 @@ int	ft_printf(const char *s, ...)
 		}
 		else
 		{
-			ft_putchar(s[ind]);
+			ft_putchar_fd(s[ind], 1);
 			result++;
 			ind++;
 		}
 	}
 	va_end(args);
-	return (result); //return is len of input
+	return (result); //return is len of output
 }
 
 

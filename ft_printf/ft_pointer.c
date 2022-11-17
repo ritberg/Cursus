@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-int	ft_pointer(const char *s, int ind, va_list args)
+int	ft_pointer(va_list args)
 {
 	void	*p;
 	long int	l;
 
 	p = va_arg(args, void *);
 	l = (long int)p; //long int or not?
-	ft_putchar('0');
-	ft_putchar('x');
+	ft_putchar_fd('0', 1);
+	ft_putchar_fd('x', 1);
 	return (ft_dec_to_hexadec_p(l));
 }

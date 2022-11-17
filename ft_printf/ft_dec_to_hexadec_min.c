@@ -32,7 +32,7 @@ int	ft_dec_to_hexadec_min(int i)
 	k = j - 1;
 	while (k >= 0)
 	{
-		ft_putchar(hexadec[k]);
+		ft_putchar_fd(hexadec[k], 1);
 		k--;
 	}
 	return (j);

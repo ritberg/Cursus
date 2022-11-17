@@ -12,10 +12,11 @@
 
 #include "ft_printf.h"
 
-int	ft_c(const char *s, int ind, va_list args)
+int	ft_c(va_list args)
 {
 	char	c;
 
 	c = va_arg(args, int);
-	return (ft_putchar(c));
+	ft_putchar_fd(c, 1);
+	return (1);
 }

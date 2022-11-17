@@ -1,6 +1,4 @@
-SRCS	= ft_putchar.c\
-		  ft_putstr.c\
-		  ft_printf.c\
+SRCS	= ft_printf.c\
 		  ft_c.c\
 		  ft_n.c\
 		  ft_str.c\
@@ -21,19 +19,20 @@ RM		= rm -f
 
 HEADERS		= ft_printf.h
 
-INC_LIBFT	= libft
+INC_LIBFT	= ./libft/
 
 CFLAGS		= -Wall -Wextra -Werror -IINC_LIBFT
 
 DEPS		= ${INC_LIBFT}/libft.h
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -c -I ${INC_LIBFT} $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS} ${HEADERS}
 			${MAKE} -C ${INC_LIBFT}
 			mv ${INC_LIBFT}/libft.a ${NAME}
-			@ar rcs ${NAME} ${OBJS}
+			@ar rc ${NAME} ${OBJS}
+			@ranlib ${NAME}
 
 all:		${NAME}
 
