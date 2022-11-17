@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 10:50:09 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/17 16:46:16 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:25:52 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ static int	ft_output_type(const char *s, int ind, va_list args)
 	else if (s[ind + 1] == 'p')
 		return (ft_pointer(s, ind, args)); //to check
 	else if (s[ind + 1] == '%') //to check
-	//	ft_putchar(s[ind]); // I changed putchar! now it's not like in libft
-		return (ft_percent(s, s[ind], args));
+		return (ft_putchar(s[ind])); //return un char apres l'autre
 }
 
 int	ft_printf(const char *s, ...)

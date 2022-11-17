@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 10:50:29 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/17 16:46:12 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:26:22 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int		ft_str(const char *s, int ind, va_list args);
 int		ft_hex_min(const char *s, int ind, va_list args);
 int		ft_hex_maj(const char *s, int ind, va_list args);
 int		ft_pointer(const char *s, int ind, va_list args);
-int		ft_percent(const char *s, int ind, va_list args);
 
 int	main();
 

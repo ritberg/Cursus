@@ -9,7 +9,6 @@ SRCS	= ft_putchar.c\
 		  ft_dec_to_hexadec_p.c\
 		  ft_hex_maj.c\
 		  ft_hex_min.c\
-		  ft_percent.c\
 		  ft_pointer.c\
 
 OBJS	= ${SRCS:.c=.o}
@@ -31,11 +30,10 @@ DEPS		= ${INC_LIBFT}/libft.h
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}		${OBJS} ${HEADERS}
+${NAME}:	${OBJS} ${HEADERS}
 			${MAKE} -C ${INC_LIBFT}
-			cp first_try/libft.a . # point is current dir
-			mv libft.a ${NAME}
-			@ar rc ${NAME} ${OBJS}
+			mv ${INC_LIBFT}/libft.a ${NAME}
+			@ar rcs ${NAME} ${OBJS}
 
 all:		${NAME}
 
@@ -45,7 +43,6 @@ clean:
 
 fclean:		clean
 			${RM} ${NAME}
-			${RM} ${INC_LIBFT}/libft.a
 
 re:			fclean all
 
