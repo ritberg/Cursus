@@ -18,6 +18,8 @@ int	ft_str(va_list args)
 	int	len;
 
 	str = va_arg(args, char *);
+	if (!str)
+		str = "(null)";
 	ft_putstr_fd(str, 1);
 	len = ft_strlen(str);
 	return (len);
