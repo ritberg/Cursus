@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 10:50:29 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/14 16:39:03 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:46:12 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,21 @@
 # include <stdarg.h>
 # include <stdio.h>   // to remove before submission !!
 
-int	ft_printf(const char *s, ...);
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
+int		ft_printf(const char *s, ...);
+int		ft_putchar(char c);
 void	ft_putstr(char *str);
 
-void	ft_dec_to_hexadec_x(int i);
-void	ft_dec_to_hexadec_X(int i);
+int		ft_dec_to_hexadec_min(int i);
+int		ft_dec_to_hexadec_maj(int i);
+int		ft_dec_to_hexadec_p(long int i);
+
+int		ft_n(const char *s, int ind, va_list args);
+int		ft_c(const char *s, int ind, va_list args);
+int		ft_str(const char *s, int ind, va_list args);
+int		ft_hex_min(const char *s, int ind, va_list args);
+int		ft_hex_maj(const char *s, int ind, va_list args);
+int		ft_pointer(const char *s, int ind, va_list args);
+int		ft_percent(const char *s, int ind, va_list args);
 
 int	main();
 

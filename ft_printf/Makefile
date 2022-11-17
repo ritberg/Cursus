@@ -1,7 +1,16 @@
 SRCS	= ft_putchar.c\
 		  ft_putstr.c\
-		  ft_putnbr.c\
-		  ft_printf.c
+		  ft_printf.c\
+		  ft_c.c\
+		  ft_n.c\
+		  ft_str.c\
+		  ft_dec_to_hexadec_maj.c\
+		  ft_dec_to_hexadec_min.c\
+		  ft_dec_to_hexadec_p.c\
+		  ft_hex_maj.c\
+		  ft_hex_min.c\
+		  ft_percent.c\
+		  ft_pointer.c\
 
 OBJS	= ${SRCS:.c=.o}
 
