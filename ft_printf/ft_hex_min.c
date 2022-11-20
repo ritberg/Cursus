@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:46:04 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/17 15:41:30 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/20 18:01:46 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_hex_min(va_list args)
 {
-	int	i;
+	unsigned int	i;
 
 	i = va_arg(args, unsigned int);
 	return (ft_dec_to_hexadec_min(i));

@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 11:35:18 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/20 11:37:11 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/20 16:46:26 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ft_u(va_list args)
 	char			*str;
 
 	u = va_arg(args, unsigned int);
-	ft_putnbr_fd(u, STDOUT_FILENO);
 	str = ft_itoa_unsigned(u);
-	len = ft_strlen(str);
+	ft_putstr_fd(str, STDOUT_FILENO); // easier to putstr than putnbr
+	len = ft_strlen(str);           // because putnbr is for signed int
 	free(str);
 	return (len);
 }

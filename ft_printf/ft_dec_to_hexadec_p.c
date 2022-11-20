@@ -6,19 +6,24 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 09:46:19 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/17 16:03:50 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/20 19:17:50 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_dec_to_hexadec_p(long int i)
+int	ft_dec_to_hexadec_p(unsigned long i) //uintptr_t?
 {
-	int	n;
+	unsigned long	n;
 	char	hexadec[100];
 	int	j;
 	int	k;
 
+	if (i == 0)
+	{
+		ft_putchar_fd('0', STDOUT_FILENO);
+		return (1);
+	}
 	j = 0;
 	while (i != 0)
 	{
@@ -32,7 +37,7 @@ int	ft_dec_to_hexadec_p(long int i)
 	k = j - 1;
 	while (k >= 0)
 	{
-		ft_putchar_fd(hexadec[k], 1);
+		ft_putchar_fd(hexadec[k], STDOUT_FILENO);
 		k--;
 	}
 	return (j);

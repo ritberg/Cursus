@@ -6,19 +6,24 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 09:44:21 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/17 16:04:33 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/20 19:14:44 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_dec_to_hexadec_maj(int i)
+int	ft_dec_to_hexadec_maj(unsigned int i)
 {
-	int	n;
+	unsigned int	n;
 	char	hexadec[100];
 	int	j;
 	int	k;
 
+	if (i == 0)
+	{
+		ft_putchar_fd('0', STDOUT_FILENO);
+		return (1);
+	}
 	j = 0;
 	while (i != 0)
 	{
