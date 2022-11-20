@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 10:50:29 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/17 17:26:22 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:42:22 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include <stdio.h>   // to remove before submission !!
 
-# include "libft.h"
+# include "libft/libft.h"
 
 int		ft_printf(const char *s, ...);
 //void		ft_putchar_fd(char c, int fd);
@@ -29,12 +29,15 @@ int		ft_dec_to_hexadec_min(int i);
 int		ft_dec_to_hexadec_maj(int i);
 int		ft_dec_to_hexadec_p(long int i);
 
-int		ft_n(va_list args);
+int		ft_di(va_list args);
+int		ft_u(va_list args);
 int		ft_c(va_list args);
 int		ft_str(va_list args);
 int		ft_hex_min(va_list args);
 int		ft_hex_maj(va_list args);
 int		ft_pointer(va_list args);
+
+char	*ft_itoa_unsigned(unsigned int n);
 
 //int	main();
 
