@@ -15,11 +15,16 @@
 int	ft_pointer(va_list args)
 {
 	void	*p;
-	unsigned int	u;
+	unsigned long	l;
 
 	p = va_arg(args, void *);
-	u = (unsigned int)p; //long int?
+	if (p == NULL)
+	{
+		ft_putstr_fd("(nil)", 1);
+		return (5);
+	}
+	l = (unsigned long)p; //long int?
 	ft_putchar_fd('0', 1);
 	ft_putchar_fd('x', 1);
-	return (ft_dec_to_hexadec_p(u));
+	return (2 + ft_dec_to_hexadec_p(l));
 }

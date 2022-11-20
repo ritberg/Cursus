@@ -41,12 +41,12 @@ static int	ft_output_type(const char *s, int ind, va_list args)
 	else if (s[ind + 1] == 's')
 		return (ft_str(args));
 	else if (s[ind + 1] == 'x')
-		return (ft_hex_min(args)); //ko
+		return (ft_hex_min(args));
 	else if (s[ind + 1] == 'X')
-		return (ft_hex_maj(args)); //ko
+		return (ft_hex_maj(args));
 	else if (s[ind + 1] == 'p')
-		return (ft_pointer(args));
-	else if (s[ind + 1] == '%') //ko
+		return (ft_pointer(args));//ko
+	else if (s[ind + 1] == '%')
 	{
 		ft_putchar_fd(s[ind], 1); //return un char apres l'autre
 		return (1);

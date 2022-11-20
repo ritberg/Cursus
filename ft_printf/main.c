@@ -32,7 +32,7 @@ int	main()
 //	int x = 1 + 2;
 //	char	*p = "Salut";
 //	ft_printf("%p\n", 15);
-//	printf("Pointeur: %p\n", 15);
+	printf("Pointeur: %p\n", 1);
 	
 /*
 	Afficher les valeurs de retour pour x:
@@ -42,7 +42,7 @@ int	main()
 	int r2 = printf("%lx", l);
 	printf("\n R1 = %i, R2 = %i\n", r1, r2);
 */
-i
+
 //	ft_printf("%x\n", 103087);
 //	printf("Un nombre en hexadécimal (base 16) min: %x\n", 103087);
 

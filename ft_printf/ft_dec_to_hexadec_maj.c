@@ -19,11 +19,6 @@ int	ft_dec_to_hexadec_maj(unsigned int i)
 	int	j;
 	int	k;
 
-	if (i == 0)
-	{
-		ft_putchar_fd('0', STDOUT_FILENO);
-		return (1);
-	}
 	j = 0;
 	while (i != 0)
 	{

@@ -17,5 +17,10 @@ int	ft_hex_min(va_list args)
 	unsigned int	i;
 
 	i = va_arg(args, unsigned int);
+	if (i == 0)
+	{
+		ft_putchar_fd('0', STDOUT_FILENO);
+		return (1);
+	}
 	return (ft_dec_to_hexadec_min(i));
 }

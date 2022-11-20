@@ -15,15 +15,10 @@
 int	ft_dec_to_hexadec_p(unsigned long i) //uintptr_t?
 {
 	unsigned long	n;
-	char	hexadec[100];
+	char	hexadec[1000];
 	int	j;
 	int	k;
 
-	if (i == 0)
-	{
-		ft_putchar_fd('0', STDOUT_FILENO);
-		return (1);
-	}
 	j = 0;
 	while (i != 0)
 	{

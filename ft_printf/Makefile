@@ -42,7 +42,7 @@ all:		${NAME}
 
 clean:		
 			${RM} ${OBJS}
-			${RM} ${OBJ_MAIN}
+			${RM}
 			${MAKE} -C ${INC_LIBFT} clean
 
 fclean:		clean
