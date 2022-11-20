@@ -15,7 +15,7 @@
 int	ft_hex_maj(va_list args)
 {
 	unsigned int	i;
-	
+
 	i = va_arg(args, unsigned int);
 	if (i == 0)
 	{

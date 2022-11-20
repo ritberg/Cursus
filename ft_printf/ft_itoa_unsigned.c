@@ -47,8 +47,8 @@ static void	ft_mod(unsigned int n, char *result, unsigned int size)
 
 char	*ft_itoa_unsigned(unsigned int n)
 {
-	char	*result;
-	unsigned int		size;
+	char		*result;
+	unsigned int	size;
 
 	size = ft_size(n);
 	result = malloc(sizeof(char) * (size + 1));

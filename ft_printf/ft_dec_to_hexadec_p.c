@@ -15,9 +15,9 @@
 int	ft_dec_to_hexadec_p(unsigned long i) //uintptr_t?
 {
 	unsigned long	n;
-	char	hexadec[1000];
-	int	j;
-	int	k;
+	char		hexadec[1000];
+	int		j;
+	int		k;
 
 	j = 0;
 	while (i != 0)

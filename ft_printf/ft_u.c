@@ -15,8 +15,8 @@
 int	ft_u(va_list args)
 {
 	unsigned int	u;
-	int				len;
-	char			*str;
+	int		len;
+	char		*str;
 
 	u = va_arg(args, unsigned int);
 	str = ft_itoa_unsigned(u);
