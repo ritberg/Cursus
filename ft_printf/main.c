@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 10:50:48 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/20 19:21:05 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/21 07:25:41 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	main()
 
 //	int x = 1 + 2;
 //	char	*p = "Salut";
-//	ft_printf("%p\n", 15);
-	printf("Pointeur: %p\n", 1);
+//	ft_printf("%p\n", NULL);
+	printf("Pointeur: %p\n", NULL);
 	
 /*
 	Afficher les valeurs de retour pour x:
