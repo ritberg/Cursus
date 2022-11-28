@@ -6,37 +6,60 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:34:35 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/27 18:13:32 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:08:46 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static lines	*ft_lstnew(void *content)
+char	*ft_strdup(char *s1)
 {
-	lines	*new_line;
+	char	*dst;
+	char	*src;
+	int	len;
+	int	i;
 
-	new_line = malloc(sizeof(*new_line));
-	if (new_line == NULL)
-		return (NULL);
-	new_line->content = content;
-	new_line->next = NULL;
-	return (new_line);
-}	
-
-int	ft_strlen(char *str)
-{
 	len = 0;
+	while (src[len])
+		len++;
+	dst = malloc(sizeof(*src) * (len + 1));
+	if (dst == NULL)
+		return (NULL);
+	if (src == 0)
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+/*
+size_t	ft_strlen(char *str)
+{
+	size_t	len;
 
+	len = 0;
 	while (str[len])
 		len++;
 	return (len);
 }
+*/
 
 char	*get_next_line(int fd)
 {
-	static void *buff;
+	char	str[100];
+	int	i;
 
-	ft_lstnew(buff);
-	read(fd, buff, ft_strlen(buff));
+	i = 0;
+	if (fd < 0)
+		return (NULL);
+	while (str[i] != '\n')
+	{
+		read(fd, &str[i], 1); 
+		i++;
+	}
+	return (ft_strdup(str));
 }
