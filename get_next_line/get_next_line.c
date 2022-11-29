@@ -40,19 +40,19 @@ char	*read_save(int fd, char *str_save)
 	char	*temp;
 	int	read_bytes;
 
-	//read_bytes = 1;
+	read_bytes = 1;  // 1 char 1 byte, so start counting from 1 for '\0'
 	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (temp == NULL)
 		return (NULL);
 	while (!ft_strchr(temp, '\n') && read_bytes != 0) // read_bytes = 0 means EOF
 	{
 		read_bytes = read(fd, temp, BUFFER_SIZE); // read function returns n of read bytes
-		if (read_bytes == - 1) // -1 is retured if there is an error
+		if (read_bytes == -1) // -1 is retured if there is an error
 		{
 			free(temp);
 			return (NULL);
 		}
-		temp[read_bytes] = '\0';
+		temp[read_bytes] = '\0'; //why? put '\0'? (temp[read_bytes] because read_bytes initialized from 1)
 		str_save = ft_strjoin(str_save, temp);
 	}
 	free(temp);
@@ -67,8 +67,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	save_str = read_save(fd, str_save);
+	str_save = read_save(fd, str_save);
 	if (save_str == NULL)
 		return (NULL);
-	return ();
+	return (str_save);
 }
