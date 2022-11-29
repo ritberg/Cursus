@@ -12,30 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*ft_strdup(char *s1)
-{
-	char	*dst;
-	char	*src;
-	int	len;
-	int	i;
 
-	len = 0;
-	while (src[len])
-		len++;
-	dst = malloc(sizeof(*src) * (len + 1));
-	if (dst == NULL)
-		return (NULL);
-	if (src == 0)
-		return (0);
-	i = 0;
-	while (i < len)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
 /*
 size_t	ft_strlen(char *str)
 {
@@ -47,18 +24,51 @@ size_t	ft_strlen(char *str)
 	return (len);
 }
 */
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (0);
+		s++;
+	}
+	return ((char *)s);
+}
+
+char	*read_save(int fd, char *str_save)
+{
+	char	*temp;
+	int	read_bytes;
+
+	//read_bytes = 1;
+	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (temp == NULL)
+		return (NULL);
+	while (!ft_strchr(temp, '\n') && read_bytes != 0) // read_bytes = 0 means EOF
+	{
+		read_bytes = read(fd, temp, BUFFER_SIZE); // read function returns n of read bytes
+		if (read_bytes == - 1) // -1 is retured if there is an error
+		{
+			free(temp);
+			return (NULL);
+		}
+		temp[read_bytes] = '\0';
+		str_save = ft_strjoin(str_save, temp);
+	}
+	free(temp);
+	return (str_save);
+}
+// how the iteration is done in the while above????
 
 char	*get_next_line(int fd)
 {
-	static char	str[100];
+	static char	*str_save;
 	int	i;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (str[i] != '\n' || str[i])
-	{
-		read(fd, &str[i], 1); 
-		i++;
-	}
-	return (ft_strdup(str));
+	save_str = read_save(fd, str_save);
+	if (save_str == NULL)
+		return (NULL);
+	return ();
 }
