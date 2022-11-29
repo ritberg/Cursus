@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:34:35 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/28 17:35:19 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/11/29 10:57:59 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ size_t	ft_strlen(char *str)
 
 char	*get_next_line(int fd)
 {
-	char	str[100];
-	static int	i;  //static or not?
+	static char	str[100];
+	int	i;
 
 	if (fd < 0)
 		return (NULL);
-	while (str[i] != '\n')
+	while (str[i] != '\n' || str[i])
 	{
 		read(fd, &str[i], 1); 
 		i++;
