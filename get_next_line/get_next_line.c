@@ -23,16 +23,36 @@ static char	*ft_strchr(char *s, char c)
 	return (s);
 }
 
+// read and return before \n, \n included
+char	*line(char *temp)
+{
+	size_t	i;
+	char	*line;
+
+	i = 0;
+	while (temp[i] != '\n')
+		i++;
+	line = malloc(sizeof(char) * (i + 1));
+	i = 0;
+	while (!ft_strchr(temp, '\n'))
+	{
+		line[i] = temp[i];
+		i++;
+	}
+	line[i] = '\n';
+	return (line);
+}
+
 static char	*read_save(int fd, char *str_save)
 {
 	char	*temp;
-	int	read_bytes;
+	size_t	read_bytes;
 
 	read_bytes = 1;  // 1 char 1 byte, so start counting from 1 for '\0'
 	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (temp == NULL)
 		return (NULL);
-	while (!ft_strchr(temp, '\n') && read_bytes != 0) // read_bytes = 0 means EOF
+	while (read_bytes != 0 && !ft_strchr(temp, '\n')) // read_bytes = 0 means EOF
 	{
 		read_bytes = read(fd, temp, BUFFER_SIZE); // read function returns n of read bytes
 		if (read_bytes == -1) // -1 is retured if there is an error
@@ -40,6 +60,7 @@ static char	*read_save(int fd, char *str_save)
 			free(temp);
 			return (NULL);
 		}
+		line(temp);
 		temp[read_bytes] = '\0'; //I've read the line from fd and put in temp
 								 //here I add a '\0' 
 								 //temp[read_bytes] not read_bytes - 1
@@ -56,7 +77,7 @@ char	*get_next_line(int fd)
 	int	i;
 	char	*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
 	str_save = read_save(fd, str_save);
 	if (str_save == NULL)
