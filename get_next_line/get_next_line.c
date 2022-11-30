@@ -49,7 +49,6 @@ static char	*read_save(int fd, char *str_save)
 	free(temp);
 	return (str_save);
 }
-// how the iteration is done in the while above????
 
 char	*get_next_line(int fd)
 {
