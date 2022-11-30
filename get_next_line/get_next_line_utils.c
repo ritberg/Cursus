@@ -45,9 +45,9 @@ static char	*ft_strcat(char *dst, char *src)
 	return (dst);
 }
 
-static int	ft_strlen(char *s)
+size_t	ft_strlen(char *s)
 {
-	int	len;
+	size_t	len;
 
 	len = 0;
 	while (s[len])

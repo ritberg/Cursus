@@ -25,29 +25,50 @@ static char	*ft_strchr(char *s, char c)
 	return (s);
 }
 
+// returns the rest of lines (after the first read line)
+static char	*the_rest(char *str_save)
+{
+	size_t	i;
+	size_t	ind;
+	char	*rest;
+
+	i = 0;
+	while (str_save[i] && str_save[i] != '\n')
+		i++;
+	rest = malloc(sizeof(char) * (ft_strlen(str_save) - i + 1)); //size of str_save - i (the fisrt line)
+	if (rest == NULL)
+		return (NULL);
+	ind = 0;
+	while (str_save[i])
+		rest[ind++] = str_save[i++];
+	rest[ind] = '\0';
+	return (rest);
+}
+
 // read and return the line before \n, \n included
-char	*div_lines(char *str_save)
+static char	*div_lines(char *str_save)
 {
 	size_t	i;
 	char	*line;
 
 	i = 0;
-	while (str_save[i] && str_save[i] != '\n') //why str_save[i]
+	while (str_save[i] && str_save[i] != '\n') //count i till \n
 		i++;
-	line = malloc(sizeof(char) * (i + 2));
+	line = malloc(sizeof(char) * (i + 2)); //malloc for the line str_save[i]
 	if (line == NULL)
 		return (NULL);
 	i = 0;
 	while (str_save[i] != '\n')
 	{
-		line[i] = str_save[i];
+		line[i] = str_save[i]; //put str_save[i] into line
 		i++;
 	}
-	line[i] = '\n';
-	line[i + 1] = '\0';
+	line[i] = '\n'; // add \n
+	line[i + 1] = '\0'; // add \0
 	return (line);
 }
 
+// read the file fd and save all the lines in str_save
 static char	*read_save(int fd, char *str_save)
 {
 	char	*temp;
@@ -57,7 +78,7 @@ static char	*read_save(int fd, char *str_save)
 	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (temp == NULL)
 		return (NULL);
-	while (read_bytes != 0 && !ft_strchr(str_save, '\n')) // read_bytes = 0 means EOF
+	while (read_bytes != 0) // read_bytes = 0 means EOF
 	{
 		read_bytes = read(fd, temp, BUFFER_SIZE); // read function returns n of read bytes
 		if (read_bytes == -1) // -1 is retured if there is an error
@@ -72,7 +93,7 @@ static char	*read_save(int fd, char *str_save)
 		str_save = ft_strjoin(str_save, temp);
 	}
 	free(temp);
-	return (str_save); //is it a line or all the lines?
+	return (str_save);
 }
 
 char	*get_next_line(int fd)
@@ -86,6 +107,7 @@ char	*get_next_line(int fd)
 	str_save = read_save(fd, str_save); //read all the file, all lines. save as str_save
 	if (str_save == NULL)
 		return (NULL);
-	line = div_lines(str_save); //get only 1 line
+	line = div_lines(str_save); //get only 1 line tiil the first \n
+	str_save = the_rest(str_save);
 	return (line);
 }
