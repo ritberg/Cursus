@@ -14,7 +14,7 @@
 
 static char	*ft_strcpy(char *dst, char *src)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (src[i])
@@ -28,8 +28,8 @@ static char	*ft_strcpy(char *dst, char *src)
 
 static char	*ft_strcat(char *dst, char *src)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;

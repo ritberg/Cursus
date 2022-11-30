@@ -14,27 +14,31 @@
 
 static char	*ft_strchr(char *s, char c)
 {
-	while (*s != c)
+	if (s == NULL)
+		return (NULL);
+	while (*s)
 	{
-		if (*s == '\0')
+		if (*s == c)
 			return (0);
 		s++;
 	}
 	return (s);
 }
 
-// read and return before \n, \n included
+// read and return the line before \n, \n included
 char	*div_lines(char *str_save)
 {
 	size_t	i;
 	char	*line;
 
 	i = 0;
-	while (str_save[i] != '\n')
+	while (str_save[i] && str_save[i] != '\n') //why str_save[i]
 		i++;
 	line = malloc(sizeof(char) * (i + 2));
+	if (line == NULL)
+		return (NULL);
 	i = 0;
-	while (!ft_strchr(str_save, '\n'))
+	while (str_save[i] != '\n')
 	{
 		line[i] = str_save[i];
 		i++;
@@ -53,7 +57,7 @@ static char	*read_save(int fd, char *str_save)
 	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (temp == NULL)
 		return (NULL);
-	while (read_bytes != 0 && !ft_strchr(temp, '\n')) // read_bytes = 0 means EOF
+	while (read_bytes != 0 && !ft_strchr(str_save, '\n')) // read_bytes = 0 means EOF
 	{
 		read_bytes = read(fd, temp, BUFFER_SIZE); // read function returns n of read bytes
 		if (read_bytes == -1) // -1 is retured if there is an error
@@ -68,7 +72,7 @@ static char	*read_save(int fd, char *str_save)
 		str_save = ft_strjoin(str_save, temp);
 	}
 	free(temp);
-	return (str_save);
+	return (str_save); //is it a line or all the lines?
 }
 
 char	*get_next_line(int fd)
@@ -77,11 +81,11 @@ char	*get_next_line(int fd)
 	int	i;
 	char	*line;
 
-	if (fd < 0 || BUFFER_SIZE < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str_save = read_save(fd, str_save);
+	str_save = read_save(fd, str_save); //read all the file, all lines. save as str_save
 	if (str_save == NULL)
 		return (NULL);
-	line = div_lines(str_save);
+	line = div_lines(str_save); //get only 1 line
 	return (line);
 }
