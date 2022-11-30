@@ -29,19 +29,19 @@ int	main()
 //	ft_printf("%s\n", "abc"); // NULL as last arg??
 //	printf("Chaîne de caractères: %s\n", "abc");
 
-//	int x = 1 + 2;
-//	char	*p = "Salut";
-//	ft_printf("%p\n", NULL);
-//	printf("Pointeur: %p\n", NULL);
+	int x = 1 + 2;
+	void	*p = &x;
+	ft_printf("%p\n", p);
+	printf("Pointeur: %p\n", p);
 	
 
-//	Afficher les valeurs de retour pour x:
+/*	Afficher les valeurs de retour pour x:
 	long l = 25;
 
 	int r1 = ft_printf("%x", l);
 	int r2 = printf("%lx", l);
 	printf("\n R1 = %i, R2 = %i\n", r1, r2);
-
+*/
 /*
 	ft_printf("%x\n", 103087);
 	printf("Un nombre en hexadécimal (base 16) min: %x\n", 103087);

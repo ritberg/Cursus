@@ -45,20 +45,26 @@ static char	*ft_strcat(char *dst, char *src)
 	return (dst);
 }
 
-char *ft_strjoin(char const *s1, char const *s2)
+static int	ft_strlen(char *s)
+{
+	int	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+char *ft_strjoin(char *s1, char *s2)
 {
 	char	*dst;
-	char	*str1;
-	char	*str2;
 
-	str1 = (char *)s1;
-	str2 = (char *)s2;
-	if (str1 == 0 || str2 == 0)
+	if (s1 == 0 || s2 == 0)
 		return (0);
 	dst = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (dst == NULL)
-		return (0);
-	ft_strcpy(dst, str1);
-	ft_strcat(dst, str2);
+		return (NULL);
+	ft_strcpy(dst, s1);
+	ft_strcat(dst, s2);
 	return (dst);
 }

@@ -12,30 +12,18 @@
 
 #include "get_next_line.h"
 
-
-/*
-size_t	ft_strlen(char *str)
+static char	*ft_strchr(char *s, char c)
 {
-	size_t	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-*/
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s != (char)c)
+	while (*s != c)
 	{
 		if (*s == '\0')
 			return (0);
 		s++;
 	}
-	return ((char *)s);
+	return (s);
 }
 
-char	*read_save(int fd, char *str_save)
+static char	*read_save(int fd, char *str_save)
 {
 	char	*temp;
 	int	read_bytes;
@@ -52,7 +40,10 @@ char	*read_save(int fd, char *str_save)
 			free(temp);
 			return (NULL);
 		}
-		temp[read_bytes] = '\0'; //why? put '\0'? (temp[read_bytes] because read_bytes initialized from 1)
+		temp[read_bytes] = '\0'; //I've read the line from fd and put in temp
+								 //here I add a '\0' 
+								 //temp[read_bytes] not read_bytes - 1
+								 //because read_bytes initialized from 1
 		str_save = ft_strjoin(str_save, temp);
 	}
 	free(temp);
@@ -64,11 +55,12 @@ char	*get_next_line(int fd)
 {
 	static char	*str_save;
 	int	i;
+	char	*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	str_save = read_save(fd, str_save);
-	if (save_str == NULL)
+	if (str_save == NULL)
 		return (NULL);
 	return (str_save);
 }
