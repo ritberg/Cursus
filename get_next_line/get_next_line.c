@@ -24,22 +24,23 @@ static char	*ft_strchr(char *s, char c)
 }
 
 // read and return before \n, \n included
-char	*line(char *temp)
+char	*div_lines(char *str_save)
 {
 	size_t	i;
 	char	*line;
 
 	i = 0;
-	while (temp[i] != '\n')
+	while (str_save[i] != '\n')
 		i++;
-	line = malloc(sizeof(char) * (i + 1));
+	line = malloc(sizeof(char) * (i + 2));
 	i = 0;
-	while (!ft_strchr(temp, '\n'))
+	while (!ft_strchr(str_save, '\n'))
 	{
-		line[i] = temp[i];
+		line[i] = str_save[i];
 		i++;
 	}
 	line[i] = '\n';
+	line[i + 1] = '\0';
 	return (line);
 }
 
@@ -60,7 +61,6 @@ static char	*read_save(int fd, char *str_save)
 			free(temp);
 			return (NULL);
 		}
-		line(temp);
 		temp[read_bytes] = '\0'; //I've read the line from fd and put in temp
 								 //here I add a '\0' 
 								 //temp[read_bytes] not read_bytes - 1
@@ -82,5 +82,6 @@ char	*get_next_line(int fd)
 	str_save = read_save(fd, str_save);
 	if (str_save == NULL)
 		return (NULL);
-	return (str_save);
+	line = div_lines(str_save);
+	return (line);
 }
