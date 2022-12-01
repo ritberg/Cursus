@@ -33,7 +33,7 @@ static char	*the_rest(char *str_save)
 	char	*rest;
 
 	i = 0;
-	while (str_save[i] && str_save[i] != '\n')
+	while (str_save[i] && ft_strchr(str_save, '\n'))
 		i++;
 	rest = malloc(sizeof(char) * (ft_strlen(str_save) - i + 1)); //size of str_save - i (the fisrt line)
 	if (rest == NULL)
@@ -52,7 +52,7 @@ static char	*div_lines(char *str_save)
 	char	*line;
 
 	i = 0;
-	while (str_save[i] && str_save[i] != '\n') //count i till \n
+	while (str_save[i] && ft_strchr(str_save, '\n')) //count i till \n
 		i++;
 	line = malloc(sizeof(char) * (i + 2)); //malloc for the line str_save[i]
 	if (line == NULL)
@@ -63,8 +63,8 @@ static char	*div_lines(char *str_save)
 		line[i] = str_save[i]; //put str_save[i] into line
 		i++;
 	}
-	line[i] = '\n'; // add \n
-	line[i + 1] = '\0'; // add \0
+//	line[i] = '\n'; // line[i] to add \n ???
+	line[i] = '\0'; // line[i + 1] to add \0 ???
 	return (line);
 }
 
@@ -78,7 +78,7 @@ static char	*read_save(int fd, char *str_save)
 	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (temp == NULL)
 		return (NULL);
-	while (read_bytes != 0) // read_bytes = 0 means EOF
+	while (read_bytes != 0 && ft_strchr(str_save, '\n')) // read_bytes = 0 means EOF
 	{
 		read_bytes = read(fd, temp, BUFFER_SIZE); // read function returns n of read bytes
 		if (read_bytes == -1) // -1 is retured if there is an error
@@ -92,6 +92,7 @@ static char	*read_save(int fd, char *str_save)
 								 //because read_bytes initialized from 1
 		str_save = ft_strjoin(str_save, temp);
 	}
+//	printf("%s\n", temp);
 	free(temp);
 	return (str_save);
 }
@@ -104,10 +105,14 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str_save = read_save(fd, str_save); //read all the file, all lines. save as str_save
+	str_save = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (str_save == NULL)
 		return (NULL);
+	str_save = read_save(fd, str_save); //read all the file, all lines. save as str_save
+//	printf("%s\n", str_save);
 	line = div_lines(str_save); //get only 1 line tiil the first \n
+//	printf("%s\n", line);
 	str_save = the_rest(str_save);
+//	printf("%s\n", str_save);
 	return (line);
 }
