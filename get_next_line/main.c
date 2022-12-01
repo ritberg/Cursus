@@ -17,11 +17,12 @@
 int	main()
 {
 	int	fd;
-	char	*str;
 
-	fd = open("test.txt", O_RDONLY);
+	fd = open("test2.txt", O_RDONLY);
 	printf("%s", get_next_line(fd));
+//	printf("TEST\n");
 	printf("%s", get_next_line(fd));
-//	printf("%s\n", get_next_line(fd));
+//	printf("RE\n");
+	printf("%s\n", get_next_line(fd));
 	return (0);
 }

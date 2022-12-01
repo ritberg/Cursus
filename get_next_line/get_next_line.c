@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static char	*ft_strchr(char *s, char c)
+char	*ft_strchr(char *s, char c)
 {
 	if (s == NULL)
 		return (NULL);
@@ -26,6 +26,23 @@ static char	*ft_strchr(char *s, char c)
 }
 
 // returns the rest of lines (after the first read line)
+
+static void	the_rest(char *str_save)
+{
+	size_t	i;
+	size_t	ind;
+
+	i = 0;
+	ind = 0;
+	while (str_save[i] && str_save[i] != '\n')
+		i++;
+	i++;
+	while (str_save[i])
+		str_save[ind++] = str_save[i++]; // decalage du buffer
+	str_save[ind] = '\0';
+}
+
+/*
 static char	*the_rest(char *str_save)
 {
 	size_t	i;
@@ -47,26 +64,29 @@ static char	*the_rest(char *str_save)
 	rest[ind] = '\0';           // il faut ajouter \n ????
 	return (rest);
 }
+*/
 
 // read and return the line before \n, \n included
-static char	*div_lines(char *str_save)
+static char	*div_lines(char *all_strs)
 {
 	size_t	i;
 	char	*line;
 
+	if (all_strs == NULL)
+		return (NULL);
 	i = 0;
-	while (str_save[i] && str_save[i] != '\n') //count i till \n
+	while (all_strs[i] && all_strs[i] != '\n') //count i till \n
 		i++;
 	line = malloc(sizeof(char) * (i + 2)); //malloc for the line str_save[i]
 	if (line == NULL)
 		return (NULL);
 	i = 0;
-	while (str_save[i] && str_save[i] != '\n')
+	while (all_strs[i] && all_strs[i] != '\n')
 	{
-		line[i] = str_save[i]; //put str_save[i] into line
+		line[i] = all_strs[i]; //put str_save[i] into line
 		i++;
 	}
-	if (str_save[i] == '\0') // if EOF, return the line without \n
+	if (all_strs[i] == '\0') // if EOF, return the line without \n
 		line[i] = '\0';
 	else
 		line[i] = '\n'; // line[i] to add \n
@@ -78,50 +98,68 @@ static char	*div_lines(char *str_save)
 static char	*read_save(int fd, char *str_save)
 {
 	char	*temp;
-	size_t	read_bytes;
+	char	*tmp_free;
+	int		read_bytes;
+	int		i;
 
 	read_bytes = 1;  // 1 char 1 byte, so start counting from 1 for '\0'
 	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (temp == NULL)
 		return (NULL);
+	temp[0] = 0;
+	temp = ft_strcpy(temp, str_save);
 	while (read_bytes != 0 && ft_strchr(str_save, '\n')) // read_bytes = 0 means EOF
 	{
-		read_bytes = read(fd, temp, BUFFER_SIZE); // read function returns n of read bytes
+		i = 0;
+		while(i <= BUFFER_SIZE)
+			str_save[i++] = 0; //fill in with 0, like bzero
+		read_bytes = read(fd, str_save, BUFFER_SIZE); // read function returns n of read bytes
 		if (read_bytes == -1) // -1 is retured if there is an error
 		{
 			free(temp);
 			return (NULL);
 		}
-		temp[read_bytes] = '\0'; //I've read the line from fd and put in temp
+		str_save[read_bytes] = '\0'; //I've read the line from fd and put in temp
 								 //here I add a '\0' 
 								 //temp[read_bytes] not read_bytes - 1
 								 //because read_bytes initialized from 1
-		str_save = ft_strjoin(str_save, temp);
+		tmp_free = temp; //garger temp en memoire
+		temp = ft_strjoin(temp, str_save);
+		free(tmp_free);
+		if (temp == NULL) // malloc dans ft_strjoin fait ou non?
+			return (NULL);
 	}
 //	printf("%s\n", temp);
-	free(temp);
-	return (str_save);
+	return (temp);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*str_save;
-	int	i;
+	static char	str_save[BUFFER_SIZE + 1];
 	char	*line;
+	char	*all_strs;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (str_save == NULL)  // lire qu'au premier appel
-	{
-		str_save = malloc(sizeof(char) * BUFFER_SIZE + 1);
-		if (str_save == NULL)
-			return (NULL);
-	}
-	str_save = read_save(fd, str_save); //read all the file, all lines. save as str_save
-//	printf("%s\n", str_save);
-	line = div_lines(str_save); //get only 1 line tiil the first \n
+//	if (str_save == NULL)  // lire qu'au premier appel
+//	{
+//		str_save = malloc(sizeof(char) * BUFFER_SIZE + 1); pas de malloc d'une var static !
+//		if (str_save == NULL)
+//			return (NULL);
+//	}
+	all_strs = read_save(fd, str_save); //read all the file, all lines. save as str_save
+	if (all_strs == NULL)
+		return (NULL);
+//	printf("%s", str_save);
+	line = div_lines(all_strs); //get only 1 line tiil the first \n
+	free(all_strs);
+	if (line == NULL)
+		return (NULL);
 //	printf("%s\n", line);
-	str_save = the_rest(str_save);
+	the_rest(str_save);
 //	printf("%s\n", str_save);
-	return (line);
+	if (ft_strlen(line)) //if str is void, return a pointer to null
+		return (line);
+	free(line);
+	return (NULL);
 }
