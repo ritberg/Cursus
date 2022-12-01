@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-/*
+
 char	*ft_strchr(char *s, char c)
 {
 	if (s == NULL)
@@ -24,7 +24,7 @@ char	*ft_strchr(char *s, char c)
 	}
 	return (s);
 }
-*/
+
 char	*ft_strcpy(char *dst, char *src)
 {
 	size_t	i;

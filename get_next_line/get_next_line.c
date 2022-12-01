@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+/*
 char	*ft_strchr(char *s, char c)
 {
 	if (s == NULL)
@@ -24,6 +24,7 @@ char	*ft_strchr(char *s, char c)
 	}
 	return (s);
 }
+*/
 
 // returns the rest of lines (after the first read line)
 
@@ -89,8 +90,10 @@ static char	*div_lines(char *all_strs)
 	if (all_strs[i] == '\0') // if EOF, return the line without \n
 		line[i] = '\0';
 	else
+	{
 		line[i] = '\n'; // line[i] to add \n
 		line[i + 1]  = '\0'; // line[i + 1] to add \0 
+	}
 	return (line);
 }
 
@@ -106,13 +109,13 @@ static char	*read_save(int fd, char *str_save)
 	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (temp == NULL)
 		return (NULL);
-	temp[0] = 0;
+	temp[0] = '\0';
 	temp = ft_strcpy(temp, str_save);
 	while (read_bytes != 0 && ft_strchr(str_save, '\n')) // read_bytes = 0 means EOF
 	{
 		i = 0;
 		while(i <= BUFFER_SIZE)
-			str_save[i++] = 0; //fill in with 0, like bzero
+			str_save[i++] = '\0'; //fill in with 0, like bzero
 		read_bytes = read(fd, str_save, BUFFER_SIZE); // read function returns n of read bytes
 		if (read_bytes == -1) // -1 is retured if there is an error
 		{
@@ -147,7 +150,7 @@ char	*get_next_line(int fd)
 //		if (str_save == NULL)
 //			return (NULL);
 //	}
-	all_strs = read_save(fd, str_save); //read all the file, all lines. save as str_save
+	all_strs = read_save(fd, str_save); //read all the file, all lines. save as all_strs
 	if (all_strs == NULL)
 		return (NULL);
 //	printf("%s", str_save);

@@ -24,7 +24,7 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strcpy(char *dst, char *src);
 size_t	ft_strlen(char *s1);
-//char	*ft_strchr(char *s, char c);
+char	*ft_strchr(char *s, char c);
 //int	main(); //del
 
 #endif
