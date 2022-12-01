@@ -23,3 +23,7 @@ size_t	ft_strlen(char *s1);
 int	main(); //del
 
 #endif
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 42
+#endif

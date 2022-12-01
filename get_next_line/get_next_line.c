@@ -32,16 +32,19 @@ static char	*the_rest(char *str_save)
 	size_t	ind;
 	char	*rest;
 
+	if (str_save == NULL)
+		return (NULL);
 	i = 0;
-	while (str_save[i] && ft_strchr(str_save, '\n'))
+	while (str_save[i] && str_save[i] != '\n')
 		i++;
-	rest = malloc(sizeof(char) * (ft_strlen(str_save) - i + 1)); //size of str_save - i (the fisrt line)
+	rest = malloc(sizeof(char) * (ft_strlen(str_save) - i - 1)); //size of str_save - len of the fisrt line and \n
 	if (rest == NULL)
 		return (NULL);
 	ind = 0;
+	i++; //for \n, beacause it was not included before
 	while (str_save[i])
 		rest[ind++] = str_save[i++];
-	rest[ind] = '\0';
+	rest[ind] = '\0';           // il faut ajouter \n ????
 	return (rest);
 }
 
@@ -52,19 +55,22 @@ static char	*div_lines(char *str_save)
 	char	*line;
 
 	i = 0;
-	while (str_save[i] && ft_strchr(str_save, '\n')) //count i till \n
+	while (str_save[i] && str_save[i] != '\n') //count i till \n
 		i++;
 	line = malloc(sizeof(char) * (i + 2)); //malloc for the line str_save[i]
 	if (line == NULL)
 		return (NULL);
 	i = 0;
-	while (str_save[i] != '\n')
+	while (str_save[i] && str_save[i] != '\n')
 	{
 		line[i] = str_save[i]; //put str_save[i] into line
 		i++;
 	}
-//	line[i] = '\n'; // line[i] to add \n ???
-	line[i] = '\0'; // line[i + 1] to add \0 ???
+	if (str_save[i] != '\0')
+		line[i] = '\0';
+	else
+		line[i] = '\n'; // line[i] to add \n              add here: if EOF, no \n !
+		line[i + 1]  = '\0'; // line[i + 1] to add \0 
 	return (line);
 }
 
@@ -105,9 +111,12 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str_save = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (str_save == NULL)
-		return (NULL);
+	if (str_save == NULL)  // lire qu'au premier appel
+	{
+		str_save = malloc(sizeof(char) * BUFFER_SIZE + 1);
+		if (str_save == NULL)
+			return (NULL);
+	}
 	str_save = read_save(fd, str_save); //read all the file, all lines. save as str_save
 //	printf("%s\n", str_save);
 	line = div_lines(str_save); //get only 1 line tiil the first \n
