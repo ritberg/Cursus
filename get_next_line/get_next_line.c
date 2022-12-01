@@ -66,10 +66,10 @@ static char	*div_lines(char *str_save)
 		line[i] = str_save[i]; //put str_save[i] into line
 		i++;
 	}
-	if (str_save[i] != '\0')
+	if (str_save[i] == '\0') // if EOF, return the line without \n
 		line[i] = '\0';
 	else
-		line[i] = '\n'; // line[i] to add \n              add here: if EOF, no \n !
+		line[i] = '\n'; // line[i] to add \n
 		line[i + 1]  = '\0'; // line[i + 1] to add \0 
 	return (line);
 }
