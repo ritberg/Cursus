@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 14:18:52 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/28 14:44:25 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/11/27 16:36:42 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/11/28 14:09:10 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h> //del
-#include <stdio.h> //del
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-int	main()
-{
-	int	fd1;
-	int	fd2;
-//	int	fd3;
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h> //del
 
-	fd1 = open("test2.txt", O_RDONLY);
-	printf("%s", get_next_line(fd1));
-	fd2 = open("test.txt", O_RDONLY);
-	printf("%s", get_next_line(fd2));
-//	fd3 = open("test3.txt", O_RDONLY);
-//	printf("%s\n", get_next_line(fd3));
+char	*get_next_line(int fd);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strcpy(char *dst, char *src);
+size_t	ft_strlen(char *s1);
+char	*ft_strchr(char *s, char c);
+//int	main(); //del
 
-	return (0);
-}
+#endif
