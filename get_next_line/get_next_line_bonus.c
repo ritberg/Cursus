@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 // returns the rest of lines (after the first read line)
 
-static void	the_rest(char str_save[fd])
+static void	the_rest(char *str_save)
 {
 	size_t	i;
 	size_t	ind;
@@ -25,34 +25,9 @@ static void	the_rest(char str_save[fd])
 		i++;
 	i++;
 	while (str_save[i])
-		str_save[ind++] = str_save[i++]; // decalage du buffer
+		str_save[ind++] = str_save[i++];
 	str_save[ind] = '\0';
 }
-
-/* old the_rest
-
-static char	*the_rest(char *str_save)
-{
-	size_t	i;
-	size_t	ind;
-	char	*rest;
-
-	if (str_save == NULL)
-		return (NULL);
-	i = 0;
-	while (str_save[i] && str_save[i] != '\n')
-		i++;
-	rest = malloc(sizeof(char) * (ft_strlen(str_save) - i - 1)); //size of str_save - len of the fisrt line and \n
-	if (rest == NULL)
-		return (NULL);
-	ind = 0;
-	i++; //for \n, beacause it was not included before
-	while (str_save[i])
-		rest[ind++] = str_save[i++];
-	rest[ind] = '\0';           // il faut ajouter \n ????
-	return (rest);
-}
-*/
 
 // read and return the line before \n, \n included
 static char	*div_lines(char *all_strs)
@@ -63,85 +38,60 @@ static char	*div_lines(char *all_strs)
 	if (all_strs == NULL)
 		return (NULL);
 	i = 0;
-	while (all_strs[i] && all_strs[i] != '\n') //count i till \n
+	while (all_strs[i] && all_strs[i] != '\n')
 		i++;
-	line = malloc(sizeof(char) * (i + 2)); //malloc for the line str_save[i]
+	line = malloc(sizeof(char) * (i + 2));
 	if (line == NULL)
 		return (NULL);
 	i = 0;
 	while (all_strs[i] && all_strs[i] != '\n')
 	{
-		line[i] = all_strs[i]; //put str_save[i] into line
+		line[i] = all_strs[i];
 		i++;
 	}
-	if (all_strs[i] == '\n') // if EOF, return a line without \n
+	if (all_strs[i] == '\n')
 		line[i++] = '\n';
 	line[i] = '\0';
 	return (line);
 }
 
-int	read_save_additional(int read_bytes, char **temp, char str_save[fd])
+int	read_save_additional(int read_bytes, char **temp, char *str_save)
 {
-	char	*tmp_free; //save temp in memory
+	char	*tmp_free;
 
-	if (read_bytes == -1) // -1 is retured if there is an error
+	if (read_bytes == -1)
 	{
 		free(*temp);
 		return (0);
 	}
-	str_save[read_bytes] = '\0'; //I've read the line from fd and put in temp
-								 //here I add a '\0' 
-								 //temp[read_bytes] not read_bytes - 1
-								 //because read_bytes initialized from 1
-	tmp_free = ft_strjoin(*temp, str_save[fd]); //double pointeur
+	str_save[read_bytes] = '\0';
+	tmp_free = ft_strjoin(*temp, str_save);
 	free(*temp);
 	*temp = tmp_free;
-	if (*temp == NULL) // check for malloc in ft_strjoin 
+	if (*temp == NULL)
 		return (0);
-	return (1); //astuce: put an int function, it returns 1 or 0 (= NULL)
+	return (1);
 }
 
 // read the file fd and save all the lines in str_save
-static char	*read_save(int fd, char str_save[fd])
+static char	*read_save(int fd, char *str_save)
 {
 	char	*temp;
 	int		read_bytes;
 	int		i;
 
-	read_bytes = 1;  // 1 char 1 byte, so start counting from 1 for '\0'
+	read_bytes = 1;
 	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (temp == NULL)
 		return (NULL);
-	//temp[0] = '\0';
-	temp = ft_strcpy(temp, str_save[fd]);
-	while (read_bytes != 0 && ft_strchr(str_save[fd], '\n')) // read_bytes = 0 means EOF
+	temp = ft_strcpy(temp, str_save);
+	while (read_bytes != 0 && ft_strchr(str_save, '\n'))
 	{
 		i = 0;
 		while(i <= BUFFER_SIZE)
-			str_save[i++] = '\0'; //fill in with 0, like bzero
-		read_bytes = read(fd, str_save[fd], BUFFER_SIZE); // read function returns n of read bytes
-		
-		/*  was cut, look the function above !
-
-		if (read_bytes == -1) // -1 is retured if there is an error
-		{
-			free(temp);
-			return (NULL);
-		}
-		str_save[read_bytes] = '\0'; //I've read the line from fd and put in temp
-								 //here I add a '\0' 
-								 //temp[read_bytes] not read_bytes - 1
-								 //because read_bytes initialized from 1
-		tmp_free = temp; //garger temp en memoire
-		temp = ft_strjoin(temp, str_save);
-		free(tmp_free);
-		if (temp == NULL) // for malloc in ft_strjoin 
-			return (NULL);
-		*/
-
-		if (!read_save_additional(read_bytes, &temp, str_save[fd])) // since temp is malloced here
-																//  and manipulated (ex, free) in the addit.
-																//  function, we need the address
+			str_save[i++] = '\0';
+		read_bytes = read(fd, str_save, BUFFER_SIZE);
+		if (!read_save_additional(read_bytes, &temp, str_save))
 		   return (NULL);
 	}
 	return (temp);
@@ -149,21 +99,21 @@ static char	*read_save(int fd, char str_save[fd])
 
 char	*get_next_line(int fd)
 {
-	static char	str_save[BUFFER_SIZE + 1];
+	static char	str_save[1024][BUFFER_SIZE + 1];
 	char	*line;
 	char	*all_strs;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	all_strs = read_save(fd, str_save[fd]); //read all the file, all lines. save as all_strs
+	all_strs = read_save(fd, str_save[fd]);
 	if (all_strs == NULL)
 		return (NULL);
-	line = div_lines(all_strs); //get only 1 line tiil the first \n
+	line = div_lines(all_strs); 
 	free(all_strs);
 	if (line == NULL)
 		return (NULL);
 	the_rest(str_save[fd]);
-	if (ft_strlen(line)) //if str is void, return a pointer to null
+	if (ft_strlen(line)) 
 		return (line);
 	free(line);
 	return (NULL);

@@ -4,6 +4,7 @@ SRCS	= get_next_line.c\
 
 BONUS	= get_next_line_bonus.c\
 		  get_next_line_utils_bonus.c\
+		  main.c
 
 MAIN	= main.c
 
@@ -31,8 +32,8 @@ ${NAME}:	${OBJS} ${HEADERS}
 
 all:		${NAME}
 
-bonus:		${OBJS} ${BONUS_OBJS} ${BONUS_HEADERS}
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${BONUS_OBJS}
+bonus:		${BONUS_OBJS} ${BONUS_HEADERS}
+			${CC} ${CFLAGS} -o ${NAME} ${BONUS_OBJS}
 			
 clean:		
 			${RM} ${OBJS} ${BONUS_OBJS}
