@@ -16,16 +16,12 @@
 
 int	main()
 {
-	int	fd1;
-	int	fd2;
-//	int	fd3;
+	int	fd;
 
-	fd1 = open("test2.txt", O_RDONLY);
-	printf("%s", get_next_line(fd1));
-	fd2 = open("test.txt", O_RDONLY);
-	printf("%s", get_next_line(fd2));
-//	fd3 = open("test3.txt", O_RDONLY);
-//	printf("%s\n", get_next_line(fd3));
+	fd = open("test2.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+//	printf("%s\n", get_next_line(fd));
 
 	return (0);
 }
