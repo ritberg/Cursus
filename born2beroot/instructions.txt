@@ -1,0 +1,247 @@
+**TERMINOLOGY**
+
+lvm - logical volume manager
+sd1, sd2, sd5 - partitions primaires (elles peuvent pas être plus que 4, c'est pourquoi il faut lvm)
+sd1/2/5 et lvm servent à diviser le disque dûr
+
+kernel est un noyau qui lie le software (apps) avec le hardweare (mémoire, CPU, devices)
+
+**SUDO**
+
+sudo allows a user to run a program as another user (as a root)
+
+**SSH**
+programme et protocole de communication sécurisé. permet à l'ordi de se connecter au serveuruf
+
+**DEBIAN VS. CENTOS**
+
+quite similar. both have Linux kernal. Centos is for advanced, Debian is for beginners
+Centos is created by a company (Red Hat). It uses `rpm` (Red Hat Package Manager)
+Debian is creted by volunteers. It uses `apt` (Advanced Packaging Tool) or `aptitude` as package manager.
+
+**APT VS. APTITUDE**
+
+`aptitude` provides a terminal menu interface1 (ex: vim, nano), whereas `apt` does not.
+Considering only the command-line interfaces2 (ex: ls) of each, they are quite similar, and for the most part, it really doesn't matter which one you use.
+
+1 text-based user interface (TUI)
+2 command-line interfaces (CLI)
+
+There are a few minor differences:
+
+-   aptitude will automatically remove eligible packages, whereas apt-get requires a separate command to do so
+-   The commands for _upgrade_ vs. _dist-upgrade_ have been renamed in aptitude to the probably more accurate names _safe-upgrade_ and _full-upgrade_, respectively.
+-   aptitude actually performs the functions of not just apt-get, but also some of its companion tools, such as apt-cache and apt-mark.
+-   aptitude has a slightly different query syntax for searching (compared to apt-cache)
+-   aptitude has the _why_ and _why-not_ commands to tell you which _manually installed_ packages are preventing an action that you might want to take.
+-   If the actions (installing, removing, updating packages) that you want to take cause conflicts, aptitude can suggest several potential resolutions. apt-get will just say "I'm sorry Dave, I can't allow you to do that."
+
+**APPARMOR**
+
+En gros, c'est un module de kernel pour la sécurité. AppArmor permet de restreindre les capacités d'un programme
+(son équivalent pour Centos est SELinux)
+
+**CRON**
+
+type - démon
+permet d’exécuter automatiquement des scripts, des commandes ou des logiciels à une date et une heure spécifiée à l’avance, ou selon un cycle défini à l’avance
+
+
+**Trucs importants**
+- il faut pas donner le mot de passe à root pour des raisons de sécurité ! j'accède à root avec sudo
+- sshd - démon (type de programme), un programme qui tourne en permanence
+- Filessystem hierarchy standard: https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
+
+
+
+**COMMANDES**
+
+- Pour devenir root
+`sudo -i`
+
+- Pour installer (apt - install, delete, update packages)
+`apt`
+par exemple
+`apt install ufw`
+
+- Pour recharger après les changements dans les fichiers (.config)
+`service sshd reload`
+on peut faire ça avec reboot
+
+- Pour vérifier que la création de users et de mots de passe marche
+`useradd test`
+(plus difficile est adduser, cf. man adduser)
+- ajouter un mot de passe
+`passwd test`
+- Supprimer a user
+`userdel test`
+- Supprimer un groupe
+`groupdel evaluating`
+
+- Ufw (uncomplicated firewall) sert à bloquer les ports non désirés
+`ufw enable`
+`ufw allow 4242`
+`ufw status`
+- Créer puis effacer une nouvelle règle
+`ufw allow 8080`
+`ufw status numbered`
+`ufw delete 2`
+`ufw status numbered`
+`ufw delete 3`
+
+
+
+
+
+
+**EVALUATION (pdf de l'eval)**
+
+- the "signature.txt" file is present at the root of the cloned repository.
+-  A simple "diff" should allow you to compare the two signatures.
+`diff signature2.txt signature.txt`
+- During the defense, a script must display information all every 5 minutes / 10 min (c'est pas clair ! cf. le pdf).
+
+Start of the evaluation
+- `sudo -i`
+- Check that the UFW service is started with the help of the evaluator (`ufw status` )
+-   Check that the SSH service is started with the help of the evaluator (`ps aux | grep sshd` )
+-   Check that the chosen operating system is Debian (`lsb_release -a`  or `uname -a`)
+
+**USER**
+- Check that it has been added and that it belongs to the "sudo" and "user42" groups
+`groups mmakarov`
+(ça donne `mmakarov : mmakarov, sudo`)
+
+(`view /etc/group` c'est le fichier avec tous les groupes, numéros du groupe, users qui sont dedans)
+
+- First, create a new user.
+`adduser`
+(old : useradd, il crée pas le dossier)
+- Assign it a password of your choice, respecting the subject rules
+(`passwd test` - pour useradd)
+- Two modified files to set password rules:
+1. `nano /etc/security/pwquality.conf`
+
+ difok = the minimum number of characters that must be different from the old password
+ dcredit (digit)
+ ucredit (uppercase)
+ lcredit (lowercase)
+ maxrepeat = it must not contain more than 3 consecutive identical characters
+ usercheck = check whether the password contains the user name
+ enforcing = reject the password if it fails the checks, otherwise only print the warning
+ retry = 3 tentatives
+ 
+2. `nano /etc/login.defs`
+
+Then I did:
+`chage test`
+```
+ Minimum Password Age [0]: 2
+        Maximum Password Age [9999]: 30
+        Last Password Change (YYYY-MM-DD) [date]: <last time you change password>
+        Password Expiration Warning [7]: 7
+        (Enter for the rest)
+```
+(change age)
+- Create a group named "evaluating" in front of you and assign it to this user. Finally, check that this user belongs to the "evaluating" group.
+`addgroup evaluating`
+`usermod -aG evaluating test` 
+(façon alternative: `adduser test evaluating`)
+(add in the Group "evaluating" a user test)
+
+**HOSTNAME AND PARTITIONS**
+- Check that the hostname of the machine is correctly formatted as follows: login42
+`view /etc/hostname`
+- Modify this hostname by replacing the login with yours, then restart the machine.
+`vim /etc/hostname`
+put, ex, `mmakarov421`
+change the hostname, ex mmakarov421, then reboot
+`reboot`
+-  restore the machine to the original hostname.
+`vim /etc/hostname`
+`reboot`
+- view the partitions for this virtual machine.
+`lsblk`
+
+
+**SUDO**
+- Check that the "sudo" program is properly installed on the virtual machine
+ex, switch to root `sudo -i` Cela donne root@mmakarov42 (l'inverse c'est `su - mmakarov`, switch to mmakarov@mmakarov42)
+- The subject imposes strict rules for sudo.
+Cf. `nano /etc/sudoers`
+requiretty = tty ("teletype") est une commande qui montre le nom du terminal connecté à l'entrée standard
+secure_path = sudo cherche la commande dans tous les dossiers
+- Verify that the "/var/log/sudo/" folder exists and has at least one file
+`ls /var/log/sudo`
+- You should see a history of the commands used with sudo.
+`view/var/log/sudo/sudo.log`
+si je fais `sudo ls`, il y a une ligne dans sudo.log qui s'ajoute
+
+**UFW** 
+(uncomplicated firewall, sert à bloquer les ports non désirés)
+- List the active rules in UFW. A rule must exist for port 4242.
+The rules are in `nano /etc/ssh/sshd_config` :
+1. `Port 4242`
+2. `PermitRootLogin no`
+- Add a new rule for port 8080
+`ufw enable`
+`ufw allow 4242`
+`ufw status`
+- Créer puis effacer une nouvelle règle
+`ufw allow 8080`
+`ufw status numbered`
+`ufw delete 2`
+`ufw status numbered`
+`ufw delete 3`
+
+**SSH**
+- Verify that the SSH service only uses port 4242.
+`view /etc/ssh/sshd_config`
+(là bas il y a la règle Port 4242)
+- The student evaluated should help you use SSH in order to log in with the newly created user. To do this, you can use a key or a simple password
+-on VM:
+`adduser abc`
+-on Terminal:
+`ssh -p 4242 abc@localhost`
+`logout`
+- Of course, you have to make sure that you cannot use SSH with the "root" user as stated in the subject. (vérifier qu'on peut pas se connecter avec root)
+`ssh -p 4242 root@localhost`
+(il demande le mot de passe mais il y en a pas parce qu'on a mis `PermitRootLogin no` dans sshd_config)
+
+**Script monitoring**
+- a script must display information all every 5 minutes /  every 10 minutes 
+(Impossible 30 sec !!)
+Le fichier `monitoring.sh` se trouve dans `/usr/local/sbin`
+`vim monitoring.sh`
+`chmod +x monitoring.sh`
+`/usr/local/sbin/monitoring.sh` (exécution)
+il faut exécuter ça avec cron
+`crontab -e`
+modifier la dernière ligne
+`crontab -l`
+comme cat
+! il faut faire crontab sur root. sur mmakarov ça marche pas
+
+Eteindre la VM
+`sudo poweroff` dans la VM (que ce soit sur terminal ou sur la fenêtre de la virtual box) pour éteindre
+
+Get signature
+1. `sudo poweroff` dans la VM (que ce soit sur terminal ou sur la fenêtre de la virtual box) pour éteindre
+3. `shasum born2beroot.vdi > signature2.txt`
+4. `diff signature.txt signature2.txt` (comparer la signature soumise avec celle faite pendant l'éval)
+
+!!!!  
+Avant une éval :
+-  dans Virtual Box, Snapshots
+-take (il sauvegarde mon état initial de vm et la signature !)
+Après une éval:
+-restore (revenir à l'état init pour avoir de nouveau la même signature)
+
+
+**Questions**
+- USER: si je regarde `view /etc/group`, il y a pas de user mmakarov dans le groupe mmakarov ! ajouter? mmakarov est un groupe primaire. il s'affiche pas dans la liste des groupes
+- UFW: c'est quoi v6? IPv4 (ancien type de Internet Protocole, plus petit, IP adresses limitées) et IPv6 (nouveau type de IP)
+- check that SSH is installed `ps aux | grep ssh` ? comment comprendre l'output? process snapshot, voir tous les processus, leur numéros, qui les a lancés..
+- SSH: la partie où je crée un user `abc` et le connecte au port 4242 depuis terminal marche pas `ssh -p 4242 abc@localhost`
+L'erreur: `Could not chdir to home directory /home/abc: No such file or directory`
+Solution : utiliser `adduser` car il crée un dossier (`useradd` le fait pas)
