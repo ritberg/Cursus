@@ -12,16 +12,20 @@
 
 #include "sorting.h"
 
-int	sorting(int *number)
+char	sorting(int *number, int total_num)
 {
-	int	len_int;
+	int	smallest_int;
 	int	longest_int;
-	char	*len_count;
+	int	read_bytes;
+	int	*temp;
 
-	longest_int = 1;
-	ft_itoa(number);
-	len_int = ft_strlen(len_count);
-	if (len_int > longest_int)
-		longest_int = len_int;
-
-}
+	read_bytes = 1;
+	temp = malloc(sizeof(int) * total_num);
+	if (temp == NULL)
+		return (NULL);
+	while (read_bytes != 0)
+	{
+		read_bytes = read(STDIN_FILENO, number, total_num);
+		if (read_bytes == -1) // -1 is retured if there is an error
+			return ("Error");
+	}
