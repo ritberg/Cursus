@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/21 14:24:21 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:30:27 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@ int	ft_atoi(const char *str);
 //err_checker
 void	err_checker(int argc, char **argv);
 
-//sorting.c
-char	sorting(int *number, int total_num);
 
 #endif
