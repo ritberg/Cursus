@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:33:38 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/21 15:47:28 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:31:28 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,6 @@ size_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
-}
-
-int	ft_isalpha(int c)
-{
-	if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z'))
-		return (0);
-	return (1);
 }
 
 static int	ft_is_space(char c)

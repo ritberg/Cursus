@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/21 16:56:22 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:55:10 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,15 @@ typedef struct s_list
 
 //sim_to_libft
 char	*ft_strcpy(char *dst, char *src);
+int	ft_isalpha(char *str);
+long long int	ft_atoi(const char *str);
 
 // temp_libft -- del
 size_t	ft_strlen(const char *s);
-int	ft_isalpha(int c);
-int	ft_atoi(const char *str);
 
 //err_checker
 void	err_checker(int argc, char **argv);
 
 // new_index
-int	new_index(int argc, int &pile_a[]);
 
 #endif
