@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   temp_libft.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:36:18 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/11/10 18:40:02 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/12/21 12:33:38 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/12/21 15:47:28 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include "libft.h"
+
+size_t	ft_strlen(const char *s)
+{
+	int	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+int	ft_isalpha(int c)
+{
+	if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z'))
+		return (0);
+	return (1);
+}
 
 static int	ft_is_space(char c)
 {
@@ -41,4 +59,16 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result * sign);
+}
+
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new_elem;
+
+	new_elem = malloc(sizeof(*new_elem));
+	if (new_elem == NULL)
+		return (NULL);
+	new_elem->content = content;
+	new_elem->next = NULL;
+	return (new_elem);
 }

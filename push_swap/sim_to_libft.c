@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sim_to_libft.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 15:18:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/21 15:48:47 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/12/21 12:36:06 by mmakarov          #+#    #+#             */
+/*   Updated: 2022/12/21 13:11:58 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+char	*ft_strcpy(char *dst, char *src)
 {
-	int	j;
-	int	**read_input;
+	size_t	i;
 
-	err_checker(argc, argv);
-	read_input = malloc(sizeof(int) * (argc - 1));
-	j = 1;
-	while (j < argc)
+	i = 0;
+	while (src[i])
 	{
-		read_input[j - 1] = malloc(sizeof(**int) * ft_strlen(argv[j]));
-		ft_atoi(argv[j]);
-		ft_strcpy(read_input[j - 1], argv[j])
-		j++;
+		dst[i] = src[i];
+		i++;
 	}
-	new_index(read_input[])
-	return (0);
+	dst[i] = '\0';
+	return (dst);
 }
