@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/21 16:30:27 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:56:22 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int	ft_atoi(const char *str);
 //err_checker
 void	err_checker(int argc, char **argv);
 
+// new_index
+int	new_index(int argc, int &pile_a[]);
 
 #endif
