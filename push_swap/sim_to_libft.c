@@ -32,6 +32,7 @@ int	ft_isalpha(char *str)
 	{
 		if (!(*str >= 'A' && *str <= 'Z') && !(*str >= 'a' && *str <= 'z'))
 			return (0);
+		str++;
 	}
 	return (1);
 }

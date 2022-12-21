@@ -28,20 +28,27 @@
 void	err_checker(int argc, char **argv)
 {
 	int	j;
+	int	i;
 
 	if (argc <= 1)
 		write(1, "\n", 1);
 	j = 1;
+	i = 1;
 	while (j < argc)
 	{
 		if (ft_isalpha(argv[j]))
-			write(1, "Error\n", 6);
-		if (argv[j] == argv[j + 1])
 			write(1, "Error\n", 6);
 		if (ft_atoi(argv[j]) > 2147483647)
 			write(1, "Error\n", 6);
 		if (ft_atoi(argv[j]) < -2147483648)
 			write(1, "Error\n", 6);
+		i = j + 1;
+		while (i < argc)
+		{
+			if (ft_atoi(argv[j]) == ft_atoi(argv[i]))
+				write(1, "Error\n", 6);
+			i++;
+		}
 		j++;
 	}
 }
