@@ -17,12 +17,12 @@ void	piles(int argc, char **argv)
 	int	j;
 	long long	a;
 	t_list	*pile_a;
-//	t_list	*pile_b; to do
+	t_list	*pile_b;
 	t_list	*new_elem;
-
 
 	j = argc - 1;
 	pile_a = NULL;
+	pile_b = NULL;
 	while (j >= 1)
 	{
 		a = ft_atoi(argv[j]);

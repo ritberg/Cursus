@@ -11,42 +11,45 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/* rappel
-static void	swap(int *a, int *b)
+
+static void	min_index(t_list *pile_a)
 {
-	int	c;
+	int	min;
+	int	j;
+	int	index;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	j = 1;
+	min = 2147483647;
+	while (pile_a != NULL)
+	{
+		if (pile_a->content < min) //if an elem of pile_a < min
+		{
+			min = pile_a->content; // it becomes min
+			index = j;
+		}
+		pile_a = pile_a->next; //take next elem of pile_a
+		j++;
+	}
 }
-*/
 
-static void	min_index(t_list **pile_a)
-{
-	t_list	min;
-
-	min = pile_a->content; // the first elem of pile_a becomes min
-	if (pile_a->next < min) //if next < min, it becomes min
-		min = pile_a->next;
-}
-
-t_list	sort_and_rules(t_list **pile_a, t_list **pile_b)
+t_list	sort_and_rules(t_list *pile_a, t_list *pile_b)
 {
 	int	middle;
 	int	index;
+	int	size;
 
+	size = ft_lstsize(pile_a);
 	index = min_index(pile_a);
-	if (ft_lstsize(pile_a) <= 10)
+	if (size <= 10)
 	{
-		middle = ft_lstsize(pile_a) / 2;
+		middle = size / 2;
 		if (middle > index)
 			ra(); // write functions rra, ra
 		else
 			rra();
 	}
-	if (ft_lstsize(pile_a) > 10 && ft_lstsize(pile_a) <= 100)
+	if (size > 10 && size <= 100)
 	{
 	}
-	if (ft_lstsize(pile_a) > 100 && ft_lstsize(pile_a) <= 500)
+	if (size > 100 && size <= 500)
 
