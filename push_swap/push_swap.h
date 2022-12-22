@@ -19,18 +19,18 @@
 
 typedef struct s_list
 {
-	int *content;
+	int content;
 	struct s_list *next;
 }	t_list;
 
 //sim_to_libft.c
-char	*ft_strcpy(char *dst, char *src);
-int	ft_isalpha(char *str);
-long long int	ft_atoi(const char *str);
+char	*ft_strcpy(char *dst, char *src); //not strlpy but strcpy
+int	ft_isalpha(char *str); //not for char c, but char *str
+long long int	ft_atoi(const char *str); //long long instead of int
+t_list	*ft_lstnew_int(int content); // params: int instead of void *
 
 // temp_libft.c -- del
 size_t	ft_strlen(const char *s);
-t_list	*ft_lstnew(void *content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 
@@ -40,5 +40,7 @@ int	err_checker(int argc, char **argv);
 //piles.c
 void	piles(int argc, char **argv);
 
+//printlist.c     del !!!!!!!
+void	printlist(t_list *head); // !!!!!!
 
 #endif

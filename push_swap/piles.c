@@ -16,16 +16,20 @@ void	piles(int argc, char **argv)
 {
 	int	j;
 	long long	a;
-	t_list	**pile_a;
-	t_list	**pile_b; //to do
-	t_list	*new;
+	t_list	*pile_a;
+//	t_list	*pile_b; to do
+	t_list	*new_elem;
 
-	j = 1;
-	while (j < argc)
+
+	j = argc - 1;
+	pile_a = NULL;
+	while (j >= 1)
 	{
 		a = ft_atoi(argv[j]);
-		new = ft_lstnew(&a);
-		ft_lstadd_back(pile_a, new);
-		j++;
+		new_elem = ft_lstnew_int(a);
+		new_elem->next = pile_a;
+		pile_a = new_elem;
+		j--;
 	}
+	printlist(pile_a); //del
 }

@@ -67,3 +67,16 @@ long long int	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
+
+t_list	*ft_lstnew_int(int content) // lstnew of libft with 'void *content' in params dsn't work!
+{
+	t_list	*new_elem;
+
+	new_elem = malloc(sizeof(*new_elem));
+	if (new_elem == NULL)
+		return (NULL);
+	new_elem->content = content;
+	new_elem->next = NULL;
+	return (new_elem);
+}
+
