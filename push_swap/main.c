@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:18:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/21 18:01:09 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:36:00 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 int	main(int argc, char **argv)
 {
-	int	j;
 
-	err_checker(argc, argv);
+	if (argc <= 1)
+		return (0);
+	if (!err_checker(argc, argv))
+	{
+		write(1, "Error\n", 6);
+		return (0);
+	}
+	//struct_inputs(argc, argv);
 	//new_index(argc, pile_a);
 
 	return (0);

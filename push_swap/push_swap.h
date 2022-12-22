@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/21 17:55:10 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:31:08 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 
 //err_checker
-void	err_checker(int argc, char **argv);
+int	err_checker(int argc, char **argv);
+
+//struct_inputs
+void	struct_inputs(int argc, char **argv);
 
 // new_index
 
