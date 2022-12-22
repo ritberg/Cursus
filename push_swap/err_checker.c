@@ -25,6 +25,17 @@
 	new_index(argc, pile_a);
 */
 
+void	struct_input(int argc, char **argv, int j)
+{
+	int	a;
+	t_list	**list;
+	t_list	*new;
+
+	a = ft_atoi(argv[j]);
+	new = ft_lstnew(&a); // there is no conversion to int !
+	ft_lstadd_back(list, new);
+}
+
 void	err_checker(int argc, char **argv)
 {
 	int	j;
@@ -49,6 +60,7 @@ void	err_checker(int argc, char **argv)
 				write(1, "Error\n", 6);
 			i++;
 		}
+		struct_input(argc, argv, j);
 		j++;
 	}
 }
