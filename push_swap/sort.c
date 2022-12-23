@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_and_rules.c                                   :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:40:20 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/22 17:38:15 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:03:20 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	min_index(t_list *pile_a)
+static int	min_index(t_list *pile_a)
 {
 	int	min;
 	int	j;
@@ -30,9 +30,10 @@ static void	min_index(t_list *pile_a)
 		pile_a = pile_a->next; //take next elem of pile_a
 		j++;
 	}
+	return (index);
 }
 
-t_list	sort_and_rules(t_list *pile_a, t_list *pile_b)
+t_list	*small_sort(t_list *pile_a, t_list *pile_b)
 {
 	int	middle;
 	int	index;
@@ -44,12 +45,10 @@ t_list	sort_and_rules(t_list *pile_a, t_list *pile_b)
 	{
 		middle = size / 2;
 		if (middle > index)
-			ra(); // write functions rra, ra
+			ra(); //while loop or function if I need commands several times
 		else
 			rra();
 	}
-	if (size > 10 && size <= 100)
-	{
-	}
-	if (size > 100 && size <= 500)
+	return (pile_a);
+}
 

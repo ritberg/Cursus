@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/23 12:16:21 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:33:39 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,17 @@ t_list	*ft_lstnew_int(int content); // params: int instead of void *
 size_t	ft_strlen(const char *s);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
+int	ft_lstsize(t_list *lst);
 
 //err_checker.c
 int	err_checker(int argc, char **argv);
 
 //create_pile_a.c
 t_list	*create_pile_a(int argc, char **argv);
+
+// sort.c
+t_list	*small_sort(t_list *pile_a, t_list *pile_b);
+
 
 //printlist.c     del !!!!!!!
 void	printlist(t_list *head); // !!!!!!

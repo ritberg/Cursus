@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:36:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/23 12:21:59 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:37:17 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ long long int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-t_list	*ft_lstnew_int(int content) // lstnew of libft with 'void *content' in params dsn't work!
+t_list	*ft_lstnew_int(int content) // lstnew of libft. int instead of void *
 {
 	t_list	*new_elem;
 

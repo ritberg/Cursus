@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:33:38 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/22 17:11:43 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:42:18 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
-}
-
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*new_elem;
-
-	new_elem = malloc(sizeof(*new_elem));
-	if (new_elem == NULL)
-		return (NULL);
-	new_elem->content = content;
-	new_elem->next = NULL;
-	return (new_elem);
 }
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
