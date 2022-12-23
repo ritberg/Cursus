@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:36:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/21 17:48:54 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:21:59 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,18 @@ char	*ft_strcpy(char *dst, char *src)
 	return (dst);
 }
 
-int	ft_isalpha(char *str)
+int	ft_isdigit(char *str)
 {
-	while (*str)
+	int	i;
+
+	if (!((str[0] >= '0' && str[0] <= '9') || str[0] == '-'))
+		return (0);
+	i = 1;
+	while (str[i])
 	{
-		if (!(*str >= 'A' && *str <= 'Z') && !(*str >= 'a' && *str <= 'z'))
+		if (!(str[i] >= '0' && str[i] <= '9'))
 			return (0);
-		str++;
+		i++;
 	}
 	return (1);
 }

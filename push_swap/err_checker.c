@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:42:21 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/22 14:38:36 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:16:03 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	err_checker(int argc, char **argv)
 	j = 1;
 	while (j < argc)
 	{
-		if (ft_isalpha(argv[j]))
+		if (!ft_isdigit(argv[j])) //autres char non autorises non plus
 			return (0);
 		if (ft_atoi(argv[j]) > 2147483647 || ft_atoi(argv[j]) < -2147483648)
 			return (0);
