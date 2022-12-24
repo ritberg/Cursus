@@ -12,17 +12,25 @@
 
 #include "push_swap.h"
 
-t_list	*rra(t_list *pile_a, int size)
+static	void	write_rra_rrb(char c)
+{
+	if (c == 'a')
+		write(1, "rra\n", 4);
+	if (c == 'b')
+		write(1, "rrb\n", 4);
+}
+
+t_list	*rra_rrb(t_list *pile, int size, char c)
 {
 	int	count;
 	t_list	*current;
 	t_list	*ind_node;
 
 	if (size == 1) // if there is only 1 elem in pile_a
-		return (pile_a);
+		return (pile);
 	count = 1;
 	ind_node = NULL;
-	current = pile_a;
+	current = pile;
 	while (count < size - 1) // go down, to the 2nd before null
 	{
 		current = current->next;
@@ -30,11 +38,11 @@ t_list	*rra(t_list *pile_a, int size)
 	}
 	ind_node = current; //save the 2nd before null
 	current = current->next; //the last before null
-	current->next = pile_a; //after current->next, pile_a starts
-	pile_a = current;       //from the top
+	current->next = pile; //after current->next, pile_a starts
+	pile = current;       //from the top
 	ind_node->next = NULL;
-	write(1, "rra\n", 4);
-	return (pile_a);
+	write_rra_rrb(c);
+	return (pile);
 }
 
 t_list	*ra(t_list *pile_a, int index)

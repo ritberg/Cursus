@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -38,6 +38,7 @@ t_list	*small_sort(t_list *pile_a, t_list *pile_b)
 	int	middle;
 	int	index;
 	int	size;
+	char	c; // put char c somewhere to choose between pila a and pile b
 
 	size = ft_lstsize(pile_a);
 	index = min_index(pile_a);
