@@ -26,7 +26,9 @@ int	main(int argc, char **argv)
 	}
 	pile_b = NULL;
 	pile_a = create_pile_a(argc, argv);
-	sort(pile_a, pile_b);
+	//small_sort(pile_a, pile_b);
+	very_small_sort(pile_a);
+	printlist(pile_a);
 
 	return (0);
 }

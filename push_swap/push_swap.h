@@ -41,8 +41,20 @@ int	err_checker(int argc, char **argv);
 //create_pile_a.c
 t_list	*create_pile_a(int argc, char **argv);
 
-// sort.c
+//rules_r.c
+t_list  *rra_rrb(t_list *pile, int size, char c);
+t_list  *ra_rb(t_list *pile, int size, char c);
+
+//rules_s_p.c
+t_list  *sa_sb(t_list *pile, int size, char c);
+t_list  *pa(t_list *pile_a, t_list *pile_b);
+t_list  *pb(t_list *pile_a, t_list *pile_b);
+
+// small_sort.c
 t_list	*small_sort(t_list *pile_a, t_list *pile_b);
+
+//very_small_sort.c
+t_list  *very_small_sort(t_list *pile_a);
 
 
 //printlist.c     del !!!!!!!

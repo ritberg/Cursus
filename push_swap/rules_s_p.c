@@ -20,7 +20,7 @@ static	void	write_sa_sb(char c)
 		write(1, "sb\n", 3);
 }
 
-t_list	*sa_sb(t_list *pile, char c)
+t_list	*sa_sb(t_list *pile, int size, char c)
 {
 	t_list	*first;
 	t_list	*third;
@@ -43,28 +43,30 @@ t_list	*sa_sb(t_list *pile, char c)
 	return (pile);
 }
 
-static	void	write_pa_pb(char c)
+t_list	*pa(t_list *pile_a, t_list *pile_b)
 {
-	if (c == 'a')
-		write(1, "pa\n", 3);
-	if (c == 'b')
-		write(1, "pb\n", 3);
-}
+	t_list	*top;
 
-t_list	*pa(t_list *pile_a, t_list *pile_b, char c)
-{
 	if (pile_b == NULL)
 		return (NULL); //ne fait rien si pile_b est vide
-	pile_a = pile_b;
-	write_pa_pb(c);
+	top = pile_b;
+	pile_b = pile_b->next;
+	top->next = pile_a;
+	pile_a = top;
+	write(1, "pa\n", 3);
 	return (pile_a);
 }
 
-t_list	*pa(t_list *pile_a, t_list *pile_b, char c)
+t_list	*pb(t_list *pile_a, t_list *pile_b)
 {
+	t_list	*top;
+
 	if (pile_a == NULL)
 		return (NULL); //ne fait rien si pile_b est vide
-	pile_b = pile_a;
-	write_pa_pb(c);
+	top = pile_a;
+	pile_a = pile_a->next;
+	top->next = pile_b;
+	pile_b = top;
+	write(1, "pb\n", 3);
 	return (pile_b);
 }
