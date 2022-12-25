@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules.c                                            :+:      :+:    :+:   */
+/*   rules_r.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,7 +26,7 @@ t_list	*rra_rrb(t_list *pile, int size, char c)
 	t_list	*current;
 	t_list	*ind_node;
 
-	if (size == 1) // if there is only 1 elem in pile_a
+	if (size == 1) // if there is only 1 elem in pile
 		return (pile);
 	count = 1;
 	ind_node = NULL;
@@ -45,17 +45,32 @@ t_list	*rra_rrb(t_list *pile, int size, char c)
 	return (pile);
 }
 
-t_list	*ra(t_list *pile_a, int index)
+static	void	write_ra_rb(char c)
 {
-	int	count;
-	t_list	*current;
-	t_list	*ind_node;
-
-	count = 1;
-	ind_node = NULL;
-
-	return (pile_a);
+	if (c == 'a')
+		write(1, "ra\n", 3);
+	if (c == 'b')
+		write(1, "rb\n", 3);
 }
 
-t_list	*pb(t_list *pile_a, t_list_pile_b)
-t_list	*pa(t_list *pile_a, t_list_pile_b)
+t_list	*ra_rb(t_list *pile, int size, char c)
+{
+	int	count;
+	t_list	*last;
+	t_list	*top;
+
+	count = 1;
+
+	last = pile;
+	while (count < size)
+	{
+		last = last->next;
+		count++;
+	}
+	top = pile;
+	pile = pile->next;
+	top->next = NULL;
+	last->next = top;
+	write_ra_rb(c);
+	return (pile);
+}
