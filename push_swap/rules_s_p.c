@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 12:57:38 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/23 17:52:27 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:57:58 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*sa_sb(t_list *pile, int size, char c)
 {
 	t_list	*first;
 	t_list	*third;
-	int	count;
+	int		count;
 
 	count = 1;
 	if (size == 1) // if there is only 1 elem in pile
