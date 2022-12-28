@@ -61,7 +61,7 @@ t_list	*small_sort(t_list *pile_a, t_list *pile_b)
 				count++;
 			}
 		pb(pile_a, pile_b);
-	}
+	}	
 	very_small_sort(pile_a);
 	while (pile_b != NULL)
 		pa(pile_a, pile_b);
