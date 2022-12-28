@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 12:57:38 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/27 15:57:58 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/28 13:10:38 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,33 @@ t_list	*sa_sb(t_list *pile, int size, char c)
 	first = pile; //save the first elem
 	pile = pile->next; //now pile starts from the 2nd elem
 	pile->next = first; //put first after 2nd elem
-	first->next = third; // put third elem after first
+	first->next = third; // put third elem after 2nd
 	write_sa_sb(c);
 	return (pile);
 }
 
-t_list	*pa(t_list *pile_a, t_list *pile_b)
+void	pa(t_list **pile_a, t_list **pile_b)
 {
 	t_list	*top;
 
-	if (pile_b == NULL)
-		return (NULL); //ne fait rien si pile_b est vide
-	top = pile_b;
-	pile_b = pile_b->next;
-	top->next = pile_a;
-	pile_a = top;
+	if (*pile_b == NULL)
+		return ; //ne fait rien si pile_b est vide
+	top = *pile_b;
+	*pile_b = (*pile_b)->next;
+	top->next = *pile_a;
+	*pile_a = top;
 	write(1, "pa\n", 3);
-	return (pile_a);
 }
 
-t_list	*pb(t_list *pile_a, t_list *pile_b)
+void	pb(t_list **pile_a, t_list **pile_b)
 {
 	t_list	*top;
 
-	if (pile_a == NULL)
-		return (NULL); //ne fait rien si pile_b est vide
-	top = pile_a;
-	pile_a = pile_a->next;
-	top->next = pile_b;
-	pile_b = top;
+	if (*pile_a == NULL)
+		return ; //ne fait rien si pile_a est vide
+	top = *pile_a;
+	*pile_a = (*pile_a)->next;
+	top->next = *pile_b;
+	*pile_b = top;
 	write(1, "pb\n", 3);
-	return (pile_b);
 }

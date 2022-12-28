@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/23 17:33:39 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/28 13:06:51 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ t_list  *ra_rb(t_list *pile, int size, char c);
 
 //rules_s_p.c
 t_list  *sa_sb(t_list *pile, int size, char c);
-t_list  *pa(t_list *pile_a, t_list *pile_b);
-t_list  *pb(t_list *pile_a, t_list *pile_b);
+void	pa(t_list **pile_a, t_list **pile_b);
+void	pb(t_list **pile_a, t_list **pile_b);
 
 // small_sort.c
-t_list	*small_sort(t_list *pile_a, t_list *pile_b);
+void	small_sort(t_list **pile_a, t_list **pile_b);
 
 //very_small_sort.c
 t_list  *very_small_sort(t_list *pile_a);

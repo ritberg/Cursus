@@ -6,22 +6,30 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:40:20 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/23 18:03:20 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/28 13:38:23 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	void	commands1(t_list *pile_a)
+/* before I called functions-commands sa_sb, rra_rrb etc.
+   now I have returns of these functions-commands 
+   otherwise I loose the modified param pile_a
+*/
+static	t_list	*commands1(t_list *pile_a)
 {
-	sa_sb(pile_a, 3, 'a');
-	rra_rrb(pile_a, 3, 'a');
+	t_list	*temp;
+
+	temp = sa_sb(pile_a, 3, 'a');
+	return (rra_rrb(temp, 3, 'a'));
 }
 
-static	void	commands2(t_list *pile_a)
+static	t_list	*commands2(t_list *pile_a)
 {
-	sa_sb(pile_a, 3, 'a');
-	ra_rb(pile_a, 3, 'a');
+	t_list	*temp;
+
+	temp = sa_sb(pile_a, 3, 'a');
+	return (ra_rb(temp, 3, 'a'));
 }
 
 t_list	*very_small_sort(t_list *pile_a)
@@ -33,20 +41,22 @@ t_list	*very_small_sort(t_list *pile_a)
 	f = pile_a;
 	s = pile_a->next;
 	t = s->next;
-	if (f->content > s->content && s->content < t->content\
+	if (f->content > s->content && s->content < t->content \
 			&& t->content > f->content)
-		sa_sb(pile_a, 3, 'a');
-	else if (f->content > s->content && s->content > t->content\
+		return (sa_sb(pile_a, 3, 'a'));
+	else if (f->content > s->content && s->content > t->content \
 			&& f->content > t->content)
-		commands1(pile_a);
-	else if (f->content > s->content && s->content < t->content\
+		return (commands1(pile_a));
+	else if (f->content > s->content && s->content < t->content \
 			&& f-> content > t->content)
-		ra_rb(pile_a, 3, 'a');
-	else if (f->content < s->content && s->content > t->content\
+		return (ra_rb(pile_a, 3, 'a'));
+	else if (f->content < s->content && s->content > t->content \
 			&& t->content > f->content)
-		commands2(pile_a);
+		return (commands2(pile_a));
+	else if (f->content < s->content && s->content > t->content \
+			&& t->content < f->content)
+		return (rra_rrb(pile_a, 3, 'a'));
 	else
-		rra_rrb(pile_a, 3, 'a');
-	return (pile_a);
+		return (pile_a);
 }
 
