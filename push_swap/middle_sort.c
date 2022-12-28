@@ -14,14 +14,20 @@
 
 static	t_list	sort_pile_k(***pile_a, int size)
 {
+	t_list	*start;
+
+	start = **pile_a;
 	while (size > 0)
 	{
-		if ((**pile_a)->content > (**pile_a)->next)
-			**pile_a = sa_sb(**pile_a, size, 'a');
-		**pile_a = (**pile_a)->next;
+		while (**pile_a != NULL)
+		{
+			if ((**pile_a)->content > (**pile_a)->next)
+				**pile_a = sa_sb(**pile_a, size, 'a');
+			**pile_a = (**pile_a)->next;
+		}
 		size--;
 	}
-	return (pile_a); //does this consider the top and the last elems?
+	return (pile_a);
 }
 
 void	middle_sort(**pile_a)
