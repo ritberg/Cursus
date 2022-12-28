@@ -6,13 +6,13 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:40:20 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/28 14:14:03 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:08:28 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	min_index(t_list *pile) //find min and give an index to it (from 1)
+int	min_index(t_list *pile) //find min and give an index to it (from 1)
 {
 	int	min;
 	int	j;
