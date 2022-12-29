@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:18:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/29 13:49:22 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:20:44 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	pile_b = NULL;
-	pile_a = create_pile_a(argc, argv);
+	pile_a = create_pile(argc, argv);
 	small_sort(&pile_a, &pile_b);
+	sort_pile_k(void);
 	middle_sort(&pile_a, &pile_b);
 	printlist(pile_a); //del
 

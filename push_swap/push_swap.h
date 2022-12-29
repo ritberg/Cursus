@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/29 13:48:48 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:03:11 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	ft_lstsize(t_list *lst);
 //err_checker.c
 int	err_checker(int argc, char **argv);
 
-//create_pile_a.c
-t_list	*create_pile_a(int argc, char **argv);
+//create_pile.c
+t_list	*create_pile(int argc, char **argv);
 
 //rules_r.c
 t_list  *rra_rrb(t_list *pile, int size, char c);
@@ -57,8 +57,11 @@ void	small_sort(t_list **pile_a, t_list **pile_b);
 //very_small_sort.c
 t_list  *very_small_sort(t_list *pile_a);
 
+//sort_pile_k.c
+t_list	*sort_pile_k(void);
+
 //middle_sort.c
-void	middle_sort(t_list **pile_a, t_list **pile_b);
+void	middle_sort(t_list **pile_k, t_list **pile_a, t_list **pile_b);
 
 //printlist.c     del !!!!!!!
 void	printlist(t_list *head); // !!!!!!
