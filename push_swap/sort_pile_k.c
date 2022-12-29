@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:23:28 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/29 16:55:12 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:28:21 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ static t_list	*sa_without_write(t_list *pile_k, int size)
 	return (pile_k);
 }
 
-t_list	*index(t_list *pile_k, t_list *pile_a)
+void	index(t_list *pile_k, t_list *pile_a)
 {
 	int	ind;
+	t_list	*start;
 
+	start = pile_k;
 	while (pile_a != NULL)
 	{
 		ind = 1;
@@ -48,11 +50,11 @@ t_list	*index(t_list *pile_k, t_list *pile_a)
 		}
 		pile_a->content = ind + 1;
 		pile_a = pile_a->next;
+		pile_k = start;
 	}
-	return (pile_a);
 }
 
-t_list	*sort_pile_k(void)
+void	sort_pile_k(t_list *pile_a)
 {
 	t_list	*start;
 	t_list	*pile_k;
@@ -72,6 +74,9 @@ t_list	*sort_pile_k(void)
 		pile_k = start;
 		size--;
 	}
-	return (index(pile_k, pile_a)); //replace numbers in pile a with index
-	                               // from pile_k
+	index(pile_k, pile_a); //replace numbers in pile a with index
+	                      // from pile_k
 }
+
+//pas de return de pile dans sort_pile_k() ni index() car le pointer reste
+//le meme, c'est le contenu qui change

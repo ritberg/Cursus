@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/29 17:03:11 by mmakarov         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:25:05 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	small_sort(t_list **pile_a, t_list **pile_b);
 t_list  *very_small_sort(t_list *pile_a);
 
 //sort_pile_k.c
-t_list	*sort_pile_k(void);
+void	sort_pile_k(t_list *pile_a);
+void	index(t_list *pile_k, t_list *pile_a);
 
 //middle_sort.c
 void	middle_sort(t_list **pile_k, t_list **pile_a, t_list **pile_b);
