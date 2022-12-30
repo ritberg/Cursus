@@ -58,11 +58,11 @@ void	small_sort(t_list **pile_a, t_list **pile_b);
 t_list  *very_small_sort(t_list *pile_a);
 
 //sort_pile_k.c
-void	sort_pile_k(t_list *pile_a);
-void	index(t_list *pile_k, t_list *pile_a);
+void	sort_pile_k(t_list *pile_a, int argc, char **argv);
+void	get_index(t_list *pile_k, t_list *pile_a);
 
 //middle_sort.c
-void	middle_sort(t_list **pile_k, t_list **pile_a, t_list **pile_b);
+void	middle_sort(t_list **pile_a, t_list **pile_b);
 
 //printlist.c     del !!!!!!!
 void	printlist(t_list *head); // !!!!!!

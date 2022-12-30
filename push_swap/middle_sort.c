@@ -18,35 +18,44 @@ void	middle_sort(t_list **pile_a, t_list **pile_b)
 	int	key_nbr;
 	int	count;
 	int	middle;
+	int	dist_head;
 
 	size = ft_lstsize(*pile_a);
-	key_nbr = 25;
-	while (size > 10 && size <= 100)
+	key_nbr = size / 4;
+	while (size <= 100 && key_nbr <= size / 4)
 	{
-		while ((*pile_a)->content <= key_nbr && key_nbr <= 75)
+		while (pile_a != NULL)
 		{
-			count = 1;
-			middle = key_nbr / 2; // 25/2 or 100/2?
-			if (middle > key_nbr)
+			if ((*pile_a)->content <= key_nbr)
 			{
-				while (count < key_nbr)
+				count = 1;
+				middle = size / 2;
+				if (middle > dist_head)
 				{
-					*pile_a = ra_rb(*pile_a, size, 'a');
-					count++;
+					while (count < dist_head)
+					{
+						*pile_a = ra_rb(*pile_a, size, 'a');
+						count++;
+					}
 				}
+				else
+				{
+					while (count <= size - dist_head + 1)
+					{
+						*pile_a = rra_rrb(*pile_a, size, 'a');
+						count++;
+					}
+				}
+				pb(pile_a, pile_b);
+				dist_head = 1;
+				size--;
 			}
 			else
 			{
-				while (count <= size - key_nbr + 1) //without +1 ?
-				{
-					*pile_a = rra_rrb(*pile_a, size, 'a');
-					count++;
-				}
+				*pile_a = (*pile_a)->next;
+				dist_head++;
 			}
-			pb(pile_a, pile_b);
-			size--;
-			*pile_a = (*pile_a)->next;
-			key_nbr += 25;
 		}
+		key_nbr += (size / 4);
 	}
 }

@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 	}
 	pile_b = NULL;
 	pile_a = create_pile(argc, argv);
-	small_sort(&pile_a, &pile_b);
-	sort_pile_k(pile_a);
+	//small_sort(&pile_a, &pile_b);
+	sort_pile_k(pile_a, argc, argv);
 	middle_sort(&pile_a, &pile_b);
 	printlist(pile_a); //del
 
