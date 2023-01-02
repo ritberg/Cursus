@@ -35,9 +35,9 @@ int	main(int argc, char **argv)
 		middle_sort(&pile_a, &pile_b);
 		small_sort(&pile_a, &pile_b, MIN_TO_MAX); // min_to_max 
 		                         //for the last chunk remaining in A !
-		test_small_sort(&pile_a, &pile_b, MAX_TO_MIN);
+		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
 	}
-	//printlist(pile_a); //del
+	printlist(pile_a); //del
 
 	return (0);
 }

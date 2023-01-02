@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_very_small_sort.c                             :+:      :+:    :+:   */
+/*   very_small_sort_r.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -20,19 +20,19 @@ static	t_list	*commands1(t_list *pile_b)
 {
 	t_list	*temp;
 
-	temp = sa_sb(pile_b, 3, 'b');
-	return (rra_rrb(temp, 3, 'b'));
+	temp = ra_rb(pile_b, 3, 'b');
+	return (sa_sb(temp, 3, 'b'));
 }
 
 static	t_list	*commands2(t_list *pile_b)
 {
 	t_list	*temp;
 
-	temp = sa_sb(pile_b, 3, 'b');
-	return (ra_rb(temp, 3, 'b'));
+	temp = rra_rrb(pile_b, 3, 'b');
+	return (sa_sb(temp, 3, 'b'));
 }
 
-t_list	*test_very_small_sort(t_list *pile_b)
+t_list	*very_small_sort_r(t_list *pile_b)
 {
 	t_list	*f;//first n
 	t_list	*s;//second n
@@ -43,19 +43,19 @@ t_list	*test_very_small_sort(t_list *pile_b)
 	t = s->next;
 	if (f->content > s->content && s->content < t->content \
 			&& t->content > f->content)
-		return (sa_sb(pile_b, 3, 'b'));
-	else if (f->content > s->content && s->content > t->content \
-			&& f->content > t->content)
+		return (rra_rrb(pile_b, 3, 'b'));
+	else if (f->content < s->content && s->content < t->content \
+			&& f->content < t->content)
 		return (commands1(pile_b));
 	else if (f->content > s->content && s->content < t->content \
 			&& f-> content > t->content)
-		return (ra_rb(pile_b, 3, 'b'));
-	else if (f->content < s->content && s->content > t->content \
-			&& t->content > f->content)
 		return (commands2(pile_b));
 	else if (f->content < s->content && s->content > t->content \
-			&& t->content < f->content)
+			&& t->content > f->content)
 		return (rra_rrb(pile_b, 3, 'b'));
+	else if (f->content < s->content && s->content > t->content \
+			&& t->content < f->content)
+		return (sa_sb(pile_b, 3, 'b'));
 	else
 		return (pile_b);
 }

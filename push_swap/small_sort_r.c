@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_small_sort.c                                  :+:      :+:    :+:   */
+/*   small_sort_r.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	max_index(t_list *pile) //find min and give an index to it (from 1)
+static int	max_index(t_list *pile) //find max and give an index to it (from 1)
 {
 	int	max;
 	int	j;
@@ -56,7 +56,7 @@ static	void	commands2(t_list ***pile_b, int middle, int index, int size)
 	}
 }
 
-void	test_small_sort(t_list **pile_a, t_list **pile_b, int direction) //modify addresses? 
+void	small_sort_r(t_list **pile_a, t_list **pile_b, int direction) //modify addresses? 
 {
 	int	middle;
 	int	index;
@@ -74,10 +74,8 @@ void	test_small_sort(t_list **pile_a, t_list **pile_b, int direction) //modify a
 		pa(pile_a, pile_b);
 		size--; //size decreases -1 after each while loop
 	}
-	// ???? no idea what to do with this
-	*pile_b = test_very_small_sort(*pile_b);
+	*pile_b = very_small_sort_r(*pile_b);
 	printlist(*pile_b);	
 	while (*pile_b != NULL)
 		pa(pile_a, pile_b);
-	printlist(*pile_a);
 }
