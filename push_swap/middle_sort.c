@@ -24,7 +24,7 @@ void	middle_sort(t_list **pile_a, t_list **pile_b)
 	key_nbr = size / 4;
 	while (size <= 100 && key_nbr <= size / 4)
 	{
-		while (pile_a != NULL)
+		while (*pile_a != NULL)
 		{
 			if ((*pile_a)->content <= key_nbr)
 			{
@@ -42,6 +42,7 @@ void	middle_sort(t_list **pile_a, t_list **pile_b)
 				{
 					while (count <= size - dist_head + 1)
 					{
+						printlist(*pile_a);
 						*pile_a = rra_rrb(*pile_a, size, 'a');
 						count++;
 					}
