@@ -33,10 +33,11 @@ int	main(int argc, char **argv)
 		sort_pile_k(pile_a, argc, argv);
 		//big_sort(&pile_a, &pile_b);
 		middle_sort(&pile_a, &pile_b);
-		small_sort(&pile_a, &pile_b, MAX_TO_MIN); // min_to_max 
+		small_sort(&pile_a, &pile_b, MIN_TO_MAX); // min_to_max 
 		                         //for the last chunk remaining in A !
+		test_small_sort(&pile_a, &pile_b, MAX_TO_MIN);
 	}
-	printlist(pile_a); //del
+	//printlist(pile_a); //del
 
 	return (0);
 }

@@ -56,6 +56,15 @@ void	pb(t_list **pile_a, t_list **pile_b);
 // small_sort.c
 void	small_sort(t_list **pile_a, t_list **pile_b, int direction);
 
+
+
+// test_small_sort.c
+void	test_small_sort(t_list **pile_b, t_list **pile_a, int direction);
+//test_very_small_sort.c
+t_list  *test_very_small_sort(t_list *pile_b);
+
+
+
 //very_small_sort.c
 t_list  *very_small_sort(t_list *pile_a);
 

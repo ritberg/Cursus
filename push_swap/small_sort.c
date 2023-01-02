@@ -90,8 +90,6 @@ void	small_sort(t_list **pile_a, t_list **pile_b, int direction) //modify addres
 		count = 1;
 		if (direction == MIN_TO_MAX) // if size <= 10
 			index = min_index(*pile_a);
-		else
-			index = max_index(*pile_a); // if size <= 100
 		middle = size / 2;
 		/*
 		if (middle > index)
@@ -116,6 +114,6 @@ void	small_sort(t_list **pile_a, t_list **pile_b, int direction) //modify addres
 		size--; //size decreases -1 after each while loop
 	}	
 	*pile_a = very_small_sort(*pile_a);
-	while (*pile_b != NULL)
-		pa(pile_a, pile_b);
+//	while (*pile_b != NULL)
+//		pa(pile_a, pile_b);
 }
