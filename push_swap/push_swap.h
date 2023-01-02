@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/29 17:25:05 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:10:06 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h> //del !
+
+# define MIN_TO_MAX 0
+# define MAX_TO_MIN 1
 
 typedef struct s_list
 {
@@ -51,8 +54,7 @@ void	pa(t_list **pile_a, t_list **pile_b);
 void	pb(t_list **pile_a, t_list **pile_b);
 
 // small_sort.c
-int	min_index(t_list *pile);
-void	small_sort(t_list **pile_a, t_list **pile_b);
+void	small_sort(t_list **pile_a, t_list **pile_b, int direction);
 
 //very_small_sort.c
 t_list  *very_small_sort(t_list *pile_a);
@@ -63,6 +65,9 @@ void	get_index(t_list *pile_k, t_list *pile_a);
 
 //middle_sort.c
 void	middle_sort(t_list **pile_a, t_list **pile_b);
+
+//big_sort.c
+void	big_sort(t_list **pile_a, t_list **pile_b);
 
 //printlist.c     del !!!!!!!
 void	printlist(t_list *head); // !!!!!!

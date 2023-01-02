@@ -6,13 +6,13 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:40:20 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/28 15:08:28 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:09:37 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	min_index(t_list *pile) //find min and give an index to it (from 1)
+static int	min_index(t_list *pile) //find min and give an index to it (from 1)
 {
 	int	min;
 	int	j;
@@ -25,6 +25,27 @@ int	min_index(t_list *pile) //find min and give an index to it (from 1)
 		if (pile->content < min) //if an elem of pile_a < min
 		{
 			min = pile->content; // it becomes min
+			index = j;
+		}
+		pile = pile->next; //take next elem of pile_a
+		j++;
+	}
+	return (index);
+}
+
+static int	max_index(t_list *pile) //find min and give an index to it (from 1)
+{
+	int	max;
+	int	j;
+	int	index;
+
+	j = 1;
+	max = -2147483648;
+	while (pile != NULL)
+	{
+		if (pile->content > max) //if an elem of pile_a > max
+		{
+			max = pile->content; // it becomes max
 			index = j;
 		}
 		pile = pile->next; //take next elem of pile_a
@@ -56,7 +77,7 @@ static	void	commands(t_list ***pile_a, int middle, int index, int size)
 	}
 }
 
-void	small_sort(t_list **pile_a, t_list **pile_b) //modify addresses? 
+void	small_sort(t_list **pile_a, t_list **pile_b, int direction) //modify addresses? 
 {
 	int	middle;
 	int	index;
@@ -64,10 +85,13 @@ void	small_sort(t_list **pile_a, t_list **pile_b) //modify addresses?
 	int	count;
 
 	size = ft_lstsize(*pile_a);
-	while (size > 3 && size <= 10)
+	while (size > 3)
 	{
 		count = 1;
-		index = min_index(*pile_a);
+		if (direction == MIN_TO_MAX) // if size <= 10
+			index = min_index(*pile_a);
+		else
+			index = max_index(*pile_a); // if size <= 100
 		middle = size / 2;
 		/*
 		if (middle > index)
