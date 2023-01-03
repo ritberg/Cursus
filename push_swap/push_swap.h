@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/03 16:31:06 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:20:44 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ size_t	ft_strlen(const char *s);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 int	ft_lstsize(t_list *lst);
+char	**ft_split(char const *s, char c);
 
 //err_checker.c
 int	err_checker(int argc, char **argv);
