@@ -6,13 +6,13 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:23:28 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/29 17:28:21 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:18:09 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_list *one, t_list *two)
+void	swap(t_list *one, t_list *two)
 {
 	int	k;
 

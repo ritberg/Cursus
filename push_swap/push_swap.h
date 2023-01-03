@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/02 18:10:06 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/03 16:31:06 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ int	ft_lstsize(t_list *lst);
 //err_checker.c
 int	err_checker(int argc, char **argv);
 
+//already_sorted.c
+int	already_sorted(t_list *pile_a);
+
 //create_pile.c
 t_list	*create_pile(int argc, char **argv);
 
@@ -53,6 +56,8 @@ t_list  *sa_sb(t_list *pile, int size, char c);
 void	pa(t_list **pile_a, t_list **pile_b);
 void	pb(t_list **pile_a, t_list **pile_b);
 
+// small_sort_max_10.c
+void	small_sort_max_10(t_list **pile_a, t_list **pile_b, int direction);
 // small_sort.c
 void	small_sort(t_list **pile_a, t_list **pile_b, int direction);
 
@@ -70,6 +75,7 @@ t_list  *very_small_sort(t_list *pile_a);
 //sort_pile_k.c
 void	sort_pile_k(t_list *pile_a, int argc, char **argv);
 void	get_index(t_list *pile_k, t_list *pile_a);
+void	swap(t_list *one, t_list *two);
 
 //middle_sort.c
 void	middle_sort(t_list **pile_a, t_list **pile_b);

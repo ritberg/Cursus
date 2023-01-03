@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:20:08 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/02 18:35:24 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:13:40 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ void	small_sort_r(t_list **pile_a, t_list **pile_b, int direction) //modify addr
 		count = 1;
 		middle = size / 2;
 		if (direction == MAX_TO_MIN)
-			index = max_index(*pile_b); //??? we don't know the size
+			index = max_index(*pile_b);
 		commands2(&pile_b, middle, index, size);
 		pa(pile_a, pile_b);
 		size--; //size decreases -1 after each while loop
 	}
+	//printlist(*pile_a);
+	//printlist(*pile_b);
 	*pile_b = very_small_sort_r(*pile_b);
-	printlist(*pile_b);	
 	while (*pile_b != NULL)
 		pa(pile_a, pile_b);
 }

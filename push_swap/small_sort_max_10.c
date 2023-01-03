@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   small_sort.c                                       :+:      :+:    :+:   */
+/*   small_sort_max_10.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/22 16:40:20 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/03 16:09:50 by mmakarov         ###   ########.fr       */
+/*   Created: 2023/01/03 16:03:17 by mmakarov          #+#    #+#             */
+/*   Updated: 2023/01/03 16:03:34 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static	void	commands(t_list ***pile_a, int middle, int index, int size)
 	}
 }
 
-void	small_sort(t_list **pile_a, t_list **pile_b, int direction) //modify addresses? 
+void	small_sort_max_10(t_list **pile_a, t_list **pile_b, int direction) //modify addresses? 
 {
 	int	middle;
 	int	index;
@@ -93,4 +93,6 @@ void	small_sort(t_list **pile_a, t_list **pile_b, int direction) //modify addres
 		size--; //size decreases -1 after each while loop
 	}	
 	*pile_a = very_small_sort(*pile_a);
+	while (*pile_b != NULL)
+		pa(pile_a, pile_b);
 }

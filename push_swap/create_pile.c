@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:48:11 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/29 16:22:46 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:29:39 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ t_list	*create_pile(int argc, char **argv)
 		pile = new_elem;
 		j--; // the first argv[i] is on the top
 	}
-	printlist(pile); //del !!!
+	//printlist(pile); //del !!!
 	return (pile);
 }

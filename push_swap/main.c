@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:18:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/02 18:10:47 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:37:04 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,13 @@ int	main(int argc, char **argv)
 	}
 	pile_b = NULL;
 	pile_a = create_pile(argc, argv);
+	if (!already_sorted(pile_a))
+		return (0);
+	if (ft_lstsize(pile_a) <= 2)
+		if (pile_a->content > pile_a->next->content)
+			write(1, "sa\n", 3);
 	if (ft_lstsize(pile_a) <= 10)
-		small_sort(&pile_a, &pile_b, MIN_TO_MAX);
+		small_sort_max_10(&pile_a, &pile_b, MIN_TO_MAX);
 	else if (ft_lstsize(pile_a) <= 100)
 	{
 		sort_pile_k(pile_a, argc, argv);
@@ -42,7 +47,8 @@ int	main(int argc, char **argv)
 		small_sort(&pile_a, &pile_b, MIN_TO_MAX);
 		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
 	}
-	printlist(pile_a); //del
+	//printlist(pile_a); //del
+	//printlist(pile_b); //del
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:40:20 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/28 13:38:23 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:13:00 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_list	*very_small_sort_r(t_list *pile_b)
 		return (commands2(pile_b));
 	else if (f->content < s->content && s->content > t->content \
 			&& t->content > f->content)
-		return (rra_rrb(pile_b, 3, 'b'));
+		return (ra_rb(pile_b, 3, 'b'));
 	else if (f->content < s->content && s->content > t->content \
 			&& t->content < f->content)
 		return (sa_sb(pile_b, 3, 'b'));
