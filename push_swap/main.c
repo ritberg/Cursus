@@ -6,11 +6,31 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:18:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/03 17:37:04 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:55:52 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static	void s_m_b(t_list *pile_a, t_list *pile_b, int argc, char **argv)
+{
+	if (ft_lstsize(pile_a) <= 10)
+		small_sort_max_10(&pile_a, &pile_b, MIN_TO_MAX);
+	else if (ft_lstsize(pile_a) <= 100)
+	{
+		sort_pile_k(pile_a, argc, argv);
+		middle_sort(&pile_a, &pile_b);
+		small_sort(&pile_a, &pile_b, MIN_TO_MAX); 
+		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
+	}
+	else
+	{
+		sort_pile_k(pile_a, argc, argv);
+		big_sort(&pile_a, &pile_b);
+		small_sort(&pile_a, &pile_b, MIN_TO_MAX);
+		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -31,6 +51,8 @@ int	main(int argc, char **argv)
 	if (ft_lstsize(pile_a) <= 2)
 		if (pile_a->content > pile_a->next->content)
 			write(1, "sa\n", 3);
+	s_m_b(pile_a, pile_b, argc, argv);
+/*
 	if (ft_lstsize(pile_a) <= 10)
 		small_sort_max_10(&pile_a, &pile_b, MIN_TO_MAX);
 	else if (ft_lstsize(pile_a) <= 100)
@@ -47,6 +69,8 @@ int	main(int argc, char **argv)
 		small_sort(&pile_a, &pile_b, MIN_TO_MAX);
 		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
 	}
+*/
+
 	//printlist(pile_a); //del
 	//printlist(pile_b); //del
 
