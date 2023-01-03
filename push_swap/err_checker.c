@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-char	**str_of_nbrs(int argc, char **argv)
+static char	**str_of_nbrs(int argc, char **argv)
 {
 	char	**a;
 
@@ -21,8 +21,9 @@ char	**str_of_nbrs(int argc, char **argv)
 		a = ft_split(argv[1], ' ');
 		if (a == NULL)
 			return (NULL);
+		return (a);
 	}
-	return (a);
+	return (argv);
 }
 
 int	err_checker(int argc, char **argv)
@@ -33,7 +34,7 @@ int	err_checker(int argc, char **argv)
 	j = 1;
 	if (argv == NULL)   //??
 		return (0);      // ??
-	str_of_nbrs(argc, argv); //?? I can't check returned tab **a !
+	str_of_nbrs(argc, argv);
 	while (j < argc)
 	{
 		if (!ft_isdigit(argv[j])) //autres char non autorises non plus
