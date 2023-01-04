@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 12:57:38 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/28 12:42:29 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:38:52 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	void	write_rra_rrb(char c)
 
 t_list	*rra_rrb(t_list *pile, int size, char c)
 {
-	int	count;
+	int		count;
 	t_list	*current;
 	t_list	*ind_node;
 
@@ -38,8 +38,8 @@ t_list	*rra_rrb(t_list *pile, int size, char c)
 	}
 	ind_node = current; //save the 2nd before null
 	current = current->next; //the last before null
-	current->next = pile; //after current->next, pile starts
-	pile = current;       //from the top
+	current->next = pile; //after current->next, pile starts from the top
+	pile = current;
 	ind_node->next = NULL;
 	write_rra_rrb(c);
 	return (pile);
@@ -55,12 +55,11 @@ static	void	write_ra_rb(char c)
 
 t_list	*ra_rb(t_list *pile, int size, char c)
 {
-	int	count;
+	int		count;
 	t_list	*last;
 	t_list	*top;
 
 	count = 1;
-
 	last = pile;
 	while (count < size)
 	{

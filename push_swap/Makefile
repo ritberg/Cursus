@@ -8,7 +8,7 @@ SRCS	= already_sorted.c\
 		  rules_s_p.c\
 		  sim_to_libft.c\
 		  small_sort.c\
-		  small_sort_max_10.c\
+		  sm_sort_max_10.c\
 		  small_sort_r.c\
 		  sort_pile_k.c\
 		  temp_libft.c\

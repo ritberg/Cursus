@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:36:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/23 12:37:17 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:49:55 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static int	ft_is_space(char c)
 
 long long int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
+	int				i;
+	int				sign;
 	long long int	result;
 
 	i = 0;
@@ -84,4 +84,3 @@ t_list	*ft_lstnew_int(int content) // lstnew of libft. int instead of void *
 	new_elem->next = NULL;
 	return (new_elem);
 }
-

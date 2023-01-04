@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:40:20 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/03 17:13:00 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:04:18 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static	t_list	*commands2(t_list *pile_b)
 
 t_list	*very_small_sort_r(t_list *pile_b)
 {
-	t_list	*f;//first n
-	t_list	*s;//second n
-	t_list	*t;//third n
+	t_list	*f;
+	t_list	*s;
+	t_list	*t;
 
 	f = pile_b;
 	s = pile_b->next;

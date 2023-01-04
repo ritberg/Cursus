@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 12:57:38 by mmakarov          #+#    #+#             */
-/*   Updated: 2022/12/28 13:10:38 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:45:26 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,30 @@ t_list	*sa_sb(t_list *pile, int size, char c)
 	return (pile);
 }
 
-void	pa(t_list **pile_a, t_list **pile_b)
+int	pa(t_list **pile_a, t_list **pile_b)
 {
 	t_list	*top;
 
 	if (*pile_b == NULL)
-		return ; //ne fait rien si pile_b est vide
+		return (0); //ne fait rien si pile_b est vide
 	top = *pile_b;
 	*pile_b = (*pile_b)->next;
 	top->next = *pile_a;
 	*pile_a = top;
 	write(1, "pa\n", 3);
+	return (1);
 }
 
-void	pb(t_list **pile_a, t_list **pile_b)
+int	pb(t_list **pile_a, t_list **pile_b)
 {
 	t_list	*top;
 
 	if (*pile_a == NULL)
-		return ; //ne fait rien si pile_a est vide
+		return (0); //ne fait rien si pile_a est vide
 	top = *pile_a;
 	*pile_a = (*pile_a)->next;
 	top->next = *pile_b;
 	*pile_b = top;
 	write(1, "pb\n", 3);
+	return (1);
 }

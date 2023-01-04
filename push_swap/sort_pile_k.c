@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:23:28 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/03 15:18:09 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:52:23 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ void	swap(t_list *one, t_list *two)
 	two->content = k;
 }
 
-
 void	get_index(t_list *pile_k, t_list *pile_a)
 {
-	int	ind;
+	int		ind;
 	t_list	*start;
 
 	start = pile_k;
@@ -46,7 +45,7 @@ void	sort_pile_k(t_list *pile_a, int argc, char **argv)
 {
 	t_list	*start;
 	t_list	*pile_k;
-	int	size;
+	int		size;
 
 	pile_k = create_pile(argc, argv); //create pile_k with arc, argv
 	size = ft_lstsize(pile_k);
@@ -63,8 +62,7 @@ void	sort_pile_k(t_list *pile_a, int argc, char **argv)
 		size--;
 	}
 	get_index(pile_k, pile_a); //replace numbers in pile_a with index
-	                      // from pile_k
+							   // from pile_k
 }
-
 //pas de return de pile dans sort_pile_k() ni index() car le pointer reste
 //le meme, c'est le contenu qui change
