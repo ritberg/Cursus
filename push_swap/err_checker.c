@@ -12,29 +12,42 @@
 
 #include "push_swap.h"
 
-static char	**str_of_nbrs(int argc, char **argv)
+static char	**input_as_str(int argc, char **argv)
 {
 	char	**a;
 
 	if (argc == 2)
 	{
-		a = ft_split(argv[1], ' ');
+		a = ft_split(argv[1], ' '); //if input is like "6 4 1 23 -4"
 		if (a == NULL)
 			return (NULL);
 		return (a);
 	}
-	return (argv);
+	return (argv); //if not, return argv
 }
 
-int	err_checker(int argc, char **argv)
+static int     n_of_n(char **a)
+{
+        int     i;
+        int     j;
+
+        j = 0;
+        while (a[j] != NULL)
+        {
+                i = 0;
+                while (a[i])
+                        i++;
+                j++;
+        }
+        return (j); //return how many numbers in **a (or **argv). Kind of argc
+}
+
+static int	err_checker(int argc, char **argv) //check all errors
 {
 	int	j;
 	int	i;
 
 	j = 1;
-	if (argv == NULL)   //??
-		return (0);      // ??
-	str_of_nbrs(argc, argv);
 	while (j < argc)
 	{
 		if (!ft_isdigit(argv[j])) //autres char non autorises non plus
@@ -51,4 +64,16 @@ int	err_checker(int argc, char **argv)
 		j++;
 	}
 	return (1);
+}
+
+int	err_input_checker(int argc, char **argv) //function that put all together
+{
+	char	**a;
+	int	i;
+
+	if (argv == NULL)
+		return (0);
+	a = input_as_str(argc, argv);
+	i = n_of_n(a);
+	return (err_checker(i, a));
 }

@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 		return (0);
-	if (!err_checker(argc, argv))
+	if (!err_input_checker(argc, argv))
 	{
 		write(1, "Error\n", 6);
 		return (0);

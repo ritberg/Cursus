@@ -61,12 +61,10 @@ void	small_sort(t_list **pile_a, t_list **pile_b, int direction) //modify addres
 	int	middle;
 	int	index;
 	int	size;
-	int	count;
 
 	size = ft_lstsize(*pile_a);
 	while (size > 3)
 	{
-		count = 1;
 		if (direction == MIN_TO_MAX) // if size <= 10
 			index = min_index(*pile_a);
 		middle = size / 2;

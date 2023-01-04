@@ -42,7 +42,7 @@ int				ft_lstsize(t_list *lst);
 char			**ft_split(char const *s, char c);
 
 //err_checker.c
-int				err_checker(int argc, char **argv);
+int				err_input_checker(int argc, char **argv);
 
 //already_sorted.c
 int				already_sorted(t_list *pile_a);
