@@ -2,6 +2,7 @@ SRCS	= already_sorted.c\
 		  big_sort.c\
 		  create_pile.c\
 		  err_checker.c\
+		  ft_split.c\
 		  middle_sort.c\
 		  rules_r.c\
 		  rules_s_p.c\
@@ -10,10 +11,10 @@ SRCS	= already_sorted.c\
 		  small_sort_max_10.c\
 		  small_sort_r.c\
 		  sort_pile_k.c\
+		  temp_libft.c\
 		  very_small_sort.c\
 		  very_small_sort_r.c\
-
-MAIN	= main.c
+		  main.c\
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -25,17 +26,13 @@ RM		= rm -f
 
 HEADERS		= push_swap.h
 
-INC_LIBFT	= libft
-
-CFLAGS		= -Wall -Wextra -Werror -IINC_LIBFT
-
-DEPS		= ${INC_LIBFT}/libft.h
+CFLAGS		= -Wall -Wextra -Werror
 
 .c.o:
-	${CC} ${CFLAGS} -c -I ${INC_LIBFT} $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS} ${HEADERS}
-		${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${INC_LIBFT}
+			${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 
 all:		${NAME}
 
@@ -47,7 +44,7 @@ fclean:		clean
 
 re:		fclean all
 
-test:		all
-			${CC} ${CFLAGS} -L. -lftprintf -o test ${MAIN}
+#test:		all
+#			${CC} ${CFLAGS} -lpush_swap -o test ${MAIN}
 
 .PHONY: all clean fclean re test
