@@ -61,7 +61,7 @@ static int	err_checker(int ac, char **av) //check all errors
 	int	j;
 	int	i;
 
-	j = 1;
+	j = 0;
 	while (j < ac)
 	{
 		if (!ft_isdigit(av[j])) //autres char non autorises non plus
