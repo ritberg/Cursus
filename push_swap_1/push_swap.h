@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/05 15:09:39 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:10:38 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char			**ft_split(char const *s, char c);
 
 //err_checker.c
 int				err_input_checker(int argc, char **argv);
-char			**input_as_str(char **argv);
+char			**input_as_str(int argc, char **argv);
 int				n_of_n(char **a);
 
 //already_sorted.c

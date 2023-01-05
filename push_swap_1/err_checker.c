@@ -6,13 +6,13 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:42:21 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/05 16:28:21 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:29:57 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static char	**argv_without_0(int argc, char **argv)
+/*
+char	**argv_without_0(int argc, char **argv)
 {
 	int		i;
 	char	**new_argv;
@@ -29,12 +29,15 @@ static char	**argv_without_0(int argc, char **argv)
 	new_argv[i - 1] = NULL;
 	return (new_argv);
 }
-
-char	**input_as_str(char **argv)
+*/
+char	**input_as_str(int argc, char **argv)
 {
 	char	**a;
+	int		i;
 
-	a = ft_split(argv[1], ' '); //if input is like "6 4 1 23 -4"
+	i = 0;
+	while (i < argc)
+		a = ft_split(argv[i++], ' '); //if input is like "6 4 1 23 -4"
 	if (a == NULL)
 		return (NULL);
 	return (a);
@@ -53,7 +56,7 @@ int	n_of_n(char **a)
                         i++;
                 j++;
         }
-        return (j); //return how many numbers in **a (or **argv). Kind of argc
+        return (j - 1); //return how many numbers in **a (or **argv). Kind of argc
 }
 
 static int	err_checker(int ac, char **av) //check all errors
@@ -61,7 +64,7 @@ static int	err_checker(int ac, char **av) //check all errors
 	int	j;
 	int	i;
 
-	j = 0;
+	j = 1;
 	while (j < ac)
 	{
 		if (!ft_isdigit(av[j])) //autres char non autorises non plus
@@ -89,10 +92,10 @@ int	err_input_checker(int argc, char **argv) //function that put all together
 		return (0);
 	if (argc == 2)
 	{
-		a = input_as_str(argv);
+		a = input_as_str(argc, argv);
 		i = n_of_n(a);
 		return (err_checker(i, a));
 	}
-	a = argv_without_0(argc, argv);
-	return (err_checker(argc, a));
+//	a = argv_without_0(argc, argv);
+	return (err_checker(argc, argv));
 }
