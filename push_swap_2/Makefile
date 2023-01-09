@@ -3,6 +3,7 @@ SRCS	= already_sorted.c\
 		  create_pile.c\
 		  err_checker.c\
 		  ft_split.c\
+		  ft_strjoin.c\
 		  middle_sort.c\
 		  rules_r.c\
 		  rules_s_p.c\
