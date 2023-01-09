@@ -6,27 +6,23 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:42:21 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/09 21:06:29 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:46:01 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**input_as_str(char **argv) //return of all arguments. even prog name
+static char	**input_as_str(char **argv)
 {
 	char	**a;
-	char	*b;
-	
-	b = ft_strjoin("./push_swap ", argv[1]);
-	if (b == NULL)
-		return (NULL);
-	a = ft_split(b, ' '); //if input is like "6 4 1 23 -4"
+
+	a = ft_split(argv[1], ' '); //if input is like "6 4 1 23 -4"
 	if (a == NULL)
 		return (NULL);
 	return (a);
 }
 
-int     n_of_n(char **a) //n of lines (i.e. numbers)
+static int     n_of_n(char **a)
 {
         int     i;
         int     j;
@@ -42,22 +38,22 @@ int     n_of_n(char **a) //n of lines (i.e. numbers)
         return (j); //return how many numbers in **a (or **argv). Kind of argc
 }
 
-static int	err_checker(int ac, char **av) //check all errors
+static int	err_checker(int argc, char **argv) //check all errors
 {
 	int	j;
 	int	i;
 
-	j = 1; //from argv[1]
-	while (j < ac)
+	j = 1;
+	while (j < argc)
 	{
-		if (!ft_isdigit(av[j])) //autres char non autorises non plus
+		if (!ft_isdigit(argv[j])) //autres char non autorises non plus
 			return (0);
-		if (ft_atoi(av[j]) > 2147483647 || ft_atoi(av[j]) < -2147483648)
+		if (ft_atoi(argv[j]) > 2147483647 || ft_atoi(argv[j]) < -2147483648)
 			return (0);
 		i = j + 1;
-		while (i < ac)
+		while (i < argc)
 		{
-			if (ft_atoi(av[j]) == ft_atoi(av[i]))
+			if (ft_atoi(argv[j]) == ft_atoi(argv[i]))
 				return (0);
 			i++;
 		}
