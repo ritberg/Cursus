@@ -6,13 +6,13 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:42:21 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/09 16:32:59 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/09 21:06:29 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**input_as_str(char **argv)
+char	**input_as_str(char **argv) //return of all arguments. even prog name
 {
 	char	**a;
 	char	*b;
@@ -23,10 +23,10 @@ char	**input_as_str(char **argv)
 	a = ft_split(b, ' '); //if input is like "6 4 1 23 -4"
 	if (a == NULL)
 		return (NULL);
-	return (a); //it dsnt return ./push_swap ! it should
+	return (a);
 }
 
-int     n_of_n(char **a)
+int     n_of_n(char **a) //n of lines (i.e. numbers)
 {
         int     i;
         int     j;
@@ -41,31 +41,7 @@ int     n_of_n(char **a)
         }
         return (j); //return how many numbers in **a (or **argv). Kind of argc
 }
-/*
-static int	err_checker_argc2(int ac, char **av) //check all errors
-{
-	int	j;
-	int	i;
 
-	j = 0; //from argv[0]
-	while (j < ac)
-	{
-		if (!ft_isdigit(av[j])) //autres char non autorises non plus
-			return (0);
-		if (ft_atoi(av[j]) > 2147483647 || ft_atoi(av[j]) < -2147483648)
-			return (0);
-		i = j + 1;
-		while (i < ac)
-		{
-			if (ft_atoi(av[j]) == ft_atoi(av[i]))
-				return (0);
-			i++;
-		}
-		j++;
-	}
-	return (1);
-}
-*/
 static int	err_checker(int ac, char **av) //check all errors
 {
 	int	j;
@@ -102,7 +78,7 @@ int	err_input_checker(int argc, char **argv) //function that put all together
 	{
 		a = input_as_str(argv);
 		i = n_of_n(a);
-		return (err_checker(i, a)); //change ! common check
+		return (err_checker(i, a));
 	}
 	return (err_checker(argc, argv));
 }
