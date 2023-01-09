@@ -12,18 +12,21 @@
 
 #include "push_swap.h"
 
-static char	**input_as_str(int argc, char **argv)
+char	**input_as_str(char **argv)
 {
 	char	**a;
+	char	*b;
 	
-	//ft_strjoin(argv[0], argv[1]) ?	
-	a = ft_split(argv[1], ' '); //if input is like "6 4 1 23 -4"
+	b = ft_strjoin("./push_swap ", argv[1]);
+	if (b == NULL)
+		return (NULL);
+	a = ft_split(b, ' '); //if input is like "6 4 1 23 -4"
 	if (a == NULL)
 		return (NULL);
 	return (a); //it dsnt return ./push_swap ! it should
 }
 
-static int     n_of_n(char **a)
+int     n_of_n(char **a)
 {
         int     i;
         int     j;
@@ -38,7 +41,7 @@ static int     n_of_n(char **a)
         }
         return (j); //return how many numbers in **a (or **argv). Kind of argc
 }
-
+/*
 static int	err_checker_argc2(int ac, char **av) //check all errors
 {
 	int	j;
@@ -62,7 +65,7 @@ static int	err_checker_argc2(int ac, char **av) //check all errors
 	}
 	return (1);
 }
-
+*/
 static int	err_checker(int ac, char **av) //check all errors
 {
 	int	j;
@@ -97,9 +100,9 @@ int	err_input_checker(int argc, char **argv) //function that put all together
 		return (0);
 	if (argc == 2)
 	{
-		a = input_as_str(argc, argv);
+		a = input_as_str(argv);
 		i = n_of_n(a);
-		return (err_checker_argc2(i, a)); //change ! common check
+		return (err_checker(i, a)); //change ! common check
 	}
 	return (err_checker(argc, argv));
 }

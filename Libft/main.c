@@ -115,8 +115,9 @@ printf("%s\n", ft_strtrim(s1, set));
 */
 
 ///// FT_SPLIT //////
-/*
 
+
+/*
 	char	**tab;
 	char	*s = "      split       this for   me  !";
 	char	c = ' ';
@@ -158,9 +159,9 @@ if (!(tabstr = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit
 				i++;
 			}
 		}
+
+
 */
-
-
 
 
 //printf("%s\n", ft_itoa(67643));

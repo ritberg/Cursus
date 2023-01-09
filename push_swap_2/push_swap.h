@@ -37,12 +37,15 @@ size_t			ft_strlen(const char *s);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 t_list			*ft_lstlast(t_list *lst);
 int				ft_lstsize(t_list *lst);
+char *ft_strjoin(char const *s1, char const *s2);
 
 //ft_split.c
 char			**ft_split(char const *s, char c);
 
 //err_checker.c
 int				err_input_checker(int argc, char **argv);
+char	**input_as_str(char **argv);
+int	n_of_n(char **a);
 
 //already_sorted.c
 int				already_sorted(t_list *pile_a);
