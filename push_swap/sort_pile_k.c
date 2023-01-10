@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:23:28 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/04 11:52:23 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:25:45 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	sort_pile_k(t_list *pile_a, int argc, char **argv)
 	t_list	*pile_k;
 	int		size;
 
-	pile_k = create_pile(argc, argv); //create pile_k with arc, argv
+	pile_k = create_pile(argc, argv); //create pile_k with new arc, argv
 	size = ft_lstsize(pile_k);
 	start = pile_k;
 	while (size > 0)
