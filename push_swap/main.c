@@ -21,7 +21,7 @@ void	free_char(char **new_argv)
 	s = 0;
 	while (new_argv[k])
 	{
-		while (new_argv[s])
+		while (new_argv[k][s])
 			free(new_argv[s++]);
 		free(new_argv[k++]);
 	}
@@ -34,25 +34,25 @@ void	free_piles(t_list *pile_a)
 	while (pile_a)
 	{
 		temp = pile_a;
-		free(pile_a);
 		pile_a = temp->next;
+		free(temp);
 	}
 }
 
-static	void	s_m_b(t_list *pile_a, t_list *pile_b)
+static	void	s_m_b(t_list *pile_a, t_list *pile_b, int ac, char **av)
 {
 	if (ft_lstsize(pile_a) <= 10)
 		sm_sort_max_10(&pile_a, &pile_b, MIN_TO_MAX);
 	else if (ft_lstsize(pile_a) <= 100)
 	{
-		//sort_pile_k(pile_a, ac, av);
+		sort_pile_k(pile_a, ac, av);
 		middle_sort(&pile_a, &pile_b);
 		small_sort(&pile_a, &pile_b, MIN_TO_MAX);
 		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
 	}
 	else
 	{
-	//	sort_pile_k(pile_a, ac, av);
+		sort_pile_k(pile_a, ac, av);
 		big_sort(&pile_a, &pile_b);
 		small_sort(&pile_a, &pile_b, MIN_TO_MAX);
 		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
@@ -76,11 +76,13 @@ static	int	createpile_minisort(int new_argc, char **new_argv)
 	if (ft_lstsize(pile_a) <= 2)
 	{
 		if (pile_a->content > pile_a->next->content)
+		{
 			write(1, "sa\n", 3);
+			return (1);
+		}
 	}
-	sort_pile_k(pile_a, new_argc, new_argv);
 	// free new argv but not argv ! 
-	s_m_b(pile_a, pile_b);
+	s_m_b(pile_a, pile_b, new_argc, new_argv);
 	return (1);
 }
 

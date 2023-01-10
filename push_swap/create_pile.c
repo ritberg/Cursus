@@ -19,8 +19,6 @@ t_list	*create_pile(int argc, char **argv)
 	t_list		*pile;
 	t_list		*new_elem;
 
-	if (argc == 2)
-		return (NULL);
 	j = argc - 1;
 	pile = NULL;
 	while (j >= 1)
