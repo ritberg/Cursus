@@ -6,30 +6,59 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:18:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/10 11:36:37 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:36:58 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	void	s_m_b(t_list *pile_a, t_list *pile_b, int ac, char **av)
+void	free_char(char **new_argv)
+{
+	size_t	k;
+	size_t	s;
+
+	k = 0;
+	s = 0;
+	while (new_argv[k])
+	{
+		while (new_argv[s])
+			free(new_argv[s++]);
+		free(new_argv[k++]);
+	}
+}
+
+void	free_piles(t_list *pile_a)
+{
+	t_list	*temp;
+
+	while (pile_a)
+	{
+		temp = pile_a;
+		free(pile_a);
+		pile_a = temp->next;
+	}
+}
+
+static	void	s_m_b(t_list *pile_a, t_list *pile_b)
 {
 	if (ft_lstsize(pile_a) <= 10)
 		sm_sort_max_10(&pile_a, &pile_b, MIN_TO_MAX);
 	else if (ft_lstsize(pile_a) <= 100)
 	{
-		sort_pile_k(pile_a, ac, av);
+		//sort_pile_k(pile_a, ac, av);
 		middle_sort(&pile_a, &pile_b);
 		small_sort(&pile_a, &pile_b, MIN_TO_MAX);
 		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
 	}
 	else
 	{
-		sort_pile_k(pile_a, ac, av);
+	//	sort_pile_k(pile_a, ac, av);
 		big_sort(&pile_a, &pile_b);
 		small_sort(&pile_a, &pile_b, MIN_TO_MAX);
 		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
 	}
+	free_piles(pile_a);
+	free_piles(pile_b);
 }
 
 static	int	createpile_minisort(int new_argc, char **new_argv)
@@ -40,13 +69,18 @@ static	int	createpile_minisort(int new_argc, char **new_argv)
 	pile_b = NULL;
 	pile_a = create_pile(new_argc, new_argv);
 	if (!already_sorted(pile_a))
+	{
+		free_piles(pile_a);
 		return (0);
+	}
 	if (ft_lstsize(pile_a) <= 2)
 	{
 		if (pile_a->content > pile_a->next->content)
 			write(1, "sa\n", 3);
 	}
-	s_m_b(pile_a, pile_b, new_argc, new_argv);
+	sort_pile_k(pile_a, new_argc, new_argv);
+	// free new argv but not argv ! 
+	s_m_b(pile_a, pile_b);
 	return (1);
 }
 
@@ -74,7 +108,7 @@ int	main(int argc, char **argv)
 	}
 	createpile_minisort(new_argc, new_argv);
 
-	/*
+/*
 	pile_b = NULL;
 	pile_a = create_pile(new_argc, new_argv);
 	if (!already_sorted(pile_a))
@@ -82,9 +116,7 @@ int	main(int argc, char **argv)
 	if (ft_lstsize(pile_a) <= 2)
 		if (pile_a->content > pile_a->next->content)
 			write(1, "sa\n", 3);
-	*/
-/*
-	s_m_b(pile_a, pile_b, new_argc, new_argv);
+
 	if (ft_lstsize(pile_a) <= 10)
 		small_sort_max_10(&pile_a, &pile_b, MIN_TO_MAX);
 	else if (ft_lstsize(pile_a) <= 100)
@@ -100,6 +132,12 @@ int	main(int argc, char **argv)
 		big_sort(&pile_a, &pile_b);
 		small_sort(&pile_a, &pile_b, MIN_TO_MAX);
 		small_sort_r(&pile_a, &pile_b, MAX_TO_MIN);
+	}
+
+	while (ft_lstsize(pile_a))
+	{
+		free(pile_a);
+		pile_a = pile_a->next;
 	}
 */
 

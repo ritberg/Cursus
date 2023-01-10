@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:48:11 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/10 11:30:34 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:51:53 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_list	*create_pile(int argc, char **argv)
 	t_list		*pile;
 	t_list		*new_elem;
 
+	if (argc == 2)
+		return (NULL);
 	j = argc - 1;
 	pile = NULL;
 	while (j >= 1)

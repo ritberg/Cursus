@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:42:21 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/09 21:06:29 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:36:16 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	**input_as_str(char **argv) //return of all arguments. even prog name
 	if (b == NULL)
 		return (NULL);
 	a = ft_split(b, ' '); //if input is like "6 4 1 23 -4"
+	free(b);
 	if (a == NULL)
 		return (NULL);
 	return (a);
