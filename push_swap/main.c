@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:18:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/11 15:45:53 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:54:53 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static	int	createpile_minisort(int new_argc, char **new_argv)
 		if (pile_a->content > pile_a->next->content)
 		{
 			write(1, "sa\n", 3);
+			free_piles(pile_a);
 			return (1);
 		}
 	}
