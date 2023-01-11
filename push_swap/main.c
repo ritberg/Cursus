@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:18:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/11 15:06:24 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:45:53 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,8 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 		return (0);
-	if (argc > 2)
-	{
-		new_argv = argv;
-		new_argc = argc;
-	}
+	new_argv = argv;
+	new_argc = argc;
 	if (argc == 2)
 	{
 		new_argv = input_as_str(argv);

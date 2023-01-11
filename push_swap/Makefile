@@ -27,7 +27,7 @@ RM		= rm -f
 
 HEADERS		= push_swap.h
 
-CFLAGS		= -Wall -Wextra -Werror  -g3
+CFLAGS		= -Wall -Wextra -Werror -g3
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
