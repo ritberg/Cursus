@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:42:21 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/10 19:36:16 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:58:26 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int     n_of_n(char **a) //n of lines (i.e. numbers)
         return (j); //return how many numbers in **a (or **argv). Kind of argc
 }
 
-static int	err_checker(int ac, char **av) //check all errors
+static int	err_checker(int ac, char **av, int old_ac) //check all errors
 {
 	int	j;
 	int	i;
@@ -64,6 +64,8 @@ static int	err_checker(int ac, char **av) //check all errors
 		}
 		j++;
 	}
+	if (old_ac == 1)
+		free_char(av, ac);
 	return (1);
 }
 
@@ -79,7 +81,7 @@ int	err_input_checker(int argc, char **argv) //function that put all together
 	{
 		a = input_as_str(argv);
 		i = n_of_n(a);
-		return (err_checker(i, a));
+		return (err_checker(i, a, 1)); //free only newly created argv
 	}
-	return (err_checker(argc, argv));
+	return (err_checker(argc, argv, 0));
 }

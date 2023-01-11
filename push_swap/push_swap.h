@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/10 20:06:14 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:11:27 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void			big_sort(t_list **pile_a, t_list **pile_b);
 
 //free in main
 void			free_piles(t_list *pile_a);
-void			free_char(char **new_argv);
+void			free_char(char **new_argv, int new_argc);
 
 //printlist.c     del !!!!!!!
 void			printlist(t_list *head); // !!!!!!
