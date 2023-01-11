@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:18:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/10 20:36:58 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:50:31 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static	int	createpile_minisort(int new_argc, char **new_argv)
 			return (1);
 		}
 	}
-	// free new argv but not argv ! 
 	s_m_b(pile_a, pile_b, new_argc, new_argv);
 	return (1);
 }
@@ -146,5 +145,7 @@ int	main(int argc, char **argv)
 	//printlist(pile_a); //del
 	//printlist(pile_b); //del
 
+//	if (argc == 2)
+//		free_char(new_argv);
 	return (0);
 }

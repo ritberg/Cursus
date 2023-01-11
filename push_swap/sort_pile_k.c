@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:23:28 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/10 17:41:55 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:44:38 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	sort_pile_k(t_list *pile_a, int argc, char **argv)
 	}
 	get_index(pile_k, pile_a); //replace numbers in pile_a with index
 							   // from pile_k
+	free_piles(pile_k);
 }
 //pas de return de pile dans sort_pile_k() ni index() car le pointer reste
 //le meme, c'est le contenu qui change
