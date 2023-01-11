@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:42:21 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/11 17:02:55 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:11:49 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**input_as_str(char **argv) //return of all arguments. even prog name
 {
 	char	**a;
 	char	*b;
-	
+
 	b = ft_strjoin("./push_swap ", argv[1]);
 	if (b == NULL)
 		return (NULL);
@@ -49,6 +49,8 @@ static int	err_checker(int ac, char **av, int old_ac) //check all errors
 	int	i;
 
 	j = 1; //from argv[1]
+	if (av[j] == NULL)
+		return (0);
 	while (j < ac)
 	{
 		if (!ft_isdigit(av[j])) //autres char non autorises non plus
