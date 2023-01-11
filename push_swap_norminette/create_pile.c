@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   already_sorted.c                                   :+:      :+:    :+:   */
+/*   create_pile.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 16:21:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/03 16:28:09 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/12/23 10:48:11 by mmakarov          #+#    #+#             */
+/*   Updated: 2023/01/11 18:20:42 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	already_sorted(t_list *pile_a)
+t_list	*create_pile(int argc, char **argv)
 {
-	int	count;
-	int	size;
+	int			j;
+	long long	a;
+	t_list		*pile;
+	t_list		*new_elem;
 
-	count = 1;
-	size = ft_lstsize(pile_a);
-	while (pile_a->next != NULL)
+	j = argc - 1;
+	pile = NULL;
+	while (j >= 1)
 	{
-		if (pile_a->content < pile_a->next->content)
-			count++;
-		pile_a = pile_a->next;
+		a = ft_atoi(argv[j]);
+		new_elem = ft_lstnew_int(a);
+		new_elem->next = pile;
+		pile = new_elem;
+		j--;
 	}
-	if (size == count)
-		return (0);
-	return (1);
+	return (pile);
 }

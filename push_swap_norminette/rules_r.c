@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 12:57:38 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/04 11:38:52 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:30:16 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ t_list	*rra_rrb(t_list *pile, int size, char c)
 	t_list	*current;
 	t_list	*ind_node;
 
-	if (size == 1) // if there is only 1 elem in pile
+	if (size == 1)
 		return (pile);
 	count = 1;
 	ind_node = NULL;
 	current = pile;
-	while (count < size - 1) // go down, to the 2nd before null
+	while (count < size - 1)
 	{
 		current = current->next;
 		count++;
 	}
-	ind_node = current; //save the 2nd before null
-	current = current->next; //the last before null
-	current->next = pile; //after current->next, pile starts from the top
+	ind_node = current;
+	current = current->next;
+	current->next = pile;
 	pile = current;
 	ind_node->next = NULL;
 	write_rra_rrb(c);

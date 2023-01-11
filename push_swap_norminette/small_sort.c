@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sm_sort_max_10.c                                   :+:      :+:    :+:   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 11:34:29 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/04 11:34:33 by mmakarov         ###   ########.fr       */
+/*   Created: 2022/12/22 16:40:20 by mmakarov          #+#    #+#             */
+/*   Updated: 2023/01/11 18:35:30 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	min_index(t_list *pile) //find min and give an index to it (from 1)
+static int	min_index(t_list *pile)
 {
 	int	min;
 	int	j;
@@ -22,12 +22,12 @@ static int	min_index(t_list *pile) //find min and give an index to it (from 1)
 	min = 2147483647;
 	while (pile != NULL)
 	{
-		if (pile->content < min) //if an elem of pile_a < min
+		if (pile->content < min)
 		{
-			min = pile->content; // it becomes min
+			min = pile->content;
 			index = j;
 		}
-		pile = pile->next; //take next elem of pile_a
+		pile = pile->next;
 		j++;
 	}
 	return (index);
@@ -42,8 +42,8 @@ static	void	commands(t_list ***pile_a, int middle, int index, int size)
 	{
 		while (count < index)
 		{
-			**pile_a = ra_rb(**pile_a, size, 'a'); //all commands several times
-			count++;               //pile_a = .. - save modified param pile_a
+			**pile_a = ra_rb(**pile_a, size, 'a');
+			count++;
 		}
 	}
 	else
@@ -56,7 +56,7 @@ static	void	commands(t_list ***pile_a, int middle, int index, int size)
 	}
 }
 
-void	sm_sort_max_10(t_list **pile_a, t_list **pile_b, int direction) //modify addresses? 
+void	small_sort(t_list **pile_a, t_list **pile_b, int direction)
 {
 	int	middle;
 	int	index;
@@ -65,32 +65,12 @@ void	sm_sort_max_10(t_list **pile_a, t_list **pile_b, int direction) //modify ad
 	size = ft_lstsize(*pile_a);
 	while (size > 3)
 	{
-		if (direction == MIN_TO_MAX) // if size <= 10
+		if (direction == MIN_TO_MAX)
 			index = min_index(*pile_a);
 		middle = size / 2;
-		/*
-		if (middle > index)
-		{
-			while (count < index)
-			{
-				*pile_a = ra_rb(*pile_a, size, 'a'); //all commands several times
-				count++;               //pile_a = .. - save modified param pile_a
-			}
-		}
-		else
-		{
-			while (count <= size - index + 1)
-			{
-				*pile_a = rra_rrb(*pile_a, size, 'a');
-				count++;
-			}
-		}
-		*/
 		commands(&pile_a, middle, index, size);
 		pb(pile_a, pile_b);
-		size--; //size decreases -1 after each while loop
+		size--;
 	}	
 	*pile_a = very_small_sort(*pile_a);
-	while (*pile_b != NULL)
-		pa(pile_a, pile_b);
 }

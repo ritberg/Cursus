@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 12:57:38 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/04 11:45:26 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:31:31 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ t_list	*sa_sb(t_list *pile, int size, char c)
 	int		count;
 
 	count = 1;
-	if (size == 1) // if there is only 1 elem in pile
+	if (size == 1)
 		return (pile);
 	third = pile;
 	while (count < 3)
 	{
-		third = third->next; //go to the third elem and save it
+		third = third->next;
 		count++;
 	}	
-	first = pile; //save the first elem
-	pile = pile->next; //now pile starts from the 2nd elem
-	pile->next = first; //put first after 2nd elem
-	first->next = third; // put third elem after 2nd
+	first = pile;
+	pile = pile->next;
+	pile->next = first;
+	first->next = third;
 	write_sa_sb(c);
 	return (pile);
 }
@@ -48,7 +48,7 @@ int	pa(t_list **pile_a, t_list **pile_b)
 	t_list	*top;
 
 	if (*pile_b == NULL)
-		return (0); //ne fait rien si pile_b est vide
+		return (0);
 	top = *pile_b;
 	*pile_b = (*pile_b)->next;
 	top->next = *pile_a;
@@ -62,7 +62,7 @@ int	pb(t_list **pile_a, t_list **pile_b)
 	t_list	*top;
 
 	if (*pile_a == NULL)
-		return (0); //ne fait rien si pile_a est vide
+		return (0);
 	top = *pile_a;
 	*pile_a = (*pile_a)->next;
 	top->next = *pile_b;

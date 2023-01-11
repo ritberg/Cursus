@@ -6,63 +6,72 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 12:42:21 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/05 13:46:01 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:24:34 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	**input_as_str(char **argv)
+char	**input_as_str(char **argv)
 {
 	char	**a;
+	char	*b;
 
-	a = ft_split(argv[1], ' '); //if input is like "6 4 1 23 -4"
+	b = ft_strjoin("./push_swap ", argv[1]);
+	if (b == NULL)
+		return (NULL);
+	a = ft_split(b, ' ');
+	free(b);
 	if (a == NULL)
 		return (NULL);
 	return (a);
 }
 
-static int     n_of_n(char **a)
+int	n_of_n(char **a)
 {
-        int     i;
-        int     j;
+	int	i;
+	int	j;
 
-        j = 0;
-        while (a[j] != NULL)
-        {
-                i = 0;
-                while (a[i])
-                        i++;
-                j++;
-        }
-        return (j); //return how many numbers in **a (or **argv). Kind of argc
+	j = 0;
+	while (a[j] != NULL)
+	{
+		i = 0;
+		while (a[i])
+			i++;
+		j++;
+	}
+	return (j);
 }
 
-static int	err_checker(int argc, char **argv) //check all errors
+static int	err_checker(int ac, char **av, int old_ac)
 {
 	int	j;
 	int	i;
 
 	j = 1;
-	while (j < argc)
+	if (av[j] == NULL)
+		return (0);
+	while (j < ac)
 	{
-		if (!ft_isdigit(argv[j])) //autres char non autorises non plus
+		if (!ft_isdigit(av[j]))
 			return (0);
-		if (ft_atoi(argv[j]) > 2147483647 || ft_atoi(argv[j]) < -2147483648)
+		if (ft_atoi(av[j]) > 2147483647 || ft_atoi(av[j]) < -2147483648)
 			return (0);
 		i = j + 1;
-		while (i < argc)
+		while (i < ac)
 		{
-			if (ft_atoi(argv[j]) == ft_atoi(argv[i]))
+			if (ft_atoi(av[j]) == ft_atoi(av[i]))
 				return (0);
 			i++;
 		}
 		j++;
 	}
+	if (old_ac == 1)
+		free_char(av, ac);
 	return (1);
 }
 
-int	err_input_checker(int argc, char **argv) //function that put all together
+int	err_input_checker(int argc, char **argv)
 {
 	char	**a;
 	int		i;
@@ -74,7 +83,7 @@ int	err_input_checker(int argc, char **argv) //function that put all together
 	{
 		a = input_as_str(argv);
 		i = n_of_n(a);
-		return (err_checker(i, a));
+		return (err_checker(i, a, 1));
 	}
-	return (err_checker(argc, argv));
+	return (err_checker(argc, argv, 0));
 }

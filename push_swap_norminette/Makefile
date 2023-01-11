@@ -3,6 +3,7 @@ SRCS	= already_sorted.c\
 		  create_pile.c\
 		  err_checker.c\
 		  ft_split.c\
+		  ft_strjoin.c\
 		  middle_sort.c\
 		  rules_r.c\
 		  rules_s_p.c\
@@ -26,7 +27,7 @@ RM		= rm -f
 
 HEADERS		= push_swap.h
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g3
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}

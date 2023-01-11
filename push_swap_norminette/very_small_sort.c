@@ -1,61 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   very_small_sort_r.c                                :+:      :+:    :+:   */
+/*   very_small_sort.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:40:20 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/04 12:04:18 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:37:52 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* before I called functions-commands sa_sb, rra_rrb etc.
-   now I have returns of these functions-commands 
-   otherwise I loose the modified param pile_a
-*/
-static	t_list	*commands1(t_list *pile_b)
+static	t_list	*commands1(t_list *pile_a)
 {
 	t_list	*temp;
 
-	temp = ra_rb(pile_b, 3, 'b');
-	return (sa_sb(temp, 3, 'b'));
+	temp = sa_sb(pile_a, 3, 'a');
+	return (rra_rrb(temp, 3, 'a'));
 }
 
-static	t_list	*commands2(t_list *pile_b)
+static	t_list	*commands2(t_list *pile_a)
 {
 	t_list	*temp;
 
-	temp = rra_rrb(pile_b, 3, 'b');
-	return (sa_sb(temp, 3, 'b'));
+	temp = sa_sb(pile_a, 3, 'a');
+	return (ra_rb(temp, 3, 'a'));
 }
 
-t_list	*very_small_sort_r(t_list *pile_b)
+t_list	*very_small_sort(t_list *pile_a)
 {
 	t_list	*f;
 	t_list	*s;
 	t_list	*t;
 
-	f = pile_b;
-	s = pile_b->next;
+	f = pile_a;
+	s = pile_a->next;
 	t = s->next;
 	if (f->content > s->content && s->content < t->content \
 			&& t->content > f->content)
-		return (rra_rrb(pile_b, 3, 'b'));
-	else if (f->content < s->content && s->content < t->content \
-			&& f->content < t->content)
-		return (commands1(pile_b));
+		return (sa_sb(pile_a, 3, 'a'));
+	else if (f->content > s->content && s->content > t->content \
+			&& f->content > t->content)
+		return (commands1(pile_a));
 	else if (f->content > s->content && s->content < t->content \
 			&& f-> content > t->content)
-		return (commands2(pile_b));
+		return (ra_rb(pile_a, 3, 'a'));
 	else if (f->content < s->content && s->content > t->content \
 			&& t->content > f->content)
-		return (ra_rb(pile_b, 3, 'b'));
+		return (commands2(pile_a));
 	else if (f->content < s->content && s->content > t->content \
 			&& t->content < f->content)
-		return (sa_sb(pile_b, 3, 'b'));
+		return (rra_rrb(pile_a, 3, 'a'));
 	else
-		return (pile_b);
+		return (pile_a);
 }

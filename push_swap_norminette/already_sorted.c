@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printlist.c                                        :+:      :+:    :+:   */
+/*   already_sorted.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 12:58:10 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/03 15:52:25 by mmakarov         ###   ########.fr       */
+/*   Created: 2023/01/03 16:21:39 by mmakarov          #+#    #+#             */
+/*   Updated: 2023/01/10 18:32:32 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//print struct
-void	printlist(t_list *head)
+int	already_sorted(t_list *pile_a)
 {
-	t_list	*temporary = head;
+	int	count;
+	int	size;
 
-	printf("%s\n", "Pile A");
-	while (temporary != NULL)
+	count = 1;
+	size = ft_lstsize(pile_a);
+	while (pile_a->next != NULL)
 	{
-		printf("%d\n", temporary->content);
-		temporary = temporary->next;
+		if (pile_a->content < pile_a->next->content)
+			count++;
+		pile_a = pile_a->next;
 	}
-	if (temporary == NULL)
-		printf("vide\n");
+	if (size == count)
+		return (0);
+	return (1);
 }

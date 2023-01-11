@@ -6,13 +6,13 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:20:08 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/03 17:13:40 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:36:51 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	max_index(t_list *pile) //find max and give an index to it (from 1)
+static int	max_index(t_list *pile)
 {
 	int	max;
 	int	j;
@@ -22,12 +22,12 @@ static int	max_index(t_list *pile) //find max and give an index to it (from 1)
 	max = -2147483648;
 	while (pile != NULL)
 	{
-		if (pile->content > max) //if an elem of pile_a > max
+		if (pile->content > max)
 		{
-			max = pile->content; // it becomes max
+			max = pile->content;
 			index = j;
 		}
-		pile = pile->next; //take next elem of pile_a
+		pile = pile->next;
 		j++;
 	}
 	return (index);
@@ -42,8 +42,8 @@ static	void	commands2(t_list ***pile_b, int middle, int index, int size)
 	{
 		while (count < index)
 		{
-			**pile_b = ra_rb(**pile_b, size, 'b'); //all commands several times
-			count++;               //pile_a = .. - save modified param pile_a
+			**pile_b = ra_rb(**pile_b, size, 'b');
+			count++;
 		}
 	}
 	else
@@ -56,7 +56,7 @@ static	void	commands2(t_list ***pile_b, int middle, int index, int size)
 	}
 }
 
-void	small_sort_r(t_list **pile_a, t_list **pile_b, int direction) //modify addresses? 
+void	small_sort_r(t_list **pile_a, t_list **pile_b, int direction)
 {
 	int	middle;
 	int	index;
@@ -70,10 +70,8 @@ void	small_sort_r(t_list **pile_a, t_list **pile_b, int direction) //modify addr
 			index = max_index(*pile_b);
 		commands2(&pile_b, middle, index, size);
 		pa(pile_a, pile_b);
-		size--; //size decreases -1 after each while loop
+		size--;
 	}
-	//printlist(*pile_a);
-	//printlist(*pile_b);
 	*pile_b = very_small_sort_r(*pile_b);
 	while (*pile_b != NULL)
 		pa(pile_a, pile_b);

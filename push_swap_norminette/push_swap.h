@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:23:15 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/01/05 13:30:11 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:04:57 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h> //del !
 
 # define MIN_TO_MAX 0
 # define MAX_TO_MIN 1
@@ -27,23 +26,27 @@ typedef struct s_list
 }	t_list;
 
 //sim_to_libft.c
-char			*ft_strcpy(char *dst, char *src); //not strlpy but strcpy
-int				ft_isdigit(char *str); //not for char c, but char *str
-long long int	ft_atoi(const char *str); //long long instead of int
-t_list			*ft_lstnew_int(int content); // params: int instead of void *
+char			*ft_strcpy(char *dst, char *src);
+int				ft_isdigit(char *str);
+long long int	ft_atoi(const char *str);
+t_list			*ft_lstnew_int(int content);
 
 // temp_libft.c 
 size_t			ft_strlen(const char *s);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 t_list			*ft_lstlast(t_list *lst);
 int				ft_lstsize(t_list *lst);
-char			*ft_strdup(const char *s1);
+
+//ft_strjoin.c
+char			*ft_strjoin(char const *s1, char const *s2);
 
 //ft_split.c
 char			**ft_split(char const *s, char c);
 
 //err_checker.c
 int				err_input_checker(int argc, char **argv);
+char			**input_as_str(char **argv);
+int				n_of_n(char **a);
 
 //already_sorted.c
 int				already_sorted(t_list *pile_a);
@@ -84,7 +87,8 @@ void			middle_sort(t_list **pile_a, t_list **pile_b);
 //big_sort.c
 void			big_sort(t_list **pile_a, t_list **pile_b);
 
-//printlist.c     del !!!!!!!
-void			printlist(t_list *head); // !!!!!!
+//free in main
+void			free_piles(t_list *pile_a);
+void			free_char(char **new_argv, int new_argc);
 
 #endif
