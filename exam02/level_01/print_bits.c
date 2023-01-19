@@ -1,5 +1,7 @@
 #include "unistd.h"
 
+
+// wrong ! to to
 void	print_bits(unsigned char octet)
 {
 	int	i;
