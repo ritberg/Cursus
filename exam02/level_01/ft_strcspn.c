@@ -1,6 +1,7 @@
 #include "stdio.h"
 
-// take a letter from reject. If I find the same letter in s, return its index
+// if there is the same letter in s as in reject, return its index in s
+// ex: answer with main below is 5. it's the index of the letter "f" in s
 
 size_t	ft_strcspn(const char *s, const char *reject)
 {
