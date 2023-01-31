@@ -1,39 +1,28 @@
 #include "stdio.h"
-#include "stdlib.h"
 
-int	ft_strlen(char *str)
+char *ft_strrev(char *str)
 {
-	int	len;
+	int i = 0;
+	int len = 0;
+	char temp;
+
 	while (str[len])
 		len++;
-	return (len);
-}
-
-char	*ft_strrev(char *str)
-{
-	char	*str_ret;
-	int	len;
-	int	i;
-	
-	i = 0;
-	len = ft_strlen(str);
-	str_ret = malloc(sizeof(char) * len + 1);
-	if (str_ret == NULL)
-		return (NULL);
-	len -= 1;
-	while (len >= 0)
+	while (i < len / 2)
 	{
-		str_ret[i] = str[len];
+		temp = str[i];
+		str[i] = str[len - 1 - i];
+		str[len - 1 - i] = temp;
 		i++;
-		len--;
 	}
-	str_ret[i] = '\0';
-	return (str_ret);
+	return (str);
 }
 
 int	main()
 {
-	char *str = "Salut";
+	char	*str;
+	str = "Salu";
 	printf("%s\n", ft_strrev(str));
 	return (0);
 }
+
