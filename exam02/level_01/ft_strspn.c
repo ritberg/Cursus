@@ -1,38 +1,34 @@
 #include "stdio.h"
 
-size_t	ft_strspn(const char *s, const char *accept)
+char	*ft_strchr(const char *accept, int c)
 {
-	size_t	i;
-	size_t	j;
-	size_t	res;
-
-	i = 0;
-	j = 0;
-	res = 0;
-	while (s[i])
+	while (*accept)
 	{
-		if (s[i] == accept[j])
-		{
-			res++;
-			j++;
-		}
-		i++;
+		if (*accept == c)
+			return ((char *)accept);
+		accept++;
 	}
-	return (res);
-	
-	//i = 0;
-	//while (s[i])
-	//	i++;
-	//return (i);
-	
+	return (0);
 }
 
+size_t	ft_strspn(const char *s, const char *accept)
+{
+	size_t i = 0;
 
-
+	while (s[i])
+	{
+		if (!ft_strchr(accept, s[i]))
+			break;
+		i++;
+	}
+	return (i);
+}
+/*
 int	main()
 {
-	char *s = "abc def bnh def m";
-	char *accept = "def";
+	char	*s = "abcyhj";
+	char	*accept = "p[abci";
 	printf("%zu\n", ft_strspn(s, accept));
 	return (0);
 }
+*/
