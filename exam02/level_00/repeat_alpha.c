@@ -36,6 +36,8 @@ int	main(int argc, char **argv)
 				repeat_n_times = current_ind - ind_ascii;
 				ft_write(repeat_n_times, argv[1][i]);
 			}
+			else
+				write(1, &argv[1][i], 1);
 			i++;
 		}
 	}
