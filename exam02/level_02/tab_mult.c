@@ -38,13 +38,7 @@ int	main(int argc, char **argv)
 	int	middle;
 	int	left;
 	int	right;
-	int	right_frst;
-	int	right_scnd;
-	char	middle_c;
 	char	left_c;
-	char	right_c_f;
-	char	right_c_s;
-	char	right_c;
 
 	left = 1;
 	if (argc != 2)
@@ -55,25 +49,15 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		middle = mini_atoi(argv[1]);
-		middle_c = middle + '0';
 		while (left <= 9)
 		{
-			right = left * middle;
 			left_c = left + '0';
 			write(1, &left_c, 1);
 			write(1, " x ", 3);
-			if (middle >= 0 && middle <= 9)
-				write(1, &middle_c, 1);
-			else
-				small_putnbr(middle);
+			small_putnbr(middle);
 			write(1, " = ", 3);
-			if (right >= 0 && right <= 9)
-			{
-				right_c = right + '0';
-				write(1, &right_c, 1);
-			}
-			else
-				small_putnbr(right);
+			right = left * middle;
+			small_putnbr(right);
 			write(1, "\n", 1);
 			left++;
 		}
