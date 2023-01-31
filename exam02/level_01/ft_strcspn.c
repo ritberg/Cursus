@@ -1,5 +1,7 @@
 #include "stdio.h"
 
+// take a letter from reject. If I find the same letter in s, return its index
+
 size_t	ft_strcspn(const char *s, const char *reject)
 {
 	size_t	i;
@@ -7,25 +9,25 @@ size_t	ft_strcspn(const char *s, const char *reject)
 
 	i = 0;
 	j = 0;
-	while (reject[j])
+	while (s[i])
 	{
-		while (s[i])
+		j = 0;
+		while (reject[j])
 		{
 			if (s[i] == reject[j])
 				return (i);
-			i++;
+			j++;
 		}
-		j++;
+		i++;
 	}
-	if (i > j) //return index of the first \0. may be it means j?
-		return (j);
 	return (i);
 }
-
+/*
 int	main()
 {
 	char *str = "abcdef";
-	char *str2 = "khl";
+	char *str2 = "vfo";
 	printf("%zu\n", ft_strcspn(str, str2));
 	return (0);
 }
+*/
