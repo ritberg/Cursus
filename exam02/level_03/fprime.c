@@ -26,12 +26,13 @@ int	main(int argc, char **argv)
 					break;
 				printf("*");
 				n = n / d; // hmm
-				//printf(" n %d\n", n);
-				//printf(" d %d\n", d); //d changes?? 
+			//	printf(" n %d\n", n);
+			//	printf(" d %d\n", d); //d changes?? 
 				d = 1; // hmmm
 			}
 			d++;
 		}
+		printf("\n");
 	}
 	return (0);
 }

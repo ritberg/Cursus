@@ -3,6 +3,29 @@
 
 int	main(int argc, char **argv)
 {
+	int	a = atoi(argv[1]);
+	int	b = atoi(argv[2]);
+	int	n;
+	if (a < b)
+		n = a;
+	else
+		n = b;
+	while (1)
+	{
+		if (a % n == 0 && b % n == 0)
+		{
+			printf("%d\n", n);
+			break;
+		}
+		--n;
+	}
+	return (0);
+}
+
+
+/* an other version
+int	main(int argc, char **argv)
+{
 	int	a;
 	int	b;
 	int	hcd;
@@ -34,3 +57,4 @@ int	main(int argc, char **argv)
 	printf("\n");
 	return (0);
 }
+*/

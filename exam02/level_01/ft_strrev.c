@@ -18,11 +18,10 @@ char *ft_strrev(char *str)
 	return (str);
 }
 
-int	main()
+int	main(int argc, char **argv)
 {
-	char	*str;
-	str = "Salu";
-	printf("%s\n", ft_strrev(str));
+	if (argc >= 2)
+		printf("%s\n", ft_strrev(argv[1]));
 	return (0);
 }
 
