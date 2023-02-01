@@ -1,4 +1,8 @@
 #include "stdio.h"
+#include "string.h"
+
+// return : how many letters are the same
+// with the main below answer is 3
 
 char	*ft_strchr(const char *accept, int c)
 {
@@ -27,8 +31,9 @@ size_t	ft_strspn(const char *s, const char *accept)
 int	main()
 {
 	char	*s = "abcyhj";
-	char	*accept = "p[abci";
+	char	*accept = "p]abci";
 	printf("%zu\n", ft_strspn(s, accept));
+	printf("%zu\n", strspn(s, accept));
 	return (0);
 }
 */

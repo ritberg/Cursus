@@ -1,5 +1,6 @@
 #include "stdio.h"
 
+// return : how many letters are different before a character that matches (in this main it's f)
 // if there is the same letter in s as in reject, return its index in s
 // ex: answer with main below is 5. it's the index of the letter "f" in s
 
