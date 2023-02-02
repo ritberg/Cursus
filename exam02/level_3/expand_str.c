@@ -17,11 +17,9 @@ int	main(int argc, char **argv)
 			else
 			{
 				if (yes)
-				{
 					write(1, "   ", 3);
-				}
-				yes = 0;
 				write(1, &argv[1][i], 1);
+				yes = 0;
 			}
 			i++;
 		}
