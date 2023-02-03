@@ -1,6 +1,6 @@
 #include "unistd.h"
 /* dsn't work
-void	ft_other(int i)
+void	ft_putnbr(int i)
 {
 	char	c;
 
@@ -13,18 +13,18 @@ void	ft_other(int i)
 	write(1, &c, 1);
 }
 */
-void	ft_other_lu(int i)
+void	ft_putnbr_small(int i)
 {
-	int	first;
-	int	snd;
+	char	first;
+	char	second;
 
-	first = i / 10;
-	snd = i % 10;
-	first = first + '0';
-	snd = snd + '0';
-	if (i >= 10)
+	if (i > 10)
+	{
+		first = (i / 10) + '0';
 		write(1, &first, 1);
-	write(1, &snd, 1);
+	}
+	second = (i % 10) + '0';
+	write(1, &second, 1);
 }
 
 int	main()
@@ -41,8 +41,8 @@ int	main()
 		else if (i % 5 == 0)
 			write(1, "buzz", 4);
 		else
-			ft_other_lu(i);
-			//ft_other(i);
+			ft_putnbr_small(i);
+			//ft_putnbr(i);
 		write(1, "\n", 1);
 		i++;
 	}
