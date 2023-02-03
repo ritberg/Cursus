@@ -2,34 +2,12 @@
 #include "stdlib.h"
 #include "stdio.h"
 
-t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
-{
-	t_list	*temp;
-	int	c;
-
-	temp = lst;
-	while (lst->next != NULL)
-	{
-		if ((*cmp)(lst->data, lst->next->data))
-			lst = temp->next;
-		else
-		{
-			c = lst->data;
-			lst->data = lst->next->data;
-			lst->next->data = c;
-			lst = temp->next;
-		}
-	}
-	return (lst);
-}
-
-/* an other option
+// right answer:
 
 t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 {
 	int	swap;
 	t_list	*tmp;
-
 	tmp = lst;
 	while(lst->next != NULL)
 	{
@@ -45,8 +23,38 @@ t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 	}
 	lst = tmp;
 	return (lst);
+}
 
+/* I wrote at the exam
+
+t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
+{
+	t_list	*temp;
+	int	c;
+
+	temp = lst;
+	while (lst->next != NULL)
+	{
+		if ((*cmp)(lst->data, lst->next->data))
+			lst = temp->next;
+		else
+		{
+			c = lst->data;
+			lst->data = lst->next->data;
+			lst->next->data = c;
+			lst = temp->next; // lst = temp why??
+		}
+	}
+	//lst = temp; why??
+	return (lst);
+}
 */
+
+
+
+
+
+/* TEST
 
 static int	ft_is_space(char c)
 {
@@ -135,4 +143,4 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-
+*/
