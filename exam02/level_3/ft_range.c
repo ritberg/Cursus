@@ -3,34 +3,52 @@
 
 int     *ft_range(int start, int end)
 {
-	int	*ptr;
 	int	diff;
-	int	i;
+	int	i = 0;
+	int	*tab;
 
-	diff = end - start;
-	ptr = malloc(sizeof(int) * diff);
-	if (ptr == 0)
-		return (0);
-	i = 0;
-	while (i <= diff)
+	if (start < end)
 	{
-		ptr[i] = start;
-		start++;
-		i++;
+		diff = end - start;
+		tab = malloc(sizeof(int) * diff);
+		while (i <= diff)
+		{
+			tab[i] = start;
+			i++;
+			start++;
+		}
 	}
-	return (ptr);
+	else
+	{
+		diff = start - end;
+		tab = malloc(sizeof(int) * diff);
+		while (i <= diff)
+		{
+			tab[i] = start;
+			i++;
+			start--;
+		}
+	}
+	return (tab);
 }
-
+/*
 int	main()
 {
-	int	start = 5;
-	int	end = 9;
+	int	start = 0;
+	int	end = -3;
+	int	diff;
 	int	i = 0;
 	int	*tab = ft_range(start, end);
-	while (i <= (end - start))
+
+	if (start < end)
+		diff = end - start;
+	else
+		diff = start - end;
+	while (i <= diff)
 	{
 		printf("%d\n", tab[i]);
 		i++;
 	}
 	return (0);
 }
+*/
