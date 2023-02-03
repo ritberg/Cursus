@@ -2,8 +2,6 @@
 #include "stdio.h"
 
 
-/*
-
 int	ft_is_delimiter(char c)
 {
 	return (c == ' ' || c == '\n' || c == '\t');
@@ -11,54 +9,53 @@ int	ft_is_delimiter(char c)
 
 int	ft_words_len(char *str)
 {
-	int	idx;
-	int	length;
+	int	i;
+	int	len;
 
-	idx = 0;
-	length = 0;
-	while (str[idx] != '\0')
+	i = 0;
+	len = 0;
+	while (str[i] != '\0')
 	{
-		if (!ft_is_delimiter(str[idx]))
+		if (!ft_is_delimiter(str[i]))
 		{
-			length++;
-			idx++;
+			len++;
+			i++;
 		}
 		else
-			idx++;
+			i++;
 	}
-	printf("lenght %d\n", length);
-	return (length);
+	return (len);
 }
 
 char	*ft_get_word(char *str)
 {
-	int			idx;
+	int			i;
 	char		*word;
 
-	idx = 0;
-	while (str[idx] != '\0' && !ft_is_delimiter(str[idx]))
-		idx++;
-	word = (char *)malloc(sizeof(char) * (idx + 1));
-	if (!word)
+	i = 0;
+	while (str[i] && !ft_is_delimiter(str[i]))
+		i++;
+	word = (char *)malloc(sizeof(char) * (i + 1));
+	if (word == NULL)
 		return (NULL);
-	idx = 0;
-	while (str[idx] != '\0' && !ft_is_delimiter(str[idx]))
+	i = 0;
+	while (str[i] && !ft_is_delimiter(str[i]))
 	{
-		word[idx] = str[idx];
-		idx++;
+		word[i] = str[i];
+		i++;
 	}
-	word[idx] = '\0';
+	word[i] = '\0';
 	return (word);
 }
 
 char	**ft_split(char *str)
 {
-	int		idx;
+	int		i;
 	char	**split;
 
-	idx = 0;
+	i = 0;
 	split = (char **)malloc(sizeof(char *) * ft_words_len(str) + 1);
-	if (!split)
+	if (split == NULL)
 		return (NULL);
 	while (*str)
 	{
@@ -66,108 +63,27 @@ char	**ft_split(char *str)
 			str++;
 		if (*str && !ft_is_delimiter(*str))
 		{
-			split[idx] = ft_get_word(str);
-			idx++;
+			split[i] = ft_get_word(str);
+			i++;
 		}
 		while (*str && !ft_is_delimiter(*str))
 			str++;
 	}
-	split[idx] = NULL;
+	split[i] = NULL;
 	return (split);
 }
-*/
 
-
-
-
-
-
-
-int	ft_check(char c)
-{
-	if (c == ' ' || c == '\t' || c == '\n')
-		return (1);
-	return (0);
-}
-
-int	len_without_delim(char *str)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (!ft_check(str[i]))
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-char	*ft_str(char *str)
-{
-	int	i;
-	char	*tab;
-
-	i = 0;
-	while (str[i] && !ft_check(str[i]))
-		i++;
-	tab = malloc(sizeof(char) * (i + 1));
-	if (tab == NULL)
-		return (NULL);
-	i = 0;
-	while (str[i] && !ft_check(str[i]))
-	{
-		tab[i] = str[i];
-		i++;
-	}
-	tab[i] = '\0';
-	//printf("word %s\n", tab);
-	return (tab);
-}
-
-char    **ft_split(char *str)
-{
-	int	i;
-	int	j;
-	int	len;
-	char	**tab;
-
-	i = 0;
-	j = 0;
-	len = len_without_delim(str);
-	tab = malloc(sizeof(char) * len + 1);
-	if (tab == NULL)
-		return (NULL);
-	while (str[i])
-	{
-		while (str[i] && ft_check(str[i]))
-			i++;
-		if (str[i] && !ft_check(str[i]))
-		{
-			tab[j] = ft_str(str + i); // position i !!
-			j++;                    // I can also change str[i] for *str and str++ everywehere
-		}
-		while (str[i] && !ft_check(str[i]))
-			i++;
-	}
-	tab[j] = NULL;
-	return (tab);
-}
-
-
+/*
 int	main()
 {
-	char	*str = "Welcome to hell";
-	int	j = 0;
+	char	*str = "Salut mes amis bababa !";
 	char	**tab = ft_split(str);
-
-	while (tab[j] != NULL)
+	int	i = 0;
+	while (i <= 4)
 	{
-		printf("%s\n", tab[j]);
-		j++;
+		printf("%s\n", tab[i]);
+		i++;
 	}
 	return (0);
 }
+*/
