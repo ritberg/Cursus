@@ -7,8 +7,12 @@ int	main(int argc, char **argv)
 	int	second_n;
 	int	result;
 
-	result = 0;
-	if (argc == 4)
+	if (argc != 4)
+	{
+		printf("\n");
+		return (0);
+	}
+	else
 	{
 		first_n = atoi(argv[1]);
 		second_n = atoi(argv[3]);
