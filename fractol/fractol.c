@@ -27,24 +27,22 @@ void	circle(int r, void *img)
     int x, y;  // Coordinates inside the rectangle
  
     // Draw a square of size N*N.
-	int	i = 0;
-	int	j = 0;
+	int	i = 960;
+	int	j = 540;
 	while (i < N)
 	{
-		i++;
-        while (j < N)
-        {
-            // Start from the left most corner point
-            x = i-r;
-            y = j-r;
- 
-            // If this point is inside the circle, print it
-            if (x*x + y*y <= r*r+1 )
-				my_mlx_pixel_put(img, x, y, 0x00FF0000);
-            else // If outside the circle, print space
-                printf(" ");
-            printf(" ");
+        	while (j < N)
+        	{
+            		// Start from the left most corner point
+            		x = i-r;
+            		y = j-r;
+
+			// If this point is inside the circle, print it
+            		if (x*x + y*y <= r*r+1 )
+	    			my_mlx_pixel_put(img, x, y, 0x00FF0000);
 			j++;
+		}
+		i++;
         }
         printf("\n");
     }
@@ -66,6 +64,9 @@ int	main(void)
 //	my_mlx_pixel_put(&img, 10, 5, 0x00FF0000);
 //	my_mlx_pixel_put(&img, 5, 0, 0x00FF0000);
 //	my_mlx_pixel_put(&img, 10, 0, 0x00FF0000);
+
+// where is the center?
+//	my_mlx_pixel_put(&img, 960, 540, 0x00FF0000);
 
 //	circle(10, &img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
