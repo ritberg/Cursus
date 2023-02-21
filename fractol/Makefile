@@ -4,6 +4,8 @@ OBJS	= ${SRCS:.c=.o}
 
 NAME	= fractol
 
+MLX		= mlx
+
 CC		= gcc
 
 RM		= rm -f
@@ -14,15 +16,19 @@ CFLAGS		= -Wall -Wextra -Werror -Imlx
 	${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}:	${OBJS}
-			${CC} ${OBJ} -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+			${MAKE} -C ${MLX}       #compile mlx in the subfolder
+			mv ${MLX}/libmlx.dylib . #move libmlx to the current folder
+			${CC} ${CFLAGS} ${OBJS} -L. -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 
 all:		${NAME}
 
 clean:		
 		${RM} ${OBJS}
+		${MAKE} -C ${MLX} clean
 
 fclean:		clean
 		${RM} ${NAME}
+		${RM} libmlx.dylib
 
 re:		fclean all
 
