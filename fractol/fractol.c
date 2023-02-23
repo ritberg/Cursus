@@ -22,7 +22,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 void	square(int a, void *img)
 {
 	int	x, y;
-
+	
 	int	i = 960;
 	int	j = 540;
 	y = -a;
