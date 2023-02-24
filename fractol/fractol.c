@@ -9,6 +9,13 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+/*
+int	my_key_funct(int keycode, void *mlx)
+{
+	printf("key event %d\n", keycode);
+	return (0);
+}
+*/
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -18,6 +25,27 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+
+void	mandelbrot(int x, int y, void *img)
+{
+	int	max_iter = 50;
+	int	c_r = x;
+	int	c_i = y;
+	int	z_r = 0;
+	int	z_i = 0;
+	int	i = 0;
+	int	tmp;
+	while (z_r*z_r + z_i*z_i < 4 && i <= max_iter)
+	{
+		tmp = z_r;
+		z_r = z_r*z_r - z_i*z_i + c_r;
+		z_i = 2*z_i*tmp + c_i;
+		i++;
+	}
+	if (z_r*z_r + z_i*z_i < 4)
+		my_mlx_pixel_put(img, x+i, y+i, 0x0066CDAA);
+
+}
 
 void	square(int a, void *img)
 {
@@ -31,14 +59,17 @@ void	square(int a, void *img)
 		x = -a;
 		while (x <= a)
 		{
-			my_mlx_pixel_put(img, i+x, j-y, 0x0000FF00);
+			if (x <= a / 2 && y <= a / 2)
+				my_mlx_pixel_put(img, i+x, j-y, 0x0066CDAA);
+			else
+				my_mlx_pixel_put(img, i+x, j-y, 0x0000FF7F);
 			x++;
 		}
 		y++;
 	}
 }
 
-/*
+
 void	circle(int r, void *img)
 {
     int x, y;  // Coordinates inside the rectangle
@@ -60,7 +91,7 @@ void	circle(int r, void *img)
 		y++;
     }
 }
-*/
+
 
 int	main(void)
 {
@@ -83,6 +114,8 @@ int	main(void)
 
 //	circle(10, &img);
 	square(10, &img);
+//	mandelbrot(960, 540, &img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_key_hook(mlx_win, my_key_funct, 0);
 	mlx_loop(mlx);
 }
