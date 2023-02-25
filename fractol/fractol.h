@@ -18,7 +18,7 @@ typedef	struct s_fr
 	char	*addr;
 	int	bits_per_pixel;
 	int	line_length;
-	int	endian
+	int	endian;
 
 	double	x;
 	double	y;

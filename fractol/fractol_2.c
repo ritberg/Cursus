@@ -25,7 +25,6 @@ void	which_fractal(char *str, t_fr *fr)
 		mandelbrot(fr);
 		fr->fractal = ft_strdup("Mandelbrot");
 	}
-	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
 }
 
 
@@ -33,14 +32,16 @@ void	which_fractal(char *str, t_fr *fr)
 
 int	main(int argc, char **argv)
 {
-	*t_fr	*fr;
+	t_fr	*fr;
 
 	fr = malloc(sizeof(t_fr));
 	fr->zoom = 4.0;
 	new_window(fr);
 	new_image(fr);
+	if (argc != 2)
+		return (0);
 	which_fractal(argv[1], fr);
+	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
 	mlx_loop(fr->mlx);
 	return (0);
-
 }
