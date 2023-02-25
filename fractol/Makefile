@@ -1,4 +1,6 @@
-SRCS	= fractol.c\
+SRCS	= fractol_2.c\
+	  mandelbrot.c\
+	  temp_libft.c\
 
 OBJS	= ${SRCS:.c=.o}
 
