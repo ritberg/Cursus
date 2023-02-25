@@ -3,7 +3,7 @@
 
 int	iteration(t_fr *fr)
 {
-	fr->x = 0; //where x and y change?
+	fr->x = 0; //where x and y change? why x, y are needed?
 	fr->y = 0;
 	fr->c_re = (fr->i - WIN_SIZE_X / 2.0) * fr->zoom / WIN_SIZE_X + fr->x;
 	fr->c_im = (fr->j - WIN_SIZE_Y / 2.0) * fr->zoom / WIN_SIZE_Y + fr->y;

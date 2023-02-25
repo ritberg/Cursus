@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 		return (0);
 	which_fractal(argv[1], fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
+//	hook(fr);
 	mlx_loop(fr->mlx);
 	return (0);
 }
