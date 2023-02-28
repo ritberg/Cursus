@@ -29,6 +29,26 @@ void	which_fractal(char *str, t_fr *fr)
 
 
 
+int	key_hook(int key_code, t_fr *fr)
+{
+	if (key_code == 53)
+		mlx_destroy_window(fr->mlx, fr->mlx_win); //seg fault
+	if (key_code == ON_MOUSEDOWN)
+		//zoom
+	else
+		printf("%d\n", key_code);
+	return (0);
+}
+
+int	mouse_hook(int click)
+{
+	if (click == 1)
+		printf("%s\n", "left");
+	else if (click == 2)
+		printf("%s\n", "right");
+	return (0);
+}
+
 
 int	main(int argc, char **argv)
 {
@@ -42,7 +62,8 @@ int	main(int argc, char **argv)
 		return (0);
 	which_fractal(argv[1], fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
-//	hook(fr);
+	mlx_key_hook(fr->mlx_win, key_hook, &fr);
+	mlx_mouse_hook(fr->mlx_win, mouse_hook, &fr);
 	mlx_loop(fr->mlx);
 	return (0);
 }
