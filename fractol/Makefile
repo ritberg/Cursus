@@ -1,6 +1,8 @@
 SRCS	= fractol_2.c\
 	  my_mlx_pixel_put.c\
 	  mandelbrot.c\
+	  hooks.c\
+	  errors.c\
 	  temp_libft.c\
 
 OBJS	= ${SRCS:.c=.o}
