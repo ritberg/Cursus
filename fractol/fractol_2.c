@@ -23,7 +23,12 @@ void	which_fractal(char *str, t_fr *fr)
 	if (!ft_strcmp(str, "Mandelbrot"))
 	{
 		mandelbrot(fr);
-		fr->fractal = ft_strdup("Mandelbrot");
+		fr->fractal = ft_strdup("Mandelbrot"); //
+	}
+	if (!ft_strcmp(str, "Julia"))
+	{
+		julia(fr);
+		fr->fractal = ft_strdup("Julia"); //
 	}
 }
 
@@ -42,12 +47,15 @@ int	main(int argc, char **argv)
 {
 	t_fr	*fr;
 
-	fr = malloc(sizeof(t_fr));
+	fr = malloc(sizeof(t_fr)); //
 	fr->zoom = 4.0;
 	new_window(fr);
 	new_image(fr);
 	if (argc != 2)
+	{
+		errors();
 		return (0);
+	}
 	which_fractal(argv[1], fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
 	hooks(fr);

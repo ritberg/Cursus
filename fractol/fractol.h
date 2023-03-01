@@ -9,11 +9,8 @@
 # define WIN_SIZE_Y 1080
 # define MAX_ITER 100
 
-// ???
 # define ON_MOUSEDOWN 4
 # define ON_MOUSEUP 5
-# define ON_MOUSEMOVE 6
-# define ON_EXPOSE 12
 # define ON_DESTROY 17
 # define ESC 53
 # define LEFT_KEY 123
@@ -53,16 +50,19 @@ void	new_image(t_fr *fr);
 
 //errors
 int	close_win(void);
+void	errors(void);
 
 //fractals
 void	mandelbrot(t_fr *fr);
-int	itertion(t_fr *fr);
+void	julia(t_fr *fr);
+int	itertat_m(t_fr *fr);
+int	iterat_j(t_fr *fr);
 void	which_fractal(char *str, t_fr *fr);
 
 //hooks
 int	key_hook(int key_code, t_fr *fr);
 int	mouse_hook(int click);
-int	zoom_unzoom(int key_code, t_fr *fr);
+int	zoom_unzoom(int key_code, int x, int y, t_fr *fr);
 
 //libft
 int	ft_strcmp(char *s1, char *s2);
