@@ -17,7 +17,6 @@ void	new_image(t_fr *fr)
 
 
 
-
 void	which_fractal(char *str, t_fr *fr)
 {
 	if (!ft_strcmp(str, "Mandelbrot"))
@@ -42,20 +41,18 @@ void	hooks(t_fr *fr)
 
 
 
-
 int	main(int argc, char **argv)
 {
 	t_fr	*fr;
 
 	fr = malloc(sizeof(t_fr)); //
+	if (fr == NULL)
+		return (0);
 	fr->zoom = 4.0;
 	new_window(fr);
 	new_image(fr);
-	if (argc != 2)
-	{
+	if (argc != 2 || name_problem(argv))
 		errors();
-		return (0);
-	}
 	which_fractal(argv[1], fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
 	hooks(fr);

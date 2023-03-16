@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:35:11 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/01 16:50:59 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:31:31 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@ int	iterat_j(t_fr *fr)
 {
 	fr->x = 0;
 	fr->y = 0;
-	fr->c_re = (fr->i - WIN_SIZE_X / 2.0) * fr->zoom / WIN_SIZE_X + fr->x;
-	fr->c_im = (fr->j - WIN_SIZE_Y / 2.0) * fr->zoom / WIN_SIZE_Y + fr->y;
+	fr->c_re = 0.01;
+	fr->c_im = 0.285;
 	while (fr->re * fr->re + fr->im * fr-> im < 4 && fr->n < MAX_ITER)
 	{
+		/*
 		fr->temp = fr->re;
 		fr->re = fr->re * fr->re - fr->im * fr->im + fr->c_re;
 		fr->im = 2 * fr->im * fr->temp + fr->c_im;
+		*/
+		fr->temp = fr->re * fr->re - fr->im * fr->im; // whyy
+		fr->im = 2 * fr->re * fr->im + fr->c_re;
+		fr->re = fr->temp + fr->c_im;
 		fr->n++;
 	}
 	return (fr->n);

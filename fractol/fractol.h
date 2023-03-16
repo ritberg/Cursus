@@ -50,7 +50,8 @@ void	new_image(t_fr *fr);
 
 //errors
 int	close_win(void);
-void	errors(void);
+int	errors(void);
+int	name_problem(char **argv);
 
 //fractals
 void	mandelbrot(t_fr *fr);
