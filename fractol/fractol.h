@@ -11,6 +11,7 @@
 
 # define ON_MOUSEDOWN 4
 # define ON_MOUSEUP 5
+# define MOUSE_LEFT 1
 # define ON_DESTROY 17
 # define ESC 53
 # define LEFT_KEY 123
@@ -51,7 +52,7 @@ void	new_image(t_fr *fr);
 //errors
 int	close_win(void);
 int	errors(void);
-int	name_problem(char **argv);
+int	arg_problem(char **argv);
 
 //fractals
 void	mandelbrot(t_fr *fr);

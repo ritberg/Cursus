@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:36:08 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/01 17:22:23 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:47:00 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	iterat_m(t_fr *fr)
 {
-	fr->x = 0; //where x and y change? why x, y are needed?
-	fr->y = 0;
+	//fr->x = 0; //where x and y change? why x, y are needed?
+	//fr->y = 0;
 	fr->c_re = (fr->i - WIN_SIZE_X / 2.0) * fr->zoom / WIN_SIZE_X + fr->x;
 	fr->c_im = (fr->j - WIN_SIZE_Y / 2.0) * fr->zoom / WIN_SIZE_Y + fr->y;
 	while (fr->re * fr->re + fr->im * fr->im < 4 && fr->n < MAX_ITER)

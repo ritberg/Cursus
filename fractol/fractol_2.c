@@ -49,9 +49,11 @@ int	main(int argc, char **argv)
 	if (fr == NULL)
 		return (0);
 	fr->zoom = 4.0;
+	fr->x = 0;
+	fr->y = 0;
 	new_window(fr);
 	new_image(fr);
-	if (argc != 2 || name_problem(argv))
+	if (argc != 2 || arg_problem(argv))
 		errors();
 	which_fractal(argv[1], fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);

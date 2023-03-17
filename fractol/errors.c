@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:33:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/16 16:00:35 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:51:13 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	close_win(void)
 	return (0);
 }
 
-int	name_problem(char **argv)
+int	arg_problem(char **argv)
 {
 	if (!ft_strcmp(argv[1], "Mandelbrot"))
 		return (0);
