@@ -25,9 +25,9 @@ int	iterat_j(t_fr *fr)
 		fr->re = fr->re * fr->re - fr->im * fr->im + fr->c_re;
 		fr->im = 2 * fr->im * fr->temp + fr->c_im;
 		*/
-		fr->temp = fr->re * fr->re - fr->im * fr->im; // whyy
-		fr->im = 2 * fr->re * fr->im + fr->c_re;
-		fr->re = fr->temp + fr->c_im;
+		fr->temp = fr->re * fr->re - fr->im * fr->im + fr->c_re;
+		fr->im = 2 * fr->re * fr->im + fr->c_im;
+		fr->re = fr->temp;
 		fr->n++;
 	}
 	return (fr->n);
