@@ -57,8 +57,10 @@ int	arg_problem(char **argv);
 //fractals
 void	mandelbrot(t_fr *fr);
 void	julia(t_fr *fr);
+void	buddhabrot(t_fr *fr); //
 int	itertat_m(t_fr *fr);
 int	iterat_j(t_fr *fr);
+void	itertat_b(t_fr *fr); //
 void	which_fractal(char *str, t_fr *fr);
 
 //hooks
