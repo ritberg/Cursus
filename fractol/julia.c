@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:35:11 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/17 18:50:06 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/19 20:10:48 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	iterat_j(t_fr *fr)
 {
-	fr->c_re = -0.8;
-	fr->c_im = -0.2;
+	//fr->c_re = -0.8;
+	//fr->c_im = -0.2;
 	while (fr->re * fr->re + fr->im * fr-> im < 4 && fr->n < MAX_ITER)
 	{
 		/*
@@ -33,6 +33,8 @@ int	iterat_j(t_fr *fr)
 
 void	julia(t_fr *fr)
 {
+	fr->c_re = ft_atoi(fr->param1_julia); // ?
+	fr->c_im = ft_atoi(fr->param2_julia); // ?
 	fr->i = 0;
 	while (fr->i < WIN_SIZE_X)
 	{

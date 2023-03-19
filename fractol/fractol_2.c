@@ -17,19 +17,21 @@ void	new_image(t_fr *fr)
 
 
 
-void	which_fractal(char *str, t_fr *fr)
+void	which_fractal(char **av, t_fr *fr)
 {
-	if (!ft_strcmp(str, "Mandelbrot"))
+	if (!ft_strcmp(av[1], "Mandelbrot"))
 	{
 		mandelbrot(fr);
 		fr->fractal = ft_strdup("Mandelbrot"); //
 	}
-	if (!ft_strcmp(str, "Julia"))
+	if (!ft_strcmp(av[1], "Julia"))
 	{
+		fr->param1_julia = av[2];
+		fr->param2_julia = av[3];
 		julia(fr);
 		fr->fractal = ft_strdup("Julia"); //
 	}
-	if (!ft_strcmp(str, "Buddhabrot"))
+	if (!ft_strcmp(av[1], "Buddhabrot"))
 	{
 		buddhabrot(fr);
 		fr->fractal = ft_strdup("Buddhabrot"); //
@@ -58,9 +60,9 @@ int	main(int argc, char **argv)
 	fr->y = 0;
 	new_window(fr);
 	new_image(fr);
-	if (argc != 2 || arg_problem(argv))
+	if (arg_check(argc, argv))
 		errors();
-	which_fractal(argv[1], fr);
+	which_fractal(argv, fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
 	hooks(fr);
 	mlx_loop(fr->mlx);

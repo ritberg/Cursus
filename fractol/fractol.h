@@ -9,6 +9,8 @@
 # define WIN_SIZE_Y 1080
 # define MAX_ITER 100
 
+# define DB_MAX 1.7976931348623158e+308
+
 # define ON_MOUSEDOWN 4
 # define ON_MOUSEUP 5
 # define MOUSE_LEFT 1
@@ -37,6 +39,8 @@ typedef	struct s_fr
 	double	temp;
 	double	c_re;
 	double	c_im;
+	char	*param1_julia;
+	char	*param2_julia;
 	char	*fractal;
 	int	i;
 	int	j;
@@ -53,7 +57,7 @@ void	new_image(t_fr *fr);
 //errors
 int	close_win(void);
 int	errors(void);
-int	arg_problem(char **argv);
+int	arg_check(int argc, char **argv);
 
 //fractals
 void	mandelbrot(t_fr *fr);
@@ -62,7 +66,7 @@ void	buddhabrot(t_fr *fr); //
 int	itertat_m(t_fr *fr);
 int	iterat_j(t_fr *fr);
 void	itertat_b(t_fr *fr, double *temp); //
-void	which_fractal(char *str, t_fr *fr);
+void	which_fractal(char **av, t_fr *fr);
 
 //hooks
 int	key_hook(int key_code, t_fr *fr);
@@ -73,5 +77,6 @@ int	zoom_unzoom(int key_code, int x, int y, t_fr *fr);
 int	ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
 void    ft_bzero(void *s, size_t n);
+double	ft_atoi(const char *str);
 
 #endif
