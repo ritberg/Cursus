@@ -29,13 +29,18 @@ void	which_fractal(char *str, t_fr *fr)
 		julia(fr);
 		fr->fractal = ft_strdup("Julia"); //
 	}
+	if (!ft_strcmp(str, "Buddhabrot"))
+	{
+		buddhabrot(fr);
+		fr->fractal = ft_strdup("Buddhabrot"); //
+	}
 }
 
 
 void	hooks(t_fr *fr)
 {
 	mlx_key_hook(fr->mlx_win, key_hook, fr);
-	mlx_hook(fr->mlx_win, ON_DESTROY, 0, close, fr);
+	mlx_hook(fr->mlx_win, ON_DESTROY, 0, close_win, fr);
 	mlx_mouse_hook(fr->mlx_win, zoom_unzoom, fr);
 }
 

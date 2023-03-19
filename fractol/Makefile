@@ -1,7 +1,9 @@
 SRCS	= fractol_2.c\
 	  my_mlx_pixel_put.c\
+	  my_mlx_pixel_put_2.c\
 	  mandelbrot.c\
 	  julia.c\
+	  buddhabrot.c\
 	  hooks.c\
 	  errors.c\
 	  temp_libft.c\
@@ -16,7 +18,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror -Imlx
+CFLAGS		= -Wall -Wextra -Werror -Imlx -fsanitize=address
 
 %.o: %.c
 	${CC} ${CFLAGS} -c $< -o $@

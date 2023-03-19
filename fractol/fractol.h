@@ -46,6 +46,7 @@ typedef	struct s_fr
 
 //initialisation
 void	my_mlx_pixel_put(t_fr *fr, int x, int y, int color);
+void	my_mlx_pixel_put_2(t_fr *fr, int x, int y, int color);
 void	new_window(t_fr *fr);
 void	new_image(t_fr *fr);
 
@@ -60,7 +61,7 @@ void	julia(t_fr *fr);
 void	buddhabrot(t_fr *fr); //
 int	itertat_m(t_fr *fr);
 int	iterat_j(t_fr *fr);
-void	itertat_b(t_fr *fr); //
+void	itertat_b(t_fr *fr, double *temp); //
 void	which_fractal(char *str, t_fr *fr);
 
 //hooks
@@ -71,5 +72,6 @@ int	zoom_unzoom(int key_code, int x, int y, t_fr *fr);
 //libft
 int	ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
+void    ft_bzero(void *s, size_t n);
 
 #endif
