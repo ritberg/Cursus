@@ -77,6 +77,6 @@ int	zoom_unzoom(int key_code, int x, int y, t_fr *fr);
 int	ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
 void    ft_bzero(void *s, size_t n);
-double	ft_atoi(const char *str);
+double	ft_atod(const char *str);
 
 #endif

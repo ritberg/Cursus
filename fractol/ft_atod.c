@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:30:14 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/19 19:39:19 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:18:36 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_is_space(char c)
 			|| c == '\v' || c == '\f' || c == '\r');
 }
 
-double	ft_atoi(const char *str)
+double	ft_atod(const char *str)
 {
 	int	i;
 	int	sign;
@@ -33,20 +33,15 @@ double	ft_atoi(const char *str)
 			sign = -1;
 		i++;
 	}
-	if (str[i] == '0' && str[i + 1] == '.')
-	{
-		result = 0.0;
-		i++;
-	}
-	if (str[i] == '1' && str[i + 1] == '.')
-	{
-		result = 1.0;
-		i++;
-	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');
 		i++;
+	}
+	while (i >= 0 && str[i] != '.')
+	{
+		result /= 10.0;
+		i--;
 	}
 	return (result * sign);
 }

@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:29:45 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/19 16:42:36 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:24:18 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	key_hook(int key_code, t_fr *fr)
 		mandelbrot(fr);
 	if (!ft_strcmp(fr->fractal, "Julia"))
 		julia(fr);
+	if (!ft_strcmp(fr->fractal, "Buddhabrot"))
+		buddhabrot(fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, fr->x, fr->y);
 	return (0);
 }
@@ -50,6 +52,8 @@ int	zoom_unzoom(int key_code, int x, int y, t_fr *fr)
 		mandelbrot(fr);
 	if (!ft_strcmp(fr->fractal, "Julia"))
 		julia(fr);
+	if (!ft_strcmp(fr->fractal, "Buddhabrot"))
+		buddhabrot(fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, fr->x, fr->y);
 	return (0);
 }

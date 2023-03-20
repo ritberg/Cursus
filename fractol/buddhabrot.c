@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:36:08 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/19 19:04:27 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:22:51 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	buddhabrot(t_fr *fr)
 	int	coord_x;
 	int	coord_y;
 
-	temp = malloc(sizeof(int) * 2 * MAX_ITER); //stocker les nbr dans un tableau
+	temp = malloc(sizeof(double) * 2 * MAX_ITER); //stocker les nbr dans un tableau
 	if (!temp)
 		return ;
 	fr->i = 0;
@@ -58,7 +58,7 @@ void	buddhabrot(t_fr *fr)
 					   	(temp[fr->n * 2 + 1] - fr->y);
 					if (coord_x < WIN_SIZE_X && coord_y < WIN_SIZE_Y && \
 							coord_x >= 0 && coord_y >= 0) 
-						my_mlx_pixel_put_2(fr, coord_x, coord_y, 0x00020202);
+						my_mlx_pixel_put_2(fr, coord_x, coord_y, 0x00040404);
 				}
 			}
 			fr->j++;
