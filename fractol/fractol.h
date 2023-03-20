@@ -5,6 +5,7 @@
 # include "unistd.h"
 # include "stdio.h"
 # include "limits.h"
+# include "float.h"
 
 # define WIN_SIZE_X 1920
 # define WIN_SIZE_Y 1080
@@ -77,5 +78,7 @@ int	ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
 void    ft_bzero(void *s, size_t n);
 double	ft_atod(const char *str);
+long long int	ft_atoi(const char *str);
+int	ft_isdigit(char *str);
 
 #endif

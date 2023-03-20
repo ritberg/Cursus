@@ -7,7 +7,7 @@ SRCS	= fractol_2.c\
 	  hooks.c\
 	  errors.c\
 	  temp_libft.c\
-	  ft_atod.c\
+	  ft_atoi_atod.c\
 
 OBJS	= ${SRCS:.c=.o}
 
