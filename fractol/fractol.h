@@ -4,12 +4,11 @@
 # include "stdlib.h"
 # include "unistd.h"
 # include "stdio.h"
+# include "limits.h"
 
 # define WIN_SIZE_X 1920
 # define WIN_SIZE_Y 1080
 # define MAX_ITER 100
-
-# define DB_MAX 1.7976931348623158e+308
 
 # define ON_MOUSEDOWN 4
 # define ON_MOUSEUP 5

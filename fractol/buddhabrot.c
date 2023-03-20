@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:36:08 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/20 10:22:51 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/20 11:15:08 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	buddhabrot(t_fr *fr)
 	if (!temp)
 		return ;
 	fr->i = 0;
+	ft_bzero(fr->addr, fr->bits_per_pixel / 8 * WIN_SIZE_X * WIN_SIZE_Y);
 	while (fr->i < WIN_SIZE_X)
 	{
 		fr->j = 0;
