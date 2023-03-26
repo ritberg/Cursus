@@ -1,4 +1,4 @@
-SRCS_FILES	= fractol_2.c\
+SRCS_FILES	= fractol.c\
 	  my_mlx_pixel_put.c\
 	  my_mlx_pixel_put_2.c\
 	  mandelbrot.c\
@@ -43,7 +43,7 @@ RM		= rm -f
 CFLAGS		= -Wall -Wextra -Werror -I${INCL_DIR}
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c ${INCL}
-	@mkdir -p ${OBJS_DIR}
+	@mkdir -p ${OBJS_DIR}    #creer le dossier bin avec les .o
 	${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}:	${OBJS}
@@ -53,7 +53,7 @@ ${NAME}:	${OBJS}
 all:		${NAME}
 
 clean:		
-		${RM} -r ${OBJS_DIR} #-r pour enlever les repositories dans les reposit.
+		${RM} -r ${OBJS_DIR} #-r pour enlever les repositories dans les reposit.(bin)
 		${MAKE} -C ${MLX_DIR} clean
 
 fclean:		clean
@@ -63,4 +63,4 @@ fclean:		clean
 re:		fclean all
 
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re

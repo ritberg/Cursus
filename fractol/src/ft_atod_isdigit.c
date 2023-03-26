@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:30:14 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/26 17:08:03 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/26 17:53:40 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_is_space(char c)
 
 double	ft_atod(const char *str)
 {
-	int	i;
+	int		i;
 	double	sign;
 	double	d;
 	double	result;
