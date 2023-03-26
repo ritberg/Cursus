@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 18:01:24 by mmakarov          #+#    #+#             */
+/*   Updated: 2023/03/26 18:03:54 by mmakarov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
@@ -22,17 +34,17 @@
 # define UP_KEY 126
 # define DOWN_KEY 125
 
-typedef	struct s_fr
+typedef struct s_fr
 {
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
 	double	zoom;
 	char	*addr;
-	int	bits_per_pixel;
-	int	line_length;
-	int	endian;
-	int	couleur;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		couleur;
 
 	double	x;
 	double	y;
@@ -44,9 +56,9 @@ typedef	struct s_fr
 	char	*param1_julia;
 	char	*param2_julia;
 	char	*fractal;
-	int	i;
-	int	j;
-	int	n;
+	int		i;
+	int		j;
+	int		n;
 
 }	t_fr;
 
@@ -57,29 +69,29 @@ void	new_window(t_fr *fr);
 void	new_image(t_fr *fr);
 
 //errors
-int	close_win(void);
-int	errors(void);
-int	arg_check(int argc, char **argv);
+int		close_win(void);
+int		errors(void);
+int		arg_check(int argc, char **argv);
 
 //fractals
 void	mandelbrot(t_fr *fr);
 void	julia(t_fr *fr);
-void	buddhabrot(t_fr *fr); //
-int	itertat_m(t_fr *fr);
-int	iterat_j(t_fr *fr);
-void	itertat_b(t_fr *fr, double *temp); //
+void	buddhabrot(t_fr *fr);
+int		itertat_m(t_fr *fr);
+int		iterat_j(t_fr *fr);
+void	itertat_b(t_fr *fr, double *temp);
 void	which_fractal(char **av, t_fr *fr);
 
 //hooks
-int	key_hook(int key_code, t_fr *fr);
-int	mouse_hook(int click);
-int	zoom_unzoom(int key_code, int x, int y, t_fr *fr);
+int		key_hook(int key_code, t_fr *fr);
+int		mouse_hook(int click);
+int		zoom_unzoom(int key_code, int x, int y, t_fr *fr);
 
 //libft
-int	ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
-void    ft_bzero(void *s, size_t n);
+void	ft_bzero(void *s, size_t n);
 double	ft_atod(const char *str);
-int	ft_isdigit(char *str);
+int		ft_isdigit(char *str);
 
 #endif
