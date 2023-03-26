@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:33:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/23 17:46:41 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/26 14:50:01 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	arg_check(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		if (ft_strcmp(argv[1], "Mandelbrot") != 0)
+		if (!ft_strcmp(argv[1], "Mandelbrot"))
 			return (0);
-		if (ft_strcmp(argv[1], "Buddhabrot") != 0)
+		if (!ft_strcmp(argv[1], "Buddhabrot"))
 			return (0);
 	}
 	else if (argc == 4)
 	{
-		if (!ft_strcmp(argv[1], "Julia") != 0)
+		if (!ft_strcmp(argv[1], "Julia"))
 			return (0);
 		if (!ft_isdigit(argv[2]) || !ft_isdigit(argv[3]))
 			return (0);

@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	fr->y = 0;
 	new_window(fr);
 	new_image(fr);
-	if (!arg_check(argc, argv))
+	if (arg_check(argc, argv))
 		errors();
 	which_fractal(argv, fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
