@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:36:08 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/26 17:47:17 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/26 18:19:03 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,33 @@ void	iterat_b(t_fr *fr, double *temp)
 	}
 }
 
+static void	putcolor(t_fr *fr, double *temp)
+{
+	int	coord_x;
+	int	coord_y;
+
+	coord_x = (WIN_SIZE_X / 2) + WIN_SIZE_X / fr->zoom * \
+		(temp[fr->n * 2] - fr->x);
+	coord_y = (WIN_SIZE_Y / 2) + WIN_SIZE_Y / fr->zoom * \
+		(temp[fr->n * 2 + 1] - fr->y);
+	if (coord_x < WIN_SIZE_X && coord_y < WIN_SIZE_Y && \
+		coord_x >= 0 && coord_y >= 0)
+		my_mlx_pixel_put_2(fr, coord_x, coord_y, 0x00040404);
+}
+
 void	buddhabrot(t_fr *fr)
 {
 	double	*temp;
-	int		coord_x;
-	int		coord_y;
 
 	temp = malloc(sizeof(double) * 2 * MAX_ITER); //stocker les nbr dans un tableau
 	if (!temp)
 		return ;
 	fr->i = 0;
 	ft_bzero(fr->addr, fr->bits_per_pixel / 8 * WIN_SIZE_X * WIN_SIZE_Y);
-	while (fr->i < WIN_SIZE_X)
+	while (++(fr->i) < WIN_SIZE_X)
 	{
 		fr->j = 0;
-		while (fr->j < WIN_SIZE_Y)
+		while (++(fr->j) < WIN_SIZE_Y)
 		{
 			fr->n = 0;
 			fr->re = 0;
@@ -53,6 +65,9 @@ void	buddhabrot(t_fr *fr)
 				while (--(fr->n) >= 0) // decrement., n diminue de 1
 				{
 					// cf. "c_re" et "c_im" ci-dessus mais avec i et j inconnus
+					
+					// putcolor au-dessus est un raccourci de ceci :
+					/*
 					coord_x = (WIN_SIZE_X / 2) + WIN_SIZE_X / fr->zoom * \
 						(temp[fr->n * 2] - fr->x);
 					coord_y = (WIN_SIZE_Y / 2) + WIN_SIZE_Y / fr->zoom * \
@@ -60,10 +75,10 @@ void	buddhabrot(t_fr *fr)
 					if (coord_x < WIN_SIZE_X && coord_y < WIN_SIZE_Y && \
 							coord_x >= 0 && coord_y >= 0)
 						my_mlx_pixel_put_2(fr, coord_x, coord_y, 0x00040404);
+					*/
+					putcolor(fr, temp);
 				}
 			}
-			fr->j++;
 		}
-		fr->i++;
 	}
 }
