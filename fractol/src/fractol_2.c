@@ -1,4 +1,3 @@
-#include "mlx.h"
 #include "fractol.h"
 
 
@@ -58,10 +57,10 @@ int	main(int argc, char **argv)
 	fr->zoom = 4.0;
 	fr->x = 0;
 	fr->y = 0;
-	new_window(fr);
-	new_image(fr);
 	if (arg_check(argc, argv))
 		errors();
+	new_window(fr);
+	new_image(fr);
 	which_fractal(argv, fr);
 	mlx_put_image_to_window(fr->mlx, fr->mlx_win, fr->img, 0, 0);
 	hooks(fr);

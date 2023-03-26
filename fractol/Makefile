@@ -1,4 +1,4 @@
-SRCS	= fractol_2.c\
+SRCS_FILES	= fractol_2.c\
 	  my_mlx_pixel_put.c\
 	  my_mlx_pixel_put_2.c\
 	  mandelbrot.c\
@@ -7,37 +7,58 @@ SRCS	= fractol_2.c\
 	  hooks.c\
 	  errors.c\
 	  temp_libft.c\
-	  ft_atoi_atod.c\
+	  ft_atod_isdigit.c\
 
-OBJS	= ${SRCS:.c=.o}
+SRCS_DIR		= src/
+
+# prefix pour lier le dossier et les fichiers dedans
+SRCS		= ${addprefix ${SRCS_DIR},${SRCS_FILES}}
+
+OBJS_FILES	= ${SRCS_FILES:.c=.o}
+
+OBJS_DIR	= bin/
+
+OBJS		= ${addprefix ${OBJS_DIR},${OBJS_FILES}}
+
+INCL_FILE	= fractol.h
+
+INCL_DIR	= incl/
+
+INCL		= ${addprefix ${INCL_DIR},${INCL_FILE}}
+
+# ici mlx est le dossier
+MLX_DIR		= mlx/
+
+# ici mlx est le nom de la librairie
+# -L${MLX_DIR} est le dossier
+MLX			= -L${MLX_DIR} -lmlx -framework OpenGL -framework AppKit
 
 NAME	= fractol
-
-MLX		= mlx
 
 CC		= gcc
 
 RM		= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror -Imlx
+# -I c'est tjs pour les includes
+CFLAGS		= -Wall -Wextra -Werror -I${INCL_DIR}
 
-%.o: %.c
+${OBJS_DIR}%.o: ${SRCS_DIR}%.c ${INCL}
+	@mkdir -p ${OBJS_DIR}
 	${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME}:	${OBJS}
-			${MAKE} -C ${MLX}       #compile mlx in the subfolder
-			mv ${MLX}/libmlx.dylib . #move libmlx to the current folder
-			${CC} ${CFLAGS} ${OBJS} -L. -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+			${MAKE} -C ${MLX_DIR}       #compile mlx in the subfolder
+			${CC} ${CFLAGS} ${OBJS} ${MLX} -o ${NAME}
 
 all:		${NAME}
 
 clean:		
-		${RM} ${OBJS}
-		${MAKE} -C ${MLX} clean
+		${RM} -r ${OBJS_DIR} #-r pour enlever les repositories dans les reposit.
+		${MAKE} -C ${MLX_DIR} clean
 
 fclean:		clean
 		${RM} ${NAME}
-		${RM} libmlx.dylib
+		${MAKE} -C ${MLX_DIR} fclean
 
 re:		fclean all
 

@@ -6,12 +6,11 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:29:45 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/20 10:24:18 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:39:23 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "mlx.h"
 
 int	key_hook(int key_code, t_fr *fr)
 {

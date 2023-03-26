@@ -1,6 +1,7 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
+# include "../mlx/mlx.h"
 # include "stdlib.h"
 # include "unistd.h"
 # include "stdio.h"
@@ -31,6 +32,7 @@ typedef	struct s_fr
 	int	bits_per_pixel;
 	int	line_length;
 	int	endian;
+	int	couleur;
 
 	double	x;
 	double	y;
@@ -78,7 +80,6 @@ int	ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(const char *s1);
 void    ft_bzero(void *s, size_t n);
 double	ft_atod(const char *str);
-long long int	ft_atoi(const char *str);
 int	ft_isdigit(char *str);
 
 #endif
