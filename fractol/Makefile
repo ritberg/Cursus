@@ -52,6 +52,8 @@ ${NAME}:	${OBJS}
 
 all:		${NAME}
 
+bonus:		all
+
 clean:		
 		${RM} -r ${OBJS_DIR} #-r pour enlever les repositories dans les reposit.(bin)
 		${MAKE} -C ${MLX_DIR} clean
