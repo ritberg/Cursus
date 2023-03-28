@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:01:24 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/26 18:03:54 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:45:55 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "stdlib.h"
 # include "unistd.h"
 # include "stdio.h"
-# include "limits.h"
+# include "limits.h" //pas necessaire de check max int & min int
 # include "float.h"
 
 # define WIN_SIZE_X 1920
