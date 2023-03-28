@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 19:30:14 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/26 18:38:07 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/28 10:37:46 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,31 @@ static int	ft_is_space(char c)
 			|| c == '\v' || c == '\f' || c == '\r');
 }
 
+static double	ft_atod_return(int i, const char *str, double res, double sign)
+{
+	double	d;
 
+	d = 10.0;
+	if (!str[i]) // s'il y a pas de point
+		return (res * sign);
+	i++; // pour le point
+	while (str[i])
+	{
+		res += (double)(str[i] - '0') / d;
+		d *= 10.0;
+		i++;
+	}
+	return (res * sign);
+}
 
 double	ft_atod(const char *str)
 {
 	int		i;
 	double	sign;
-	double	d;
 	double	result;
 
 	i = 0;
 	sign = 1.0;
-	d = 10.0;
 	result = 0.0;
 	while (ft_is_space(str[i]))
 		i++;
@@ -44,16 +57,7 @@ double	ft_atod(const char *str)
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
-	if (!str[i]) // s'il y a pas de point
-		return (result * sign);
-	i++; // pour le point
-	while (str[i])
-	{
-		result += (double)(str[i] - '0') / d;
-		d *= 10.0;
-		i++;
-	}
-	return (result * sign);
+	return (ft_atod_return(i, str, result, sign));
 }
 
 int	ft_isdigit(char *str)
