@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:36:08 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/03/26 17:23:44 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:16:56 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	mandelbrot(t_fr *fr)
 			fr->re = 0;
 			fr->im = 0;
 			fr->couleur = iterat_m(fr) * 0x0087CEFA;
-			if (fr->couleur <= 16777215)
+			if (fr->couleur <= 16777215) // 256*256*256 - 1
 				my_mlx_pixel_put(fr, fr->i, fr->j, fr->couleur);
 			else
 				// mettre a 0 le premier octet de la couleur (transparence)
