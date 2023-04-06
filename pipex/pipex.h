@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:04:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/06 17:33:36 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:36:09 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 typedef struct s_ppx
 {
-	pid_t	parent;
+	pid_t	child1;
+	pid_t	child2;
 	int		f1;
 	int		f2;
 	int		end[2];
@@ -28,7 +29,8 @@ typedef struct s_ppx
 
 	char	*path_envp;
 	char	**mypaths;
-	char	**mycmdargs;
+	char	**mycmdargs2;
+	char	**mycmdargs3;
 
 }	t_ppx;
 
