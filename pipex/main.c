@@ -76,7 +76,8 @@ int	main(int argc, char **argv, char **envp)
      ppx->f2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
      if (ppx->f1 < 0 || ppx->f2 < 0)
           return (-1);
-	pipex(ppx, argv, envp);
-	exit(0);
-	return (0);
+	 parsing(ppx, char **argv, char **envp);
+	 pipex(ppx, argv, envp);
+	 exit(0);
+	 return (0);
 }
