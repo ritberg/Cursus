@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:04:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/09 18:28:50 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/09 19:19:08 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,24 @@ typedef struct s_ppx
 	char	**mycmdargs3;
 
 	int		ok;
+	int		j;
 
 }	t_ppx;
 
-int	parsing(t_ppx *ppx, char **argv, char **envp);
+//errors
+int	my_perror(const char *str);
+int	error_checker(int argc);
+
+//parsing
+int	parsing_path(t_ppx *ppx, char **envp);
+int	parsing_args(t_ppx *ppx, char **argv);
+int	find_cmd1(t_ppx *ppx);
+int	find_cmd2(t_ppx *ppx);
+
+//pipes
 void	parent_process(t_ppx *ppx);
 int	child2_process(t_ppx *ppx, char **envp);
 int	child1_process(t_ppx *ppx, char **envp);
 void	pipex(t_ppx *ppx, char **envp);
-int	my_perror(const char *str);
-int	error_checker(int argc);
 
 #endif

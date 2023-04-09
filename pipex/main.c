@@ -132,13 +132,18 @@ int	main(int argc, char **argv, char **envp)
 	t_ppx	*ppx;
 	
 	ppx = malloc(sizeof(t_ppx));
+	if (!ppx)
+		return (0);
 	if (error_checker(argc))
 		return (0);
      ppx->f1 = open(argv[1], O_RDONLY);
      ppx->f2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
      if (ppx->f1 < 0 || ppx->f2 < 0)
           return (-1);
-	 parsing(ppx, argv, envp);
+	 parsing_path(ppx, envp);
+	 parsing_args(ppx, argv);
+	 find_cmd1(ppx);
+	 find_cmd2(ppx);
 	 pipex(ppx, envp);
 	 exit(0);
 	 return (0);
