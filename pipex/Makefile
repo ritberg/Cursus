@@ -1,8 +1,10 @@
 SRCS	= main.c\
+		  error_checker.c\
+		  parsing.c\
 
 OBJS	= ${SRCS:.c=.o}
 
-NAME	= libftpipex.a
+NAME	= pipex
 
 CC		= gcc
 
@@ -12,18 +14,16 @@ HEADERS		= pipex.h
 
 INC_LIBFT	= libft
 
-CFLAGS		= -Wall -Wextra -Werror -IINC_LIBFT
-
 DEPS		= ${INC_LIBFT}/libft.h
 
+CFLAGS		= -Wall -Wextra -Werror -I.
+
 .c.o:
-	${CC} ${CFLAGS} -c -I ${INC_LIBFT} $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS} ${HEADERS}
 			${MAKE} -C ${INC_LIBFT}
-			mv ${INC_LIBFT}/libft.a ${NAME}
-			@ar rc ${NAME} ${OBJS}
-			@ranlib ${NAME}
+			${CC} ${CFLAGS} -L ${INC_LIBFT} -lft -o ${NAME} ${OBJS}
 
 all:		${NAME}
 
