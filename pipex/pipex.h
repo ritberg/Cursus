@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:04:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/09 19:19:08 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:15:15 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct s_ppx
 }	t_ppx;
 
 //errors
-int	my_perror(const char *str);
-int	error_checker(int argc);
+int	my_perror(const char *str, t_ppx *ppx);
+int	error_checker(int argc, t_ppx *ppx);
 
 //parsing
 int	parsing_path(t_ppx *ppx, char **envp);
@@ -54,5 +54,6 @@ void	parent_process(t_ppx *ppx);
 int	child2_process(t_ppx *ppx, char **envp);
 int	child1_process(t_ppx *ppx, char **envp);
 void	pipex(t_ppx *ppx, char **envp);
+
 
 #endif

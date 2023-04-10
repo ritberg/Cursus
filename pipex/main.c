@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:44:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/09 19:45:00 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:02:17 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	parent_process(t_ppx *ppx)
 int	child2_process(t_ppx *ppx, char **envp)
 {
 	if (dup2(ppx->f2, STDOUT_FILENO) < 0)
-		return (my_perror("Error"));
+		return (my_perror("Error", ppx));
 	if (dup2(ppx->end[0], STDIN_FILENO) < 0)
-		return (my_perror("Error"));
+		return (my_perror("Error", ppx));
 	close(ppx->end[1]);
 	close(ppx->f2);
 	execve(ppx->cmd2, ppx->mycmdargs3, envp);
@@ -40,9 +40,9 @@ int	child2_process(t_ppx *ppx, char **envp)
 int	child1_process(t_ppx *ppx, char **envp)
 {
 	if (dup2(ppx->f1, STDIN_FILENO) < 0)
-		return (my_perror("Error"));
+		return (my_perror("Error", ppx));
 	if (dup2(ppx->end[1], STDOUT_FILENO) < 0)
-		return (my_perror("Error"));
+		return (my_perror("Error", ppx));
 	close(ppx->end[0]);
 	close(ppx->f1);
 	execve(ppx->cmd1, ppx->mycmdargs2, envp);
@@ -74,19 +74,23 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_ppx	*ppx;
 	
-	ppx = malloc(sizeof(t_ppx));
+	ppx = ft_calloc(1, sizeof(t_ppx));
 	if (!ppx)
-		return (0);
-	if (error_checker(argc))
-		return (0);
+		return (-1);
+	if (error_checker(argc, ppx))
+		return (-1);
      ppx->f1 = open(argv[1], O_RDONLY);
      ppx->f2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
      if (ppx->f1 < 0 || ppx->f2 < 0)
           return (-1);
-	 parsing_path(ppx, envp);
-	 parsing_args(ppx, argv);
-	 find_cmd1(ppx);
-	 find_cmd2(ppx);
+	 if (parsing_path(ppx, envp))
+		 return (-1);
+	 if (parsing_args(ppx, argv))
+		 return (-1);
+	 if (find_cmd1(ppx))
+		 return (-1);
+	 if (find_cmd2(ppx))
+		 return (-1);
 	 pipex(ppx, envp);
 	 exit(0);
 	 return (0);

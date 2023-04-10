@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:41:26 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/09 19:27:52 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:15:04 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,41 @@ int	parsing_path(t_ppx *ppx, char **envp)
 	{
 		if (ft_strncmp("PATH=", envp[ppx->j], 5) == 0)
 		{
-			ppx->path_envp = envp[ppx->j];
+			ppx->path_envp = envp[ppx->j] + 4; //+4 to remove PATH=
 			break;
 		}
+		free(ppx->path_envp);
 		ppx->j++;
 	}
 	if (!ppx->path_envp)
-		return (my_perror("PATH unset"));
+		return (my_perror("PATH unset", ppx));
 	ppx->mypaths = ft_split(ppx->path_envp, ':');
-	if (!ppx->mypaths)  //protection
-		return (my_perror("Split error"));
+	//free(ppx->path_envp); //
+	if (!ppx->mypaths)
+		return (my_perror("Split error", ppx));
 	ppx->j = 0;
 	while (ppx->mypaths[ppx->j])
 	{
 		ppx->mypaths[ppx->j] = ft_strjoin(ppx->mypaths[ppx->j], "/");
 		if (!ppx->mypaths)
-			return (my_perror("Strjoin error"));
+			return (my_perror("Strjoin error", ppx));
 		ppx->j++;
 	}
 	return (0);
 }
 
 /*
-   split commandes donnees en params par ' '. ex, la -la
+   split commandes donnees en params par ' '. ex, ls -la
 */
 int	parsing_args(t_ppx *ppx, char **argv)
 {
-	ppx->mycmdargs2 = ft_split(argv[2],' '); //  what if grep 'a'?
+
+	ppx->mycmdargs2 = ft_split(argv[2], ' '); //  what if grep 'a'?
 	if (!ppx->mycmdargs2)
-		return (my_perror("Split error"));
+		return (my_perror("Split error", ppx));
 	ppx->mycmdargs3 = ft_split(argv[3], ' ');
 	if (!ppx->mycmdargs3)
-		return (my_perror("Split error"));
+		return (my_perror("Split error", ppx));
 	return (0);
 }
 
@@ -78,14 +81,15 @@ int	find_cmd1(t_ppx *ppx)
 	{
 		ppx->cmd1 = ft_strjoin(ppx->mypaths[ppx->j], ppx->mycmdargs2[0]);
 		if (!ppx->cmd1)
-			return (my_perror("Strjoin error"));
+			return (my_perror("Strjoin error", ppx));
 		ppx->ok = access(ppx->cmd1, F_OK & X_OK);
 		if (ppx->ok == 0)
 			break;
+		free(ppx->cmd1);
 		ppx->j++;
 	}
 	if (ppx->ok == -1)
-		return (my_perror("Error"));
+		return (my_perror("Error", ppx));
 	return (0);
 }
 
@@ -96,13 +100,15 @@ int	find_cmd2(t_ppx *ppx)
 	{
 		ppx->cmd2 = ft_strjoin(ppx->mypaths[ppx->j], ppx->mycmdargs3[0]);
 		if (!ppx->cmd2)
-			return (my_perror("Strjoin error"));
+			return (my_perror("Strjoin error", ppx));
 		ppx->ok = access(ppx->cmd2, F_OK & X_OK);
 		if (ppx->ok == 0)
 			break;
+		free(ppx->cmd2);
 		ppx->j++;
 	}
 	if (ppx->ok == -1)
-		return (my_perror("Error"));
+		return (my_perror("Error", ppx));
+//	printf("print");///
 	return (0);
 }
