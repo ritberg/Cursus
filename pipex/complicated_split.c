@@ -114,7 +114,7 @@ static char	**ft_fill_big_table(char *src, char c, char **dst, int *lens)
 		else
 			src++;
 	}
-	dst[count] = NULL;
+	//dst[count] = NULL;
 	free(lens);
 	return (dst);
 }
