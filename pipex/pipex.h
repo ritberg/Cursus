@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:04:54 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/10 19:15:15 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:26:16 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ int	child2_process(t_ppx *ppx, char **envp);
 int	child1_process(t_ppx *ppx, char **envp);
 void	pipex(t_ppx *ppx, char **envp);
 
+
+char	**ft_splitpath(char *s, char c);
 
 #endif

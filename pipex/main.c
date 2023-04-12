@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:44:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/10 19:02:17 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:24:34 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ int	main(int argc, char **argv, char **envp)
      ppx->f2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
      if (ppx->f1 < 0 || ppx->f2 < 0)
           return (-1);
-	 if (parsing_path(ppx, envp))
+	 if (!parsing_path(ppx, envp))
 		 return (-1);
-	 if (parsing_args(ppx, argv))
+	 if (!parsing_args(ppx, argv))
 		 return (-1);
-	 if (find_cmd1(ppx))
+	 if (!find_cmd1(ppx))
 		 return (-1);
-	 if (find_cmd2(ppx))
+	 if (!find_cmd2(ppx))
 		 return (-1);
 	 pipex(ppx, envp);
 	 exit(0);

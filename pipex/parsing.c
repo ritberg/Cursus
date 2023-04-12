@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:41:26 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/10 19:15:04 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:40:00 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	parsing_path(t_ppx *ppx, char **envp)
 			return (my_perror("Strjoin error", ppx));
 		ppx->j++;
 	}
-	return (0);
+	return (1);
 }
 
 /*
@@ -58,13 +58,15 @@ int	parsing_path(t_ppx *ppx, char **envp)
 int	parsing_args(t_ppx *ppx, char **argv)
 {
 
-	ppx->mycmdargs2 = ft_split(argv[2], ' '); //  what if grep 'a'?
+	//ppx->mycmdargs2 = ft_split(argv[2], ' '); //  what if "grep 'a cat'"?
+	ppx->mycmdargs2 = ft_splitpath(argv[2], ' ');
 	if (!ppx->mycmdargs2)
 		return (my_perror("Split error", ppx));
-	ppx->mycmdargs3 = ft_split(argv[3], ' ');
+	//ppx->mycmdargs3 = ft_split(argv[3], ' ');
+	ppx->mycmdargs3 = ft_splitpath(argv[3], ' ');
 	if (!ppx->mycmdargs3)
 		return (my_perror("Split error", ppx));
-	return (0);
+	return (1);
 }
 
 /*
@@ -90,7 +92,7 @@ int	find_cmd1(t_ppx *ppx)
 	}
 	if (ppx->ok == -1)
 		return (my_perror("Error", ppx));
-	return (0);
+	return (1);
 }
 
 int	find_cmd2(t_ppx *ppx)
@@ -110,5 +112,5 @@ int	find_cmd2(t_ppx *ppx)
 	if (ppx->ok == -1)
 		return (my_perror("Error", ppx));
 //	printf("print");///
-	return (0);
+	return (1);
 }

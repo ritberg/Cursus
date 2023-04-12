@@ -1,6 +1,7 @@
 SRCS	= main.c\
 		  error_checker.c\
 		  parsing.c\
+		  complicated_split.c\
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -16,7 +17,7 @@ INC_LIBFT	= libft
 
 DEPS		= ${INC_LIBFT}/libft.h
 
-CFLAGS		= -Wall -Wextra -Werror -I.
+CFLAGS		= -Wall -Wextra -Werror -I. -g3 -fsanitize=address
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
