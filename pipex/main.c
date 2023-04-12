@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:44:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/12 14:24:34 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:06:58 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	pipex(t_ppx *ppx, char **envp)
 			child2_process(ppx, envp);
 		else
 			parent_process(ppx);
-	}	
+	}
 }
 
 int	main(int argc, char **argv, char **envp)

@@ -17,7 +17,7 @@ INC_LIBFT	= libft
 
 DEPS		= ${INC_LIBFT}/libft.h
 
-CFLAGS		= -Wall -Wextra -Werror -I. -g3 -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -I. #-g3 -fsanitize=address
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}

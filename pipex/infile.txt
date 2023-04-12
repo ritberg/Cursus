@@ -3,6 +3,5 @@ jllmfdl
 jmlm
 a cat
 klkl
-a cat
-iuo
 cat
+iuo

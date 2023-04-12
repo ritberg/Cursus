@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:41:26 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/12 14:40:00 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:06:41 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	parsing_path(t_ppx *ppx, char **envp)
 			ppx->path_envp = envp[ppx->j] + 4; //+4 to remove PATH=
 			break;
 		}
-		free(ppx->path_envp);
 		ppx->j++;
 	}
 	if (!ppx->path_envp)

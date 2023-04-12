@@ -114,7 +114,7 @@ static char	**ft_fill_big_table(char *src, char c, char **dst, int *lens)
 		else
 			src++;
 	}
-	//dst[count] = NULL;
+	dst[count] = NULL;
 	free(lens);
 	return (dst);
 }
@@ -127,12 +127,7 @@ char	**ft_splitpath(char *s, char c)
 
 	count = ft_n_words(s, c);
 	lens = ft_len_strs(s, c, count);
-/*
-	int	a = 0;
-	while (lens[a])
-		printf("%d\n", lens[a++]);
-*/
-	dst = malloc(sizeof(char *) * count);
+	dst = malloc(sizeof(char *) * (count + 1));
 	if (dst == NULL)
 		return (NULL);
 	return (ft_fill_big_table(s, c, dst, lens));

@@ -6,11 +6,21 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:23:03 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/10 19:04:48 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:53:05 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab && tab[i])
+		free(tab[i++]);
+	free(tab);
+}
 
 int	my_perror(const char *str, t_ppx *ppx)
 {
