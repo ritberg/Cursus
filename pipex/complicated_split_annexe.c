@@ -12,10 +12,22 @@
 
 #include "pipex.h"
 
-char	**ft_fill_big_table(char *src, char c, char **dst, int *lens)
+char	**shortcut(char *src, char **dst, char c, int count) //pipex.h !
 {
 	int	j;
+
+	j = 0;
+	while (*src && *src != c)
+		dst[count][j++] = *src++;
+	dst[count++][j] = '\0';
+	return (dst);
+}
+
+char	**ft_fill_big_table(char *src, char c, char **dst, int *lens)
+{
+//	int	j;
 	int	count;
+	char	**res;
 
 	count = 0;
 	while (*src)
@@ -25,24 +37,26 @@ char	**ft_fill_big_table(char *src, char c, char **dst, int *lens)
 		dst[count] = malloc(sizeof(char) * lens[count]);
 		if (dst[count] == NULL)
 			return (ft_free_split(dst, count));
+		free(lens); //
 		if (*src == 39)
 		{
 			src++;
-			j = 0;
-			while (*src != 39)
-				dst[count][j++] = *src++;
-			dst[count++][j] = '\0';
+		//	j = 0;
+		//	while (*src != 39)
+		//		dst[count][j++] = *src++;
+		//	dst[count++][j] = '\0';
+			res = shortcut(src, dst, 39, count);
 			break ;
 		}
 		else
 		{
-			j = 0;
-			while (*src && *src != c)
-				dst[count][j++] = *src++;
-			dst[count++][j] = '\0';
+			//j = 0;
+			//while (*src && *src != c)
+			//	dst[count][j++] = *src++;
+			//dst[count++][j] = '\0';
+			res = shortcut(src, dst, c, index);
 		}
 	}
 	dst[count] = NULL;
-	free(lens);
-	return (dst);
+	return (res);
 }
