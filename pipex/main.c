@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:44:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/12 19:06:58 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:56:27 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	child2_process(t_ppx *ppx, char **envp)
 	close(ppx->end[1]);
 	close(ppx->f2);
 	execve(ppx->cmd2, ppx->mycmdargs3, envp);
+	free(ppx->cmd2); // free cmd2
+	free_tab(ppx->mycmdargs3); // free mycmdargs3
 	exit(EXIT_FAILURE);
 	return (EXIT_FAILURE);
 }
@@ -46,6 +48,8 @@ int	child1_process(t_ppx *ppx, char **envp)
 	close(ppx->end[0]);
 	close(ppx->f1);
 	execve(ppx->cmd1, ppx->mycmdargs2, envp);
+	free(ppx->cmd1); // free cmd1
+	free_tab(ppx->mycmdargs2); // free mycmdargs2
 	exit(EXIT_FAILURE);
 	return (EXIT_FAILURE);
 }

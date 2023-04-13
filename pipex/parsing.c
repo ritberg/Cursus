@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:41:26 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/12 19:06:41 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:09:57 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	parsing_path(t_ppx *ppx, char **envp)
 {
 
 	// raccourcir !!!!!
+
+	char *temp_path;
 
 	ppx->j = 0;
 	ppx->path_envp = NULL; //protection
@@ -43,9 +45,11 @@ int	parsing_path(t_ppx *ppx, char **envp)
 	ppx->j = 0;
 	while (ppx->mypaths[ppx->j])
 	{
-		ppx->mypaths[ppx->j] = ft_strjoin(ppx->mypaths[ppx->j], "/");
+		temp_path = ft_strjoin(ppx->mypaths[ppx->j], "/");
 		if (!ppx->mypaths)
 			return (my_perror("Strjoin error", ppx));
+		free(ppx->mypaths[ppx->j]);
+		ppx->mypaths[ppx->j] = temp_path;
 		ppx->j++;
 	}
 	return (1);
@@ -108,6 +112,7 @@ int	find_cmd2(t_ppx *ppx)
 		free(ppx->cmd2);
 		ppx->j++;
 	}
+	free_tab(ppx->mypaths); //free mypaths
 	if (ppx->ok == -1)
 		return (my_perror("Error", ppx));
 //	printf("print");///
