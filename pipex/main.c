@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:44:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/13 14:56:27 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:40:50 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	child2_process(t_ppx *ppx, char **envp)
 	close(ppx->end[1]);
 	close(ppx->f2);
 	execve(ppx->cmd2, ppx->mycmdargs3, envp);
-	free(ppx->cmd2); // free cmd2
-	free_tab(ppx->mycmdargs3); // free mycmdargs3
+	free(ppx->cmd2);
+	free_tab(ppx->mycmdargs3);
 	exit(EXIT_FAILURE);
 	return (EXIT_FAILURE);
 }
@@ -48,8 +48,8 @@ int	child1_process(t_ppx *ppx, char **envp)
 	close(ppx->end[0]);
 	close(ppx->f1);
 	execve(ppx->cmd1, ppx->mycmdargs2, envp);
-	free(ppx->cmd1); // free cmd1
-	free_tab(ppx->mycmdargs2); // free mycmdargs2
+	free(ppx->cmd1);
+	free_tab(ppx->mycmdargs2);
 	exit(EXIT_FAILURE);
 	return (EXIT_FAILURE);
 }
@@ -77,25 +77,27 @@ void	pipex(t_ppx *ppx, char **envp)
 int	main(int argc, char **argv, char **envp)
 {
 	t_ppx	*ppx;
-	
+
 	ppx = ft_calloc(1, sizeof(t_ppx));
 	if (!ppx)
 		return (-1);
 	if (error_checker(argc, ppx))
 		return (-1);
-     ppx->f1 = open(argv[1], O_RDONLY);
-     ppx->f2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-     if (ppx->f1 < 0 || ppx->f2 < 0)
-          return (-1);
-	 if (!parsing_path(ppx, envp))
-		 return (-1);
-	 if (!parsing_args(ppx, argv))
-		 return (-1);
-	 if (!find_cmd1(ppx))
-		 return (-1);
-	 if (!find_cmd2(ppx))
-		 return (-1);
-	 pipex(ppx, envp);
-	 exit(0);
-	 return (0);
+	ppx->f1 = open(argv[1], O_RDONLY);
+	ppx->f2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (ppx->f1 < 0 || ppx->f2 < 0)
+		return (-1);
+	if (!parsing_path(ppx, envp))
+		return (-1);
+	if (!split_paths(ppx))
+		return (-1);
+	if (!parsing_args(ppx, argv))
+		return (-1);
+	if (!find_cmd1(ppx))
+		return (-1);
+	if (!find_cmd2(ppx))
+		return (-1);
+	pipex(ppx, envp);
+	exit(0);
+	return (0);
 }

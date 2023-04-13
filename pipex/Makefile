@@ -2,6 +2,7 @@ SRCS	= main.c\
 		  error_checker.c\
 		  parsing.c\
 		  complicated_split.c\
+		  complicated_split_annexe.c\
 
 OBJS	= ${SRCS:.c=.o}
 
