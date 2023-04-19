@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:47:16 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/14 12:04:32 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/19 16:35:52 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ char	**ft_fill_big_table(char *src, char c, char **dst, int *lens)
 			while (*src && *src != c)
 				dst[count][j++] = *src++;
 		dst[count++][j] = '\0';
-		if (*src == c || *src == '\'')
+		if (*src == '\'')
+			src++;
+		if (*src == c)
 			src++;
 
 		/*
