@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 18:41:26 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/14 12:06:16 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:23:04 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ int	parsing_args(t_ppx *ppx, char **argv)
 	ppx->mycmdargs3 = ft_splitpath(argv[3], ' ');
 	if (!ppx->mycmdargs3)
 		return (my_perror("Split error", ppx));
+	int	i = 0;
+	while (ppx->mycmdargs2[i])
+		printf("%s\n", ppx->mycmdargs2[i++]);
 	return (1);
 }
 

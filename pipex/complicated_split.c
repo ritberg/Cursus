@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:47:31 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/18 20:51:54 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:21:10 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,57 +81,24 @@ int	*ft_len_strs(char *str, char c, int count, int index)
 	while (*str)
 	{
 		len = 0;
-		if (*str == c)
-			str++;
-		while (*str && *str != c)
-		{
-			if (*str == '\'' && str++)
-			{
-				while (*str != '\'')
-				{
-					len++;
-					str++;
-				}
-			}
-			else
+		if (*str == '\'' && str++)
+			while (*str != '\'')
 			{
 				str++;
 				len++;
 			}
-		}
+		else
+			while (*str && *str != c)
+			{
+				str++;
+				len++;
+			}
+		if (*str == c || *str == '\'')
+			str++;
 		len_strs[index++] = len + 1;
 	}
 	return (len_strs);
 }
-
-/*
-int	*ft_len_strs(char *str, char c, int count, int index)
-{
-	int	*len_strs;
-	int	len;
-
-	len_strs = malloc(sizeof(int) * count);
-	if (len_strs == 0)
-		return (0);
-	while (*str)
-	{
-		if (*str == c)
-			str++;
-		len = 0;
-		if (*str == 39)
-			str++;
-		while (*str && *str != c)
-		{
-			str++;
-			len++;
-			if (*str == 39)
-				break ;
-		}
-		len_strs[index++] = len + 1;
-	}
-	return (len_strs);
-}
-*/
 
 char	**ft_free_split(char **dst, size_t i)
 {
@@ -153,8 +120,11 @@ char	**ft_splitpath(char *s, char c)
 
 	index = 0;
 	count = ft_n_words(s, c);
-	printf("%d\n", count);
+	//printf("%d\n", count);
 	lens = ft_len_strs(s, c, count, index);
+	int	i = 0;
+	while (lens[i])
+		printf("%d\n", lens[i++]);
 	dst = malloc(sizeof(char *) * (count + 1));
 	if (dst == NULL)
 		return (NULL);
