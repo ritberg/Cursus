@@ -6,13 +6,13 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:44:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/20 15:36:39 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/20 17:07:58 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	parent_process(t_ppx *ppx)
+void	parent_process(t_ppx *ppx) //parents only waits for children
 {
 	int	status;
 
@@ -32,7 +32,7 @@ int	child2_process(t_ppx *ppx, char **envp)
 		return (my_perror("Error", ppx));
 	close(ppx->end[1]);
 	close(ppx->f2);
-	execve(ppx->cmd2, ppx->mycmdargs3, envp);
+	execve(ppx->cmd2, ppx->mycmdargs3, envp); //after execve nothing is executed
 	free(ppx->cmd2);
 	free_tab(ppx->mycmdargs3);
 	exit(EXIT_FAILURE);
@@ -47,7 +47,7 @@ int	child1_process(t_ppx *ppx, char **envp)
 		return (my_perror("Error", ppx));
 	close(ppx->end[0]);
 	close(ppx->f1);
-	execve(ppx->cmd1, ppx->mycmdargs2, envp);
+	execve(ppx->cmd1, ppx->mycmdargs2, envp); //after execve nothing is executed
 	free(ppx->cmd1);
 	free_tab(ppx->mycmdargs2);
 	exit(EXIT_FAILURE);
@@ -84,7 +84,7 @@ int	main(int argc, char **argv, char **envp)
 	if (error_checker(argc, ppx))
 		return (-1);
 	ppx->f1 = open(argv[1], O_RDONLY);
-	ppx->f2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	ppx->f2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);//create outfile, read and write, ignore if it exists
 	if (ppx->f1 < 0 || ppx->f2 < 0)
 		return (-1);
 	if (!parsing_path(ppx, envp))
