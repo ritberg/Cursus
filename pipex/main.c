@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 19:44:39 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/04/14 12:04:54 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:36:39 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	pipex(t_ppx *ppx, char **envp)
 	ppx->child1 = fork();
 	if (ppx->child1 < 0)
 		return (perror("Fork: "));
-	if (!ppx->child1)
+	if (!ppx->child1) //if fork() returns 0, we are in the child1 process
 		child1_process(ppx, envp);
 	else
 	{
