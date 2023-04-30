@@ -9,7 +9,7 @@ char *get_next_line(int fd)
     char    character;
     char    *buffer = malloc(100000);
 
-    while ((rd = read(fd, &character, BUFFER_SIZE - BUFFER_SIZE + 1)) > 0)
+    while ((rd = read(fd, &character, BUFFER_SIZE - BUFFER_SIZE + 1)) > 0) //
     {
         buffer[i++] = character;
         if (character == '\n')
@@ -18,5 +18,5 @@ char *get_next_line(int fd)
     buffer[i] =  '\0';
     if (rd == -1 || i == 0 || (!buffer[i - 1] && !rd))
         return (free(buffer), NULL);
-    return(buffer);
+    return(buffer); //where other lines are saved ?
 }

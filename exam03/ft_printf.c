@@ -5,7 +5,7 @@
 void	put_string(char *string, int *length)
 {
 	if (!string)
-		string = "(null)";
+		string = "(null)"; //?
 	while (*string)
 		*length += write(1, string++, 1);
 }
@@ -20,8 +20,8 @@ void	put_digit(long long int number, int base, int *length)
 		*length += write(1, "-", 1);
 	}
 	if (number >= base)
-		put_digit((number / base), base, length);
-	*length += write(1, &hexadecimal[number % base], 1);
+		put_digit((number / base), base, length);          //
+	*length += write(1, &hexadecimal[number % base], 1);   //
 }
 
 int	ft_printf(const char *format, ...)
