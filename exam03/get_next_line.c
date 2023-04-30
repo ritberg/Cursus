@@ -16,7 +16,7 @@ char *get_next_line(int fd)
             break ;
     }
     buffer[i] =  '\0';
-    if (rd == -1 || i == 0 || (!buffer[i - 1] && !rd))
+    if (rd == -1 || i == 0 || (!buffer[i - 1] && !rd)) //last cond - ?
         return (free(buffer), NULL);
     return(buffer); //where other lines are saved ?
 }
