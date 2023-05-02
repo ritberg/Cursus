@@ -9,14 +9,14 @@ char *get_next_line(int fd)
     char    character;
     char    *buffer = malloc(100000);
 
-    while ((rd = read(fd, &character, BUFFER_SIZE - BUFFER_SIZE + 1)) > 0) //
+    while ((rd = read(fd, &character, BUFFER_SIZE - BUFFER_SIZE + 1)) > 0) //just 1 works
     {
         buffer[i++] = character;
         if (character == '\n')
             break ;
     }
     buffer[i] =  '\0';
-    if (rd == -1 || i == 0 || (!buffer[i - 1] && !rd)) //last cond - ?
+    if (rd == -1 || i == 0 || (!buffer[i - 1] && !rd)) //without last cond. works
         return (free(buffer), NULL);
-    return(buffer); //where other lines are saved ?
+    return(buffer); //where other lines are saved ? read remembers this
 }

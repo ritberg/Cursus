@@ -5,7 +5,7 @@
 void	put_str(char *str, int *len)
 {
 	if (!str)
-		str = "(null)"; //?
+		str = "(null)"; //cf. gnl cursus
 	while (*str)
 		*len += write(1, str++, 1);
 }
@@ -19,9 +19,9 @@ void	put_digit(long long int nb, int base, int *len)
 		nb *= -1;
 		*len += write(1, "-", 1);
 	}
-	if (nb >= base)
-		put_digit((nb / base), base, len);          //
-	*len += write(1, &hexadec[nb % base], 1);   //
+	if (nb >= base)                        //nb = 57, in hexadec = 39
+		put_digit((nb / base), base, len);    // 57 / 16 = 3
+	*len += write(1, &hexadec[nb % base], 1);   // 57 % 16 = 9
 }
 
 int	ft_printf(const char *format, ...)
