@@ -6,7 +6,7 @@
 #    By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 19:42:13 by mmakarov          #+#    #+#              #
-#    Updated: 2023/06/26 19:50:56 by mmakarov         ###   ########.fr        #
+#    Updated: 2023/06/26 19:53:29 by mmakarov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,6 @@ ${NAME}:	${OBJS}
 	@echo	"${YELLOW} Compilation ${NAME} done ${RESET}"
 
 all:		${NAME}
-
-bonus:		all
 
 clean:		
 		@${RM} -r ${OBJS_DIR} #-r pour enlever les repositories dans les reposit.(bin)
