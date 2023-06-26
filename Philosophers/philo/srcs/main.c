@@ -6,11 +6,11 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:52:22 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/26 18:39:21 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:40:55 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../incls/philo.h"
 
 int	args_ok(int argc, char **argv)
 {

@@ -6,11 +6,11 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:08:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/26 19:22:16 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:40:41 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../incls/philo.h"
 
 //ft_forks
 

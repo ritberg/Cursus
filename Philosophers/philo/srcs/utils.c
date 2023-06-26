@@ -6,11 +6,11 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:32:55 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/24 18:06:10 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:41:04 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../incls/philo.h"
 
 int	ft_atoi(char *str)
 {

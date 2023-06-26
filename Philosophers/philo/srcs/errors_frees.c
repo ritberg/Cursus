@@ -6,11 +6,11 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 18:36:24 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/26 18:39:09 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:40:32 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../incls/philo.h"
 
 void	free_structures(t_data *data)
 {
