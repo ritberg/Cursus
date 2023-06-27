@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/26 19:22:19 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:16:53 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,16 @@
 # define BIGGER_THAN_INTMAX	-1
 # define NO_FIFTH_ARG		-2
 
-# define MALLOC_ERROR "malloc error!\n"
+# define MALLOC_ERROR	"malloc error!\n"
+# define PTHREAD_ERROR	"pthread error!\n"
 
 typedef struct s_philo
 {
-	pthread_t		thread;
+	pthread_t		p_thread;
 	int				p_id;
-	int				fork[2]; //or separately left and right ?
+//	int				fork[2]; //or separately left and right ?
+	pthread_mutex_t	*l_fork;/////
+	pthread_mutex_t	*r_fork;//////
 	time_t			last_eating_time;
 	int				times_ate;
 }	t_philo;
@@ -46,6 +49,7 @@ typedef struct s_data
 	int				times_must_eat;
 	t_philo			**philosophers;
 	pthread_mutex_t	*forks;  //
+	pthread_mutex_t	print_lock;
 }	t_data;
 
 /****************************
@@ -65,4 +69,6 @@ t_philo	**init_philo_structure(t_data *data);
 ****************************/
 void	free_structures(t_data *data);
 int		error_message(int flag);
+
+
 #endif

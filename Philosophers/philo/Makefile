@@ -6,7 +6,7 @@
 #    By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 19:42:13 by mmakarov          #+#    #+#              #
-#    Updated: 2023/06/26 19:53:29 by mmakarov         ###   ########.fr        #
+#    Updated: 2023/06/27 18:58:46 by mmakarov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS		+= -Wall -Wextra -Werror
+CFLAGS		+= -Wall -Wextra -Werror -pthread
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c ${INCL}
 	@mkdir -p ${OBJS_DIR}    #creer le dossier bin avec les .o
