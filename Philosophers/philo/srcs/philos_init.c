@@ -6,27 +6,21 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/28 14:24:57 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:59:38 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
-/* get current time */
-time_t	ft_time(void)
-{
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-}
-
+/* dsnt work. n_philos. data race? mutex problem? wrong structure? */
 void	*p_routine(void *ptr)
 {
-	t_philo	*philo;
+	t_data	*data;
 
-	philo = (t_philo *)ptr;
-	printf("haha\n");
+	data = (t_data *)ptr;
+	pthread_mutex_lock(&data->print_lock);
+	printf("%d%s\n", data->n_philos + 1, " is eating?");
+	pthread_mutex_unlock(&data->print_lock);
 	return (NULL);
 }
 

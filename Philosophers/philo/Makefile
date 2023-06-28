@@ -6,12 +6,13 @@
 #    By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 19:42:13 by mmakarov          #+#    #+#              #
-#    Updated: 2023/06/28 13:41:33 by mmakarov         ###   ########.fr        #
+#    Updated: 2023/06/28 17:08:27 by mmakarov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-YELLOW		:= $(shell tput setaf 3)
-RESET		:= $(shell tput sgr0)
+BLUE			:= $(shell tput setaf 4)
+PASTEL_MAGENTA	:= $(shell tput setaf 213)
+RESET			:= $(shell tput sgr0)
 
 SRCS_FILES	= main.c\
 	  errors_frees.c\
@@ -42,7 +43,16 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS		+= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
+CFLAGS		+= -Wall -Wextra -Werror -pthread
+
+SAN		?= 0
+
+ifeq ($(SAN), 1)
+CFLAGS += -g -fsanitize=thread
+$(info ${PASTEL_MAGENTA} SANITIZER ON${RESET})
+else
+$(info ${PASTEL_MAGENTA} SANITIZER OFF${RESET})
+endif
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c ${INCL}
 	@mkdir -p ${OBJS_DIR}    #creer le dossier bin avec les .o
@@ -50,17 +60,17 @@ ${OBJS_DIR}%.o: ${SRCS_DIR}%.c ${INCL}
 
 ${NAME}:	${OBJS}
 	@		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
-	@echo	"${YELLOW} Compilation ${NAME} done ${RESET}"
+	@echo	"${BLUE} Compilation ${NAME} done ${RESET}"
 
 all:		${NAME}
 
 clean:		
 		@${RM} -r ${OBJS_DIR} #-r pour enlever les repositories dans les reposit.(bin)
-		@echo "${YELLOW} Clean object files done ${RESET}"
+		@echo "${BLUE} Clean object files done ${RESET}"
 
 fclean:		clean
 		@${RM} ${NAME}
-		@echo "${YELLOW} Clean ${NAME} done ${RESET}"
+		@echo "${BLUE} Clean ${NAME} done ${RESET}"
 
 re:		fclean all
 

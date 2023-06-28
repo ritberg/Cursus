@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/28 14:18:11 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:37:05 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ typedef struct s_data
 /****************************
           utils.c
 ****************************/
-int	ft_atoi(char *str);
-int	is_digit(char *str);
+time_t	ft_time(void);
+int		ft_atoi(char *str);
+int		is_digit(char *str);
 
 /****************************
       structures_init.c

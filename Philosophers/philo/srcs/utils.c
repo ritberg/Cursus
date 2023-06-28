@@ -6,11 +6,20 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:32:55 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/26 19:41:04 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:40:12 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
+
+/* get current time */
+time_t	ft_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
 
 int	ft_atoi(char *str)
 {
