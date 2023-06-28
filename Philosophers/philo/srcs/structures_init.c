@@ -6,45 +6,47 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:08:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/27 19:24:00 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:49:42 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
-/* dsnt work.
-   the idea is to treat separately the case of the philo 0 (n_philo = 1):
-   philo 0 takes the fork 0 on his left and n_philos - 1 on his right.
+/* the idea is to treat separately the case of the philo[0] (n_philo = 1):
+   philo[0] takes the fork 0 on his left and n_philos - 1 on his right.
    other philos take the bigger fork on their left, the smaller on their right
  */
 
-int	init_forks(t_philo *philosophers, int i, t_data *data)
+static	pthread_mutex_t	*init_forks(t_data *data)
 {
-	printf("%d\n", i);
+	pthread_mutex_t	*forks;
+	int				i;
 
+	forks = malloc(sizeof(pthread_mutex_t) * data->n_philos);
+	if (!forks)
+		return (printf(PTHREAD_ERROR), NULL);
 	i = 0;
 	while (i < data->n_philos)
 	{
-		pthread_mutex_init(&data->forks[i], NULL);
+		pthread_mutex_init(&forks[i], NULL);
 		i++;
 	}
 	i = 0;
-	while (i < data->n_philos)
-	philosophers[0].l_fork = &data->forks[0];
-	philosophers[0].r_fork = &data->forks[data->n_philos - 1];
+	data->philosophers[0].l_fork = &forks[0];
+	data->philosophers[0].r_fork = &forks[data->n_philos - 1];
 	i = 1;
 	while (i < data->n_philos)
 	{
-		philosophers[i].l_fork = &data->forks[i];
-		philosophers[i].r_fork = &data->forks[i - 1];
+		data->philosophers[i].l_fork = &forks[i];
+		data->philosophers[i].r_fork = &forks[i - 1];
 		i++;
 	}
-	return (0);
+	return (forks);
 }
 
-t_philo	**init_philo_structure(t_data *data)
+t_philo	*init_philo_structure(t_data *data)
 {
-	t_philo	**philosophers;
+	t_philo	*philosophers;
 	int		i;
 
 	i = 0;
@@ -53,13 +55,9 @@ t_philo	**init_philo_structure(t_data *data)
 		return (printf(MALLOC_ERROR), NULL);
 	while (i < data->n_philos)
 	{
-		philosophers[i] = malloc(sizeof(t_philo));
-		if (!philosophers[i])
-			return (printf(MALLOC_ERROR), NULL);
-		philosophers[i]->p_id = i;
-		philosophers[i]->last_eating_time = 0;
-		philosophers[i]->times_ate = 0;
-		//init_forks(philosophers[i], data);
+		philosophers[i].p_id = i;
+		philosophers[i].last_eating_time = 0;
+		philosophers[i].times_ate = 0;
 		i++;
 	}
 	return (philosophers);
@@ -83,6 +81,9 @@ t_data	*init_data_structure(int argc, char **argv)
 	data->philosophers = init_philo_structure(data);
 	if (!data->philosophers)
 		return (printf(MALLOC_ERROR), NULL);
+	data->forks = init_forks(data);
+	if (!data->forks)
+		return (printf(PTHREAD_ERROR), NULL);
 	pthread_mutex_init(&data->print_lock, NULL);
 	return (data);
 }

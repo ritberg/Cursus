@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/27 19:16:53 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:45:23 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_data
 	time_t			time_to_eat;
 	time_t			time_to_sleep;
 	int				times_must_eat;
-	t_philo			**philosophers;
+	t_philo			*philosophers;
 	pthread_mutex_t	*forks;  //
 	pthread_mutex_t	print_lock;
 }	t_data;
@@ -62,11 +62,12 @@ int	is_digit(char *str);
       structures_init.c
 ****************************/
 t_data	*init_data_structure(int argc, char **argv);
-t_philo	**init_philo_structure(t_data *data);
+t_philo	*init_philo_structure(t_data *data);
 
 /****************************
       errors_frees.c
 ****************************/
+void	mutex_destroy(t_data *data);
 void	free_structures(t_data *data);
 int		error_message(int flag);
 

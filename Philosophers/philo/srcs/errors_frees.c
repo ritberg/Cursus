@@ -6,27 +6,29 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 18:36:24 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/26 19:40:32 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:46:08 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
-void	free_structures(t_data *data)
+void	mutex_destroy(t_data *data)
 {
 	int	i;
 
-	if (data->philosophers)
+	i = 0;
+	while (i < data->n_philos)
 	{
-		i = 0;
-		while (i < data->n_philos)
-		{
-			if (data->philosophers[i])
-				free(data->philosophers[i]);
-			i++;
-		}
-		free(data->philosophers);
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
 	}
+	pthread_mutex_destroy(&data->print_lock);
+}
+
+void	free_structures(t_data *data)
+{
+	free(data->philosophers);
+	free(data->forks);
 	free(data);
 }
 
