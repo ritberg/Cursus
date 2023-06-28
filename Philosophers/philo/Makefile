@@ -6,7 +6,7 @@
 #    By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 19:42:13 by mmakarov          #+#    #+#              #
-#    Updated: 2023/06/27 18:58:46 by mmakarov         ###   ########.fr        #
+#    Updated: 2023/06/28 13:41:33 by mmakarov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ RESET		:= $(shell tput sgr0)
 SRCS_FILES	= main.c\
 	  errors_frees.c\
 	  structures_init.c\
+	  philos_init.c\
 	  utils.c\
 
 SRCS_DIR		= srcs/
@@ -41,7 +42,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS		+= -Wall -Wextra -Werror -pthread
+CFLAGS		+= -Wall -Wextra -Werror -pthread -fsanitize=thread -g
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c ${INCL}
 	@mkdir -p ${OBJS_DIR}    #creer le dossier bin avec les .o

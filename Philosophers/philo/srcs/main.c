@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:52:22 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/28 11:42:38 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:12:58 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int argc, char **argv)
 		return (1);
 	data = init_data_structure(argc, argv);
 	if (!data)
+		return (1);
+	if (!init_philos_threads(data))
 		return (1);
 	mutex_destroy(data);
 	free_structures(data);

@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/28 11:45:23 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:18:11 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <limits.h>
-# include <time.h>
+# include <sys/time.h>
 # include <stdlib.h>
 
 # define ARGS_NUMBER 		1
@@ -71,5 +71,9 @@ void	mutex_destroy(t_data *data);
 void	free_structures(t_data *data);
 int		error_message(int flag);
 
+/****************************
+       philos_init.c
+****************************/
+int	init_philos_threads(t_data *data);
 
 #endif
