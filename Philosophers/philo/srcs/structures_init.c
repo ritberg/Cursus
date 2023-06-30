@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:08:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/30 12:11:13 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:50:36 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_philo	*init_philo_structure(t_data *data)
 	while (i < data->n_philos)
 	{
 		philosophers[i].p_id = i;
-		philosophers[i].last_eating_time = 0;
+		philosophers[i].start_eating = 0;
 		philosophers[i].times_ate = 0;
 		philosophers[i].data = data;
 		i++;

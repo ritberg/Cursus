@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/30 12:15:41 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:25:14 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@
 # define MALLOC_ERROR	"malloc error!\n"
 # define PTHREAD_ERROR	"pthread error!\n"
 
+# define FORKS		"has taken a fork"
+# define EATING		"is eating"
+# define SLEEPING	"is sleeping"
+# define THINKING	"is thinking"
+# define DIED		"died"
+
 typedef struct s_philo
 {
 	pthread_t		p_thread;
@@ -36,7 +42,7 @@ typedef struct s_philo
 //	int				fork[2]; //or separately left and right ?
 	pthread_mutex_t	*l_fork;/////
 	pthread_mutex_t	*r_fork;//////
-	time_t			last_eating_time;
+	time_t			start_eating;
 	int				times_ate;
 	struct s_data	*data;
 }	t_philo;
@@ -52,6 +58,7 @@ typedef struct s_data
 	t_philo			*philosophers;
 	pthread_mutex_t	*forks;  //
 	pthread_mutex_t	print_lock;
+	pthread_mutex_t	lock;
 }	t_data;
 
 /****************************
