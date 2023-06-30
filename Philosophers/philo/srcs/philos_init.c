@@ -6,21 +6,27 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/28 17:59:38 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:29:34 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
-/* dsnt work. n_philos. data race? mutex problem? wrong structure? */
+void	print(t_philo *philo, char *str)
+{
+	printf("%ld %d %s\n", ft_time() - philo->data->start_time, \
+			philo->p_id + 1, str);
+}
+
+/* dsnt work. philos id. data race? mutex problem? wrong structure? */
 void	*p_routine(void *ptr)
 {
-	t_data	*data;
+	t_philo	*philo;
 
-	data = (t_data *)ptr;
-	pthread_mutex_lock(&data->print_lock);
-	printf("%d%s\n", data->n_philos + 1, " is eating?");
-	pthread_mutex_unlock(&data->print_lock);
+	philo = (t_philo *)ptr;
+	pthread_mutex_lock(&philo->data->print_lock);
+	print(philo, "is eating?");
+	pthread_mutex_unlock(&philo->data->print_lock);
 	return (NULL);
 }
 

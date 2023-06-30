@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/28 17:37:05 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:15:41 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # include <sys/time.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # define ARGS_NUMBER 		1
 # define NOT_DIGIT			2
@@ -37,6 +38,7 @@ typedef struct s_philo
 	pthread_mutex_t	*r_fork;//////
 	time_t			last_eating_time;
 	int				times_ate;
+	struct s_data	*data;
 }	t_philo;
 
 typedef struct s_data
