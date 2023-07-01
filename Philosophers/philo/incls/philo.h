@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/30 15:25:14 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/01 18:59:46 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,22 @@
 # define MALLOC_ERROR	"malloc error!\n"
 # define PTHREAD_ERROR	"pthread error!\n"
 
-# define FORKS		"has taken a fork"
-# define EATING		"is eating"
-# define SLEEPING	"is sleeping"
-# define THINKING	"is thinking"
-# define DIED		"died"
+# define FORKS		"has taken a fork\n"
+# define EATING		"is eating\n"
+# define SLEEPING	"is sleeping\n"
+# define THINKING	"is thinking\n"
+# define DIED		"died\n"
 
 typedef struct s_philo
 {
 	pthread_t		p_thread;
 	int				p_id;
-//	int				fork[2]; //or separately left and right ?
-	pthread_mutex_t	*l_fork;/////
-	pthread_mutex_t	*r_fork;//////
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_fork;
 	time_t			start_eating;
+	pthread_mutex_t	eating;
 	int				times_ate;
+	int				dead;
 	struct s_data	*data;
 }	t_philo;
 
@@ -56,7 +57,7 @@ typedef struct s_data
 	time_t			time_to_sleep;
 	int				times_must_eat;
 	t_philo			*philosophers;
-	pthread_mutex_t	*forks;  //
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_lock;
 	pthread_mutex_t	lock;
 }	t_data;
@@ -64,9 +65,10 @@ typedef struct s_data
 /****************************
           utils.c
 ****************************/
-time_t	ft_time(void);
+time_t	get_current_time(void);
 int		ft_atoi(char *str);
 int		is_digit(char *str);
+void	ft_usleep(int ms);
 
 /****************************
       structures_init.c
@@ -84,6 +86,7 @@ int		error_message(int flag);
 /****************************
        philos_init.c
 ****************************/
-int	init_philos_threads(t_data *data);
+int		init_philos_threads(t_data *data);
+void	*p_routine(void *ptr);
 
 #endif

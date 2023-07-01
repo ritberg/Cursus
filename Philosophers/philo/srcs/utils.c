@@ -6,14 +6,29 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:32:55 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/06/28 16:40:12 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/01 19:02:24 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
+void	ft_usleep(int ms)
+{
+	struct timeval	start;
+	struct timeval	now;
+
+	gettimeofday(&start, 0);
+	gettimeofday(&now, 0);
+	while (((now.tv_sec - start.tv_sec) * \
+				1000 + (now.tv_usec - start.tv_usec) / 1000) < ms)
+	{
+		usleep(50);
+		gettimeofday(&now, 0);
+	}
+}
+
 /* get current time */
-time_t	ft_time(void)
+time_t	get_current_time(void)
 {
 	struct timeval	tv;
 
