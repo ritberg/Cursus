@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:08:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/02 11:21:52 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:38:26 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ t_philo	*init_philo_structure(t_data *data)
 		philosophers[i].data = data;
 		i++;
 	}
-	pthread_mutex_init(&philosophers->eating, NULL);
 	pthread_mutex_init(&philosophers->meal_lock, NULL);
 	return (philosophers);
 }

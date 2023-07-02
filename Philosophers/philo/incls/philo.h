@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/02 10:17:20 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:38:03 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_philo
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 	time_t			last_meal_time;
-	pthread_mutex_t	eating;
 	pthread_mutex_t	meal_lock;
 	int				meal_finished;
 	int				times_ate;

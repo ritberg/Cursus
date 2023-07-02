@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 18:36:24 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/02 11:22:08 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:38:15 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	mutex_destroy(t_data *data)
 	}
 	pthread_mutex_destroy(&data->print_lock);
 	pthread_mutex_destroy(&data->lock);
-	pthread_mutex_destroy(&data->philosophers->eating);
 	pthread_mutex_destroy(&data->philosophers->meal_lock);
 }
 
