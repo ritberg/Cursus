@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/01 18:59:46 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/02 10:17:20 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ typedef struct s_philo
 	int				p_id;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	time_t			start_eating;
+	time_t			last_meal_time;
 	pthread_mutex_t	eating;
+	pthread_mutex_t	meal_lock;
+	int				meal_finished;
 	int				times_ate;
 	int				dead;
 	struct s_data	*data;
@@ -50,6 +52,7 @@ typedef struct s_philo
 
 typedef struct s_data
 {
+	pthread_t		checker_thread;
 	time_t			start_time;
 	int				n_philos;
 	time_t			time_to_die;

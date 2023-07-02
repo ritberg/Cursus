@@ -6,7 +6,7 @@
 #    By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 19:42:13 by mmakarov          #+#    #+#              #
-#    Updated: 2023/06/28 17:08:27 by mmakarov         ###   ########.fr        #
+#    Updated: 2023/07/02 08:23:00 by mmakarov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS		= ${addprefix ${SRCS_DIR},${SRCS_FILES}}
 
 OBJS_FILES	= ${SRCS_FILES:.c=.o}
 
-OBJS_DIR	= bin/
+OBJS_DIR	= objs/
 
 OBJS		= ${addprefix ${OBJS_DIR},${OBJS_FILES}}
 

@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:08:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/01 19:01:26 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:21:52 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ t_philo	*init_philo_structure(t_data *data)
 	while (i < data->n_philos)
 	{
 		philosophers[i].p_id = i;
-		philosophers[i].start_eating = 0;
+		philosophers[i].last_meal_time = 0;
 		philosophers[i].times_ate = 0;
 		philosophers[i].dead = 0;
 		philosophers[i].data = data;
 		i++;
 	}
 	pthread_mutex_init(&philosophers->eating, NULL);
+	pthread_mutex_init(&philosophers->meal_lock, NULL);
 	return (philosophers);
 }
 
