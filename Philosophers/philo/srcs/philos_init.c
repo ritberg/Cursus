@@ -6,14 +6,13 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/03 12:16:53 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:08:34 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
-// int dead not used
-// check others !
+// check unused variables !
 
 
 void	print(t_philo *philo, char *str)
@@ -73,7 +72,7 @@ int	end(t_data *data)
 		pthread_mutex_lock(&data->philosophers[i].meal_lock);
 		if (is_dead(&data->philosophers[i]))
 			return (1);
-		if (data->philosophers[i].times_ate != NO_FIFTH_ARG)
+		if (data->times_must_eat != NO_FIFTH_ARG)
 			if (data->philosophers[i].times_ate < data->times_must_eat)
 				all_ate = 0;
 		pthread_mutex_unlock(&data->philosophers[i].meal_lock);
@@ -132,7 +131,12 @@ void	eating(t_philo *philo)
 	pthread_mutex_lock(&philo->meal_lock);/////////////
 	philo->last_meal_time = get_current_time();///////////
 	pthread_mutex_unlock(&philo->meal_lock);///////////
-	philo->times_ate++;
+	if (simulation_stops_def(philo->data) == 0)
+	{
+		pthread_mutex_lock(&philo->meal_lock);
+		philo->times_ate++;
+		pthread_mutex_unlock(&philo->meal_lock);
+	}
 	ft_usleep(philo->data->time_to_eat);
 	pthread_mutex_unlock(&philo->data->lock);
 	forks_down(philo);
@@ -154,8 +158,6 @@ void	*one_p_routine(t_philo *philo)
 
  * when times_ate, incremented in eating(), < times_must_eat(5th arg),
    do the actions "times_must_eat" times
-
- function too long !! to cut!
 
 */
 void	*p_routine(void *ptr)
@@ -199,11 +201,19 @@ int	init_philos_threads(t_data *data)
 			return (printf(PTHREAD_ERROR), 0);
 		i++;
 	}
-/*	
+	
 	if (data->n_philos > 1)//
-		if (pthread_create(&data->checker_thread, NULL, &check_routine, data) != 0) //
+		if (pthread_create(&data->checker_thread, NULL, \
+					&check_routine, data) != 0) //
 			return (printf(PTHREAD_ERROR), 0);//
-*/	
+
+	return (1);
+}
+
+int	join_philos_threads(t_data *data)
+{
+	int	i;
+
 	i = 0;
 	while (i < data->n_philos)
 	{
@@ -211,10 +221,10 @@ int	init_philos_threads(t_data *data)
 			return (printf(PTHREAD_ERROR), 0);
 		i++;
 	}
-/*
+
 	if (data->n_philos > 1)//
 		if (pthread_join(data->checker_thread, NULL) != 0)//
 			return (printf(PTHREAD_ERROR), 0);//
-*/
+
 	return (1);
 }
