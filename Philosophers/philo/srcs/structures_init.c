@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:08:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/02 11:38:26 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:07:16 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ t_philo	*init_philo_structure(t_data *data)
 		philosophers[i].p_id = i;
 		philosophers[i].last_meal_time = 0;
 		philosophers[i].times_ate = 0;
-		philosophers[i].dead = 0;
 		philosophers[i].data = data;
 		i++;
 	}
@@ -74,6 +73,7 @@ t_data	*init_data_structure(int argc, char **argv)
 	if (!data)
 		return (printf(MALLOC_ERROR), NULL);
 	data->start_time = 0;
+	data->dead = 0;
 	data->n_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
@@ -88,5 +88,6 @@ t_data	*init_data_structure(int argc, char **argv)
 	if (!data->forks)
 		return (printf(PTHREAD_ERROR), NULL);
 	pthread_mutex_init(&data->print_lock, NULL);
+	pthread_mutex_init(&data->stop_lock, NULL);
 	return (data);
 }

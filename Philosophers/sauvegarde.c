@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos_init.c                                      :+:      :+:    :+:   */
+/*   sauvegarde.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/03 12:16:53 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:17:34 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
-
-// int dead not used
-// check others !
-
 
 void	print(t_philo *philo, char *str)
 {
@@ -27,34 +23,15 @@ void	print(t_philo *philo, char *str)
 }
 
 
-// a philo dies at "time_to_die" time ////////////////////////////////////
-
-void	simulation_stops(t_data *data, int i)
-{
-	pthread_mutex_lock(&data->stop_lock);
-	data->dead = i;
-	pthread_mutex_unlock(&data->stop_lock);
-}
-
-int	simulation_stops_def(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	pthread_mutex_lock(&data->stop_lock);
-	if (data->dead == 1)
-		i = 1;
-	pthread_mutex_unlock(&data->stop_lock);
-	return (i);
-}
+//dsnt work////////////////////////////////////////////////
 
 int	is_dead(t_philo *philo)
 {
+	time_t	time;
 	
-	if ((get_current_time() - philo->last_meal_time) \
-			>= philo->data->time_to_die)
+	time = get_current_time();
+	if ((time - philo->last_meal_time) >= philo->data->time_to_die)
 	{
-		simulation_stops(philo->data, 1);
 		print(philo, DIED);
 		pthread_mutex_unlock(&philo->meal_lock);
 		return (1);
@@ -65,7 +42,6 @@ int	is_dead(t_philo *philo)
 int	end(t_data *data)
 {
 	int	i;
-	int	all_ate;
 
 	i = 0;
 	while (i < data->n_philos)
@@ -73,16 +49,8 @@ int	end(t_data *data)
 		pthread_mutex_lock(&data->philosophers[i].meal_lock);
 		if (is_dead(&data->philosophers[i]))
 			return (1);
-		if (data->philosophers[i].times_ate != NO_FIFTH_ARG)
-			if (data->philosophers[i].times_ate < data->times_must_eat)
-				all_ate = 0;
 		pthread_mutex_unlock(&data->philosophers[i].meal_lock);
 		i++;
-	}
-	if (data->times_must_eat != NO_FIFTH_ARG && all_ate == 1)
-	{
-		simulation_stops(data, 1);
-		return (1);
 	}
 	return (0);
 }
@@ -94,13 +62,13 @@ void	*check_routine(void *ptr)
 	data = (t_data *)ptr;
 	while (1)
 	{
-		if (end(data) == 1)
+		if (end(data))
 			return (NULL);
 		usleep(1000);
 	}
 	return (NULL);
 }
-///////////////////////////////////////////////////////
+////////////////////////////////////////////////
 
 
 
@@ -163,16 +131,22 @@ void	*p_routine(void *ptr)
 	t_philo	*philo;
 
 	philo = (t_philo *)ptr;
-	pthread_mutex_lock(&philo->meal_lock);/////////////
-	philo->last_meal_time = philo->data->start_time;///////////
-	pthread_mutex_unlock(&philo->meal_lock);///////////
 	if (philo->data->time_to_die == 0 || philo->data->times_must_eat == 0)
 		return (NULL);
 	if (philo->data->n_philos == 1)
 		return (one_p_routine(philo));
 	if (philo->p_id % 2)
 		print(philo, THINKING);
-	while (simulation_stops_def(philo->data) == 0)
+	if (philo->data->times_must_eat != NO_FIFTH_ARG)
+	{
+		while (philo->times_ate < philo->data->times_must_eat)
+		{
+			eating(philo);
+			sleeping(philo);
+			print(philo, THINKING);
+		}
+	}
+	else
 	{
 		eating(philo);
 		sleeping(philo);
@@ -191,6 +165,11 @@ int	init_philos_threads(t_data *data)
 	int	i;
 
 	data->start_time = get_current_time();
+/*
+	if (data->n_philos > 1)//
+		if (pthread_create(&data->checker_thread, NULL, &check_routine, data) != 0) //
+			return (printf(PTHREAD_ERROR), 0);//
+*/
 	i = 0;
 	while (i < data->n_philos)
 	{
@@ -199,11 +178,6 @@ int	init_philos_threads(t_data *data)
 			return (printf(PTHREAD_ERROR), 0);
 		i++;
 	}
-/*	
-	if (data->n_philos > 1)//
-		if (pthread_create(&data->checker_thread, NULL, &check_routine, data) != 0) //
-			return (printf(PTHREAD_ERROR), 0);//
-*/	
 	i = 0;
 	while (i < data->n_philos)
 	{
