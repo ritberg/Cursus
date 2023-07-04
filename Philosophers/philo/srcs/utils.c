@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:32:55 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/02 08:27:38 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:09:01 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_usleep(int ms)
 	while (((now.tv_sec - start.tv_sec) * \
 				1000 + (now.tv_usec - start.tv_usec) / 1000) < ms)
 	{
-		usleep(50);
+		usleep(1);
 		gettimeofday(&now, 0);
 	}
 }

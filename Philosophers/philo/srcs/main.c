@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:52:22 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/03 16:55:22 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:01:39 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	main(int argc, char **argv)
 	data = init_data_structure(argc, argv);
 	if (!data)
 		return (1);
-	if (!init_philos_threads(data))
+	if (!init_threads_philos_checker(data))
 		return (1);
-	if (!join_philos_threads(data))
+	if (!join_threads_philos_checker(data))
 		return (1);
-	mutex_destroy(data);
-	free_structures(data);
+//	mutex_destroy(data);
+//	free_structures(data);
 	return (0);
 }

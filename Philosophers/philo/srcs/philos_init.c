@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/03 18:08:34 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:21:54 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 // check unused variables !
 
+
+int	simulation_stops_def(t_data *data);
 
 void	print(t_philo *philo, char *str)
 {
@@ -26,7 +28,19 @@ void	print(t_philo *philo, char *str)
 }
 
 
-// a philo dies at "time_to_die" time ////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
+int	simulation_stops_def(t_data *data)
+{
+	int	stop;
+
+	stop = 0;
+	pthread_mutex_lock(&data->stop_lock);
+	if (data->dead == 1)
+		stop = 1;
+	pthread_mutex_unlock(&data->stop_lock);
+	return (stop);
+}
 
 void	simulation_stops(t_data *data, int i)
 {
@@ -35,25 +49,14 @@ void	simulation_stops(t_data *data, int i)
 	pthread_mutex_unlock(&data->stop_lock);
 }
 
-int	simulation_stops_def(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	pthread_mutex_lock(&data->stop_lock);
-	if (data->dead == 1)
-		i = 1;
-	pthread_mutex_unlock(&data->stop_lock);
-	return (i);
-}
-
 int	is_dead(t_philo *philo)
 {
-	
 	if ((get_current_time() - philo->last_meal_time) \
 			>= philo->data->time_to_die)
 	{
 		simulation_stops(philo->data, 1);
+	//	printf("last meal time %ld\n", philo->last_meal_time);
+	//	printf("time_to_die %ld\n", philo->data->time_to_die);
 		print(philo, DIED);
 		pthread_mutex_unlock(&philo->meal_lock);
 		return (1);
@@ -61,11 +64,15 @@ int	is_dead(t_philo *philo)
 	return (0);
 }
 
+/*
+   check 5th arg if there is any and check if a philo is dead
+*/
 int	end(t_data *data)
 {
 	int	i;
 	int	all_ate;
 
+	all_ate = 1;
 	i = 0;
 	while (i < data->n_philos)
 	{
@@ -91,10 +98,11 @@ void	*check_routine(void *ptr)
 	t_data	*data;
 
 	data = (t_data *)ptr;
+	simulation_stops(data, 0);
 	while (1)
 	{
 		if (end(data) == 1)
-			return (NULL);
+			return (NULL); // exit marche mais interdit
 		usleep(1000);
 	}
 	return (NULL);
@@ -153,11 +161,7 @@ void	*one_p_routine(t_philo *philo)
 }
 
 /* the function that is applied to each philosopher thread
- 
  * if time_to die = 0 or if (times_must_eat = 0, rien se passe
-
- * when times_ate, incremented in eating(), < times_must_eat(5th arg),
-   do the actions "times_must_eat" times
 
 */
 void	*p_routine(void *ptr)
@@ -173,7 +177,10 @@ void	*p_routine(void *ptr)
 	if (philo->data->n_philos == 1)
 		return (one_p_routine(philo));
 	if (philo->p_id % 2)
+	{
 		print(philo, THINKING);
+		ft_usleep(philo->data->time_to_eat);
+	}
 	while (simulation_stops_def(philo->data) == 0)
 	{
 		eating(philo);
@@ -188,7 +195,7 @@ void	*p_routine(void *ptr)
    pass the t_philo data structure to each;
    join all created threads.
 */
-int	init_philos_threads(t_data *data)
+int	init_threads_philos_checker(t_data *data)
 {
 	int	i;
 
@@ -201,16 +208,14 @@ int	init_philos_threads(t_data *data)
 			return (printf(PTHREAD_ERROR), 0);
 		i++;
 	}
-	
-	if (data->n_philos > 1)//
+	if (data->n_philos > 1)
 		if (pthread_create(&data->checker_thread, NULL, \
-					&check_routine, data) != 0) //
-			return (printf(PTHREAD_ERROR), 0);//
-
+					&check_routine, data) != 0)
+			return (printf(PTHREAD_ERROR), 0);
 	return (1);
 }
 
-int	join_philos_threads(t_data *data)
+int	join_threads_philos_checker(t_data *data)
 {
 	int	i;
 
@@ -221,10 +226,8 @@ int	join_philos_threads(t_data *data)
 			return (printf(PTHREAD_ERROR), 0);
 		i++;
 	}
-
-	if (data->n_philos > 1)//
-		if (pthread_join(data->checker_thread, NULL) != 0)//
-			return (printf(PTHREAD_ERROR), 0);//
-
+	if (data->n_philos > 1)
+		if (pthread_join(data->checker_thread, NULL) != 0)
+			return (printf(PTHREAD_ERROR), 0);
 	return (1);
 }

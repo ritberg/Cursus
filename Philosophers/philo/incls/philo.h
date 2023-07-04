@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/03 16:55:00 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:22:12 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int		error_message(int flag);
 /****************************
        philos_init.c
 ****************************/
-int		init_philos_threads(t_data *data);
+int		init_threads_philos_checker(t_data *data);
 void	*p_routine(void *ptr);
-int		join_philos_threads(t_data *data);
+int		join_threads_philos_checker(t_data *data);
 
 #endif

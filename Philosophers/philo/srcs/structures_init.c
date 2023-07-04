@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:08:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/03 12:07:16 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:22:27 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ static	pthread_mutex_t	*init_forks(t_data *data)
 	return (forks);
 }
 
+/* It's crucial to initialize last_meal_time to start_time,
+  	got with get_current_time() !
+*/
 t_philo	*init_philo_structure(t_data *data)
 {
 	t_philo	*philosophers;
@@ -56,7 +59,7 @@ t_philo	*init_philo_structure(t_data *data)
 	while (i < data->n_philos)
 	{
 		philosophers[i].p_id = i;
-		philosophers[i].last_meal_time = 0;
+		philosophers[i].last_meal_time = data->start_time;
 		philosophers[i].times_ate = 0;
 		philosophers[i].data = data;
 		i++;
@@ -72,7 +75,7 @@ t_data	*init_data_structure(int argc, char **argv)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (printf(MALLOC_ERROR), NULL);
-	data->start_time = 0;
+	data->start_time = get_current_time();
 	data->dead = 0;
 	data->n_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
