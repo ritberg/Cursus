@@ -6,7 +6,7 @@
 #    By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 19:42:13 by mmakarov          #+#    #+#              #
-#    Updated: 2023/07/03 16:54:04 by mmakarov         ###   ########.fr        #
+#    Updated: 2023/07/06 14:53:51 by mmakarov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ SRCS_FILES	= main.c\
 	  errors_frees.c\
 	  structures_init.c\
 	  philos_init.c\
+	  actions.c\
+	  checker_thread_routine.c\
 	  utils.c\
 
 SRCS_DIR		= srcs/

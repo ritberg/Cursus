@@ -6,12 +6,13 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:32:55 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/04 15:09:01 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:58:15 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
+/* the original usleep needs more time */
 void	ft_usleep(int ms)
 {
 	struct timeval	start;

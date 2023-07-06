@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/06 13:41:04 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:38:42 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,38 @@ typedef struct s_data
 }	t_data;
 
 /****************************
+      structures_init.c
+****************************/
+t_data	*init_data_structure(int argc, char **argv);
+t_philo	*init_philo_structure(t_data *data);
+
+/****************************
+       philos_init.c
+****************************/
+int		init_threads_philos_checker(t_data *data);
+int		join_threads_philos_checker(t_data *data);
+void	*p_routine(void *ptr);
+void	print(t_philo *philo, char *str, int stop);
+
+/****************************
+  checker_thread_routine.c
+****************************/
+void	*check_routine(void *ptr);
+int		end(t_data *data);
+int		is_dead(t_philo *philo);
+void	simulation_stops(t_data *data, int i);
+int		simulation_stops_def(t_data *data);
+
+/****************************
+  		actions.c
+****************************/
+
+void	forks_up(t_philo *philo);
+void	forks_down(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	eating(t_philo *philo);
+
+/****************************
           utils.c
 ****************************/
 time_t	get_current_time(void);
@@ -73,23 +105,10 @@ int		is_digit(char *str);
 void	ft_usleep(int ms);
 
 /****************************
-      structures_init.c
-****************************/
-t_data	*init_data_structure(int argc, char **argv);
-t_philo	*init_philo_structure(t_data *data);
-
-/****************************
       errors_frees.c
 ****************************/
 void	mutex_destroy(t_data *data);
 void	free_structures(t_data *data);
 int		error_message(int flag);
-
-/****************************
-       philos_init.c
-****************************/
-int		init_threads_philos_checker(t_data *data);
-void	*p_routine(void *ptr);
-int		join_threads_philos_checker(t_data *data);
 
 #endif

@@ -6,15 +6,21 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:08:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/06 13:40:34 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:27:11 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
-/* the idea is to treat separately the case of the philo[0] (n_philo = 1):
-   philo[0] takes the fork 0 on his left and n_philos - 1 on his right.
-   other philos take the bigger fork on their left, the smaller on their right
+/* 
+	Initializing the forks. 
+	There are the same number of forks as the philosohers. Init in a while loop.
+	from 0 to n_philos-1
+
+	Attributing forks to philos.
+	The idea is to always treat separately the case of the philo[0] (n_philo = 1):
+	philo[0] takes the fork 0 on his left and n_philos - 1 on his right.
+ 	other philos take the bigger fork on their left, the smaller on their right
  */
 
 static	pthread_mutex_t	*init_forks(t_data *data)
@@ -44,8 +50,12 @@ static	pthread_mutex_t	*init_forks(t_data *data)
 	return (forks);
 }
 
-/* It's crucial to initialize last_meal_time to start_time,
-  	got with get_current_time() !
+/* 
+	Malloc "philosophers" data structure for n_philos philosophers
+	For each philo from 0 to n_philo-1 initialize all necessary params
+	inclunding "data" structure and mutexes meal_lock
+ 	! Initialize last_meal_time to start_time,
+  	got with get_current_time()
 */
 t_philo	*init_philo_structure(t_data *data)
 {
@@ -68,6 +78,13 @@ t_philo	*init_philo_structure(t_data *data)
 	return (philosophers);
 }
 
+/*
+	Malloc of "data" structure
+   	Initialize key 4 or 5 params (time_to...)
+   	Initialize dead = 0 (a propri a philo is alive)
+   	! Initialize last_meal_time with get_current_time()
+   	Init forks, "philosophers" structure, mutexes
+*/
 t_data	*init_data_structure(int argc, char **argv)
 {
 	t_data	*data;

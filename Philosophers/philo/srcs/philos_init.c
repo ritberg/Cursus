@@ -6,17 +6,17 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/06 13:53:51 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:45:53 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
-// check unused variables ! like mutex lock
-
-
-int	simulation_stops_def(t_data *data); ///
-
+/*
+	A function that prints messages "is eating, sleeping..."
+	It stops printing if the simulation stops because a philo died
+	(it is a permanent check when checker thread is activated)
+*/
 void	print(t_philo *philo, char *str, int stop)
 {
 	time_t	time;
@@ -32,150 +32,43 @@ void	print(t_philo *philo, char *str, int stop)
 	pthread_mutex_unlock(&philo->data->print_lock);
 }
 
-
-/////////////////////////////////////////////////////////////////
-
-int	simulation_stops_def(t_data *data)
-{
-	int	stop;
-
-	stop = 0;
-	pthread_mutex_lock(&data->stop_lock);
-	if (data->dead == 1)
-		stop = 1;
-	pthread_mutex_unlock(&data->stop_lock);
-	return (stop);
-}
-
-void	simulation_stops(t_data *data, int i)
-{
-	pthread_mutex_lock(&data->stop_lock);
-	data->dead = i;
-	pthread_mutex_unlock(&data->stop_lock);
-}
-
-int	is_dead(t_philo *philo)
-{
-	if ((get_current_time() - philo->last_meal_time) \
-			>= philo->data->time_to_die)
-	{
-		simulation_stops(philo->data, 1);
-	//	printf("last meal time %ld\n", philo->last_meal_time);
-	//	printf("time_to_die %ld\n", philo->data->time_to_die);
-		print(philo, DIED, 1);
-		pthread_mutex_unlock(&philo->meal_lock);
-		return (1);
-	}
-	return (0);
-}
-
 /*
-   check 5th arg if there is any and check if a philo is dead
+	A special case for 1 philo.
+	The checker doesn't check this case, so simulation_stops_def() = 0.
+	That's why it dsn't matter print(philo, DIED, 1) or print(philo, DIED, 0).
 */
-int	end(t_data *data)
-{
-	int	i;
-	int	all_ate;
-
-	all_ate = 1;
-	i = 0;
-	while (i < data->n_philos)
-	{
-		pthread_mutex_lock(&data->philosophers[i].meal_lock);
-		if (is_dead(&data->philosophers[i]))
-			return (1);
-		if (data->times_must_eat != NO_FIFTH_ARG)
-			if (data->philosophers[i].times_ate < data->times_must_eat)
-				all_ate = 0;
-		pthread_mutex_unlock(&data->philosophers[i].meal_lock);
-		i++;
-	}
-	if (data->times_must_eat != NO_FIFTH_ARG && all_ate == 1)
-	{
-		simulation_stops(data, 1);
-		return (1);
-	}
-	return (0);
-}
-
-void	*check_routine(void *ptr)
-{
-	t_data	*data;
-
-	data = (t_data *)ptr;
-	simulation_stops(data, 0);
-	while (1)
-	{
-		if (end(data) == 1)
-			return (NULL);
-		usleep(1000);
-	}
-	return (NULL);
-}
-///////////////////////////////////////////////////////
-
-
-
-void	forks_up(t_philo *philo)
-{
-	pthread_mutex_lock(philo->r_fork);
-	print(philo, FORKS, 0);
-	pthread_mutex_lock(philo->l_fork);
-	print(philo, FORKS, 0);
-}
-
-void	forks_down(t_philo *philo)
-{
-	pthread_mutex_unlock(philo->l_fork);
-	pthread_mutex_unlock(philo->r_fork);
-}
-
-void	sleeping(t_philo *philo)
-{
-	print(philo, SLEEPING, 0);
-	ft_usleep(philo->data->time_to_sleep);
-}
-
-void	eating(t_philo *philo)
-{
-	forks_up(philo);
-	print(philo, EATING, 0);
-	pthread_mutex_lock(&philo->meal_lock);/////////////
-	philo->last_meal_time = get_current_time();///////////
-	pthread_mutex_unlock(&philo->meal_lock);///////////
-	if (simulation_stops_def(philo->data) == 0)
-	{
-		pthread_mutex_lock(&philo->meal_lock);
-		philo->times_ate++;
-		pthread_mutex_unlock(&philo->meal_lock);
-	}
-	ft_usleep(philo->data->time_to_eat);
-	forks_down(philo);
-}
-
-void	*one_p_routine(t_philo *philo)
+static void	*one_p_routine(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
 	print(philo, FORKS, 0);
 	ft_usleep(philo->data->time_to_die);
-	print(philo, DIED, 0);
+	print(philo, DIED, 1);
 	pthread_mutex_unlock(philo->r_fork);
 	return (NULL);
 }
 
-/* the function that is applied to each philosopher thread
- * if time_to die = 0 or if (times_must_eat = 0, rien se passe
+/*
+	The function that is applied to each philosopher thread.
+	! last_meal_time = start_time (got in p_threads initialization below)
+	! in checker thread, current time - last_meal_time should be >= time_to_die
+	! otherwise, a philo died
+ 	If time_to die = 0 or times_must_eat = 0, do nothing
+	If there is only one philo, special case function
 
+	N pairs de philos are thinking and sleeping while others eat
+	N impairs de philos are eating, sleeping and thinking
+	but if simulation should stop because a philo died, it stops.
 */
 void	*p_routine(void *ptr)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)ptr;
-	pthread_mutex_lock(&philo->meal_lock);/////////////
-	philo->last_meal_time = philo->data->start_time;///////////
-	pthread_mutex_unlock(&philo->meal_lock);///////////
-	if (philo->data->time_to_die == 0 || philo->data->times_must_eat == 0)
+	pthread_mutex_lock(&philo->meal_lock);
+	philo->last_meal_time = philo->data->start_time;
+	pthread_mutex_unlock(&philo->meal_lock);
+	if (philo->data->time_to_die == 0 || \
+			philo->data->time_to_eat == 0 || philo->data->times_must_eat == 0)
 		return (NULL);
 	if (philo->data->n_philos == 1)
 		return (one_p_routine(philo));
@@ -193,10 +86,21 @@ void	*p_routine(void *ptr)
 	return (NULL);
 }
 
-/* 
- * create a thread (a philo) n_philos times (from 0 to n_philos - 1); 
-   pass the t_philo data structure to each;
-   join all created threads.
+/*
+	Get current time at the beginning.
+
+	Philosophers threads:
+	1. Create a thread (a philo) n_philos times (from 0 to n_philos - 1); 
+	2. Pass the p_routine() function to each;
+	3. Pass the "t_philo" structure to each;
+ 	4. Join all created threads (below).
+
+	Checker thread if a philo died:
+	1. Create a checker thread if there are more than 1 philos
+   		(1 philo is a special case, dies immediately);
+	2. Pass check_routine() function to it;
+	3. Pass the "t_data" structure to it.
+ 	4. Join this thread (below).
 */
 int	init_threads_philos_checker(t_data *data)
 {
