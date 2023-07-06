@@ -6,22 +6,27 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/04 20:05:54 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:53:51 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
-// check unused variables !
+// check unused variables ! like mutex lock
 
 
-int	simulation_stops_def(t_data *data);
+int	simulation_stops_def(t_data *data); ///
 
-void	print(t_philo *philo, char *str)
+void	print(t_philo *philo, char *str, int stop)
 {
 	time_t	time;
 
 	pthread_mutex_lock(&philo->data->print_lock);
+	if (simulation_stops_def(philo->data) == 1 && stop == 0)
+	{
+		pthread_mutex_unlock(&philo->data->print_lock);
+		return ;
+	}
 	time = get_current_time() - philo->data->start_time;
 	printf("%ld %d %s", time, philo->p_id + 1, str);
 	pthread_mutex_unlock(&philo->data->print_lock);
@@ -57,7 +62,7 @@ int	is_dead(t_philo *philo)
 		simulation_stops(philo->data, 1);
 	//	printf("last meal time %ld\n", philo->last_meal_time);
 	//	printf("time_to_die %ld\n", philo->data->time_to_die);
-		print(philo, DIED);
+		print(philo, DIED, 1);
 		pthread_mutex_unlock(&philo->meal_lock);
 		return (1);
 	}
@@ -102,7 +107,7 @@ void	*check_routine(void *ptr)
 	while (1)
 	{
 		if (end(data) == 1)
-			return (NULL); // exit marche mais interdit
+			return (NULL);
 		usleep(1000);
 	}
 	return (NULL);
@@ -114,9 +119,9 @@ void	*check_routine(void *ptr)
 void	forks_up(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
-	print(philo, FORKS);
+	print(philo, FORKS, 0);
 	pthread_mutex_lock(philo->l_fork);
-	print(philo, FORKS);
+	print(philo, FORKS, 0);
 }
 
 void	forks_down(t_philo *philo)
@@ -127,15 +132,14 @@ void	forks_down(t_philo *philo)
 
 void	sleeping(t_philo *philo)
 {
-	print(philo, SLEEPING);
+	print(philo, SLEEPING, 0);
 	ft_usleep(philo->data->time_to_sleep);
 }
 
 void	eating(t_philo *philo)
 {
 	forks_up(philo);
-	pthread_mutex_lock(&philo->data->lock);
-	print(philo, EATING);
+	print(philo, EATING, 0);
 	pthread_mutex_lock(&philo->meal_lock);/////////////
 	philo->last_meal_time = get_current_time();///////////
 	pthread_mutex_unlock(&philo->meal_lock);///////////
@@ -146,16 +150,15 @@ void	eating(t_philo *philo)
 		pthread_mutex_unlock(&philo->meal_lock);
 	}
 	ft_usleep(philo->data->time_to_eat);
-	pthread_mutex_unlock(&philo->data->lock);
 	forks_down(philo);
 }
 
 void	*one_p_routine(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
-	print(philo, FORKS);
+	print(philo, FORKS, 0);
 	ft_usleep(philo->data->time_to_die);
-	print(philo, DIED);
+	print(philo, DIED, 0);
 	pthread_mutex_unlock(philo->r_fork);
 	return (NULL);
 }
@@ -178,14 +181,14 @@ void	*p_routine(void *ptr)
 		return (one_p_routine(philo));
 	if (philo->p_id % 2)
 	{
-		print(philo, THINKING);
+		print(philo, THINKING, 0);
 		ft_usleep(philo->data->time_to_eat);
 	}
 	while (simulation_stops_def(philo->data) == 0)
 	{
 		eating(philo);
 		sleeping(philo);
-		print(philo, THINKING);
+		print(philo, THINKING, 0);
 	}
 	return (NULL);
 }
