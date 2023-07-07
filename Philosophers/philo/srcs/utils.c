@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:32:55 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/07 17:00:56 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:48:32 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,30 @@
    (than microseconds “usec” given in params).
    It leads to a philo death. That’s why we need a ft_usleep function
    that takes a param in milliseconds.
+	1. Initialize start time of this function
+	2. Initialize current time
+	3. In a while loop, we imitate waiting for ms time.
+	While current time - start time (both transformed in milliseconds)
+	is bigger than given time ms → usleep(1).
 */
+void	ft_usleep(t_data *data, int ms)
+{
+	struct timeval	start;
+	struct timeval	now;
 
+	gettimeofday(&start, 0);
+	gettimeofday(&now, 0);
+	while (((now.tv_sec - start.tv_sec) * \
+				1000 + (now.tv_usec - start.tv_usec) / 1000) < ms)
+	{
+		if (simulation_stops_def(data) == 1)
+			break ;
+		usleep(1);
+		gettimeofday(&now, 0);
+	}
+}
+
+/*
 void	ft_usleep(t_data *data, time_t sleep_time)
 {
 	time_t	wake_up;
@@ -30,31 +52,6 @@ void	ft_usleep(t_data *data, time_t sleep_time)
 		if (simulation_stops_def(data) == 1)
 			break ;
 		usleep(100);
-	}
-}
-
-/* 
-// didn't work for 4 410 200 200 (a philo died at some point);
-//  too long waiting time between "is died" and the new prompt
-
-	1. Initialize start time of this function
-	2. Initialize current time
-	3. In a while loop, we imitate waiting for ms time.
-	While current time - start time (both transformed in milliseconds)
-	is bigger than given time ms → usleep(1).
-
-void	ft_usleep(int ms)
-{
-	struct timeval	start;
-	struct timeval	now;
-
-	gettimeofday(&start, 0);
-	gettimeofday(&now, 0);
-	while (((now.tv_sec - start.tv_sec) * \
-				1000 + (now.tv_usec - start.tv_usec) / 1000) < ms)
-	{
-		usleep(1);
-		gettimeofday(&now, 0);
 	}
 }
 */

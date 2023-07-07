@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/07 16:42:41 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:19:24 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	*p_routine(void *ptr)
 		eating(philo);
 		sleeping(philo);
 		print(philo, THINKING, 0);
+		usleep(50);
 	}
 	return (NULL);
 }
