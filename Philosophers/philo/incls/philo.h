@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:13:06 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/06 14:38:42 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:41:28 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	eating(t_philo *philo);
 time_t	get_current_time(void);
 int		ft_atoi(char *str);
 int		is_digit(char *str);
-void	ft_usleep(int ms);
+void	ft_usleep(t_data *data, time_t sleep_time);
 
 /****************************
       errors_frees.c

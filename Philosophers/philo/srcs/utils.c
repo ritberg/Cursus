@@ -6,13 +6,43 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:32:55 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/06 16:58:15 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:00:56 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incls/philo.h"
 
-/* the original usleep needs more time */
+/*
+   Customized ft_usleep function.
+   Standard usleep function sleeps longer than expected
+   (than microseconds “usec” given in params).
+   It leads to a philo death. That’s why we need a ft_usleep function
+   that takes a param in milliseconds.
+*/
+
+void	ft_usleep(t_data *data, time_t sleep_time)
+{
+	time_t	wake_up;
+
+	wake_up = get_current_time() + sleep_time;
+	while (get_current_time() < wake_up)
+	{
+		if (simulation_stops_def(data) == 1)
+			break ;
+		usleep(100);
+	}
+}
+
+/* 
+// didn't work for 4 410 200 200 (a philo died at some point);
+//  too long waiting time between "is died" and the new prompt
+
+	1. Initialize start time of this function
+	2. Initialize current time
+	3. In a while loop, we imitate waiting for ms time.
+	While current time - start time (both transformed in milliseconds)
+	is bigger than given time ms → usleep(1).
+
 void	ft_usleep(int ms)
 {
 	struct timeval	start;
@@ -27,8 +57,16 @@ void	ft_usleep(int ms)
 		gettimeofday(&now, 0);
 	}
 }
-
-/* get current time */
+*/
+/*
+	This function uses the gettimeofday() to get the current time
+	in seconds and microseconds. It then converts the time to milliseconds
+	and returns it as a time_t value.
+	
+	Second param of gettimeofday is a time zone, no need for the project;
+	tv_sec - seconds since the Unix epoch (January 1, 1970);
+	tv_usec - microseconds (1/1,000,000th of a second).
+*/
 time_t	get_current_time(void)
 {
 	struct timeval	tv;

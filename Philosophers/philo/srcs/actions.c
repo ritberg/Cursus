@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:30:12 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/06 16:45:10 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:41:42 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	forks_down(t_philo *philo)
 void	sleeping(t_philo *philo)
 {
 	print(philo, SLEEPING, 0);
-	ft_usleep(philo->data->time_to_sleep);
+	ft_usleep(philo->data, philo->data->time_to_sleep);
 }
 
 /*
@@ -52,6 +52,6 @@ void	eating(t_philo *philo)
 		philo->times_ate++;
 		pthread_mutex_unlock(&philo->meal_lock);
 	}
-	ft_usleep(philo->data->time_to_eat);
+	ft_usleep(philo->data, philo->data->time_to_eat);
 	forks_down(philo);
 }

@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/06 16:45:53 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:42:41 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	*one_p_routine(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
 	print(philo, FORKS, 0);
-	ft_usleep(philo->data->time_to_die);
+	ft_usleep(philo->data, philo->data->time_to_die);
 	print(philo, DIED, 1);
 	pthread_mutex_unlock(philo->r_fork);
 	return (NULL);
@@ -75,7 +75,7 @@ void	*p_routine(void *ptr)
 	if (philo->p_id % 2)
 	{
 		print(philo, THINKING, 0);
-		ft_usleep(philo->data->time_to_eat);
+		ft_usleep(philo->data, philo->data->time_to_eat);
 	}
 	while (simulation_stops_def(philo->data) == 0)
 	{
