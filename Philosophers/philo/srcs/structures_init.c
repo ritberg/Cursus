@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:08:02 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/06 15:27:11 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/08 13:36:16 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_philo	*init_philo_structure(t_data *data)
 	Malloc of "data" structure
    	Initialize key 4 or 5 params (time_to...)
    	Initialize dead = 0 (a propri a philo is alive)
-   	! Initialize last_meal_time with get_current_time()
+   	! Initialize start time with get_current_time()
    	Init forks, "philosophers" structure, mutexes
 */
 t_data	*init_data_structure(int argc, char **argv)
