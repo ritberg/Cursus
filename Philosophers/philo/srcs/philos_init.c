@@ -6,7 +6,7 @@
 /*   By: mmakarov <mmakarov@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:13:42 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/07/07 18:19:24 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/07/08 13:42:37 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,17 @@ static void	*one_p_routine(t_philo *philo)
 /*
 	The function that is applied to each philosopher thread.
 	! last_meal_time = start_time (got in p_threads initialization below)
-	! in checker thread, current time - last_meal_time should be >= time_to_die
+	! in checker thread, current time - last_meal_time should be <= time_to_die
 	! otherwise, a philo died
- 	If time_to die = 0 or times_must_eat = 0, do nothing
+ 	If time_to die, time_to_eat or times_must_eat = 0, do nothing
 	If there is only one philo, special case function
 
 	N pairs de philos are thinking and sleeping while others eat
 	N impairs de philos are eating, sleeping and thinking
 	but if simulation should stop because a philo died, it stops.
+
+	usleep(50) to wait the pairs philos that are thinking, especially
+	for the test ./philo 2 800 200 0
 */
 void	*p_routine(void *ptr)
 {
