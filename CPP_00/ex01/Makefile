@@ -2,11 +2,16 @@ BLUE			:= $(shell tput setaf 4)
 PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
-SRCS	= megaphone.cpp\
+SRCS	= main.cpp\
+		Contact.cpp\
+		PhoneBook.cpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
-NAME	= megaphone
+INCL	= Contact.hpp\
+		  PhoneBook.hpp\
+
+NAME	= phonebook
 
 CC		= g++
 
@@ -18,7 +23,7 @@ CFLAGS	= -Wall -Wextra -Werror -std=c++98
 .c.o:
 			@${CC} ${CFLAGS} -c $< -o ${<:.cpp=.o}
 
-${NAME}:	${OBJS}
+${NAME}:	${OBJS} ${INCL}
 			@${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 			@echo "${BLUE} Compilation ${NAME} done ${RESET}"
 
