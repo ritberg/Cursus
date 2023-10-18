@@ -3,11 +3,8 @@ PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
 SRCS	= megaphone.cpp\
-			  main.cpp\
 
-OBJS	= ${SRCS:.c=.o}
-
-INCL	= megaphone.hpp
+OBJS	= ${SRCS:.cpp=.o}
 
 NAME	= megaphone
 
@@ -19,11 +16,11 @@ CFLAGS		+= -Wall -Wextra -Werror -std=c++98
 
 
 .c.o:
-	@${CC} ${CFLAGS} -c $< -o $@
+		@${CC} ${CFLAGS} -c $< -o ${<:.cpp=.o}
 
-${NAME}:	${OBJS} ${INCL}
-	@		${CC} ${CFLAGS} -o ${NAME} ${OBJS}
-	@echo	"${BLUE} Compilation ${NAME} done ${RESET}"
+${NAME}:	${OBJS}
+		@	${CC} ${CFLAGS} -o ${NAME} ${OBJS}
+		@echo "${BLUE} Compilation ${NAME} done ${RESET}"
 
 all:		${NAME}
 
@@ -31,7 +28,7 @@ clean:
 		@${RM} ${OBJS}
 		@echo "${BLUE} Clean object files done ${RESET}"
 
-fclean:		clean
+fclean:	clean
 		@${RM} ${NAME}
 		@echo "${BLUE} Clean ${NAME} done ${RESET}"
 

@@ -10,16 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <iostream>
+#include <cctype> 
 
 int main(int argc, char **argv)
 {
-    (void)argv;
-    (void)argv;
-    
-    char    buff[512]
-
-    std::cout << "jjj" << std::endl;
-    std::cin >> buff;
-
+    if (argc == 1)
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+    else if (argc > 1)
+    {
+        argv++;
+        while (*argv)
+        {
+            char *argv_char = *argv;
+            while (*argv_char)
+            {
+                std::cout << (char)toupper(*argv_char);
+                argv_char++;
+            }
+            argv++;
+        }
+        std::cout << std::endl;
+    }
     return (0);
 }
