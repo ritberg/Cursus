@@ -10,13 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
 #include "PhoneBook.hpp"
 
 int main()
 {
-    Contact     instance;
-   // PhoneBook   instance1;
+    PhoneBook   instance1;
+    PhoneBook::Contact     contact1;
+    PhoneBook::Contact     contact2;
+    PhoneBook::Contact     contact3;
+    PhoneBook::Contact     contact4;
 
     return (0);
 }

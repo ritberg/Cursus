@@ -10,15 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_H
-# define CONTACT_H
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
 
 class PhoneBook {
 
 public:
 
-    PhoneBook( void );
-    ~PhoneBook( void );
+    PhoneBook(void);
+    ~PhoneBook(void);
+    class Contact {
+
+    public:
+
+        void    bar(void);
+    
+        Contact(void);
+        ~Contact(void);
+    };
 };
 
 

@@ -3,13 +3,12 @@ PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
 SRCS	= main.cpp\
-		Contact.cpp\
 		PhoneBook.cpp\
+		Contact.cpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
-INCL	= Contact.hpp\
-		  PhoneBook.hpp\
+INCL	= PhoneBook.hpp\
 
 NAME	= phonebook
 

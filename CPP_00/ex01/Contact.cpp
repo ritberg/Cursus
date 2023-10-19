@@ -11,14 +11,22 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
-Contact::Contact( void ){
-    std::cout << "Constructor called" << std::endl;
+PhoneBook::Contact::Contact(void)
+{
+    std::cout << "Constructor contact called" << std::endl;
+    this->bar();
     return;
 }
 
-Contact::~Contact( void ){
-    std::cout << "Destructor called" << std::endl;
+PhoneBook::Contact::~Contact(void)
+{
+    std::cout << "Destructor contact called" << std::endl;
     return;
+}
+
+void    PhoneBook::Contact::bar(void)
+{
+    std::cout << "Function bar" << std::endl;
 }
