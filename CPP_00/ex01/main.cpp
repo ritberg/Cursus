@@ -16,19 +16,31 @@
 int main()
 {
     char    buff[512];
- 
-    PhoneBook   phonebook;
+    int count = 0;
+    
+    PhoneBook phonebook;
+    PhoneBook::Contact contacts[2];
 
-    std::cin >> buff;
-    if (strcmp(buff, "ADD") == 0)
-        PhoneBook::Contact     contact1;
-
- 
- //   PhoneBook::Contact     contact2;
- //   PhoneBook::Contact     contact3;
- //   PhoneBook::Contact     contact4;
-
-  
-
+    while (true)
+    {
+        std::cin >> buff;
+      //  if (strcmp(buff, "ADD") == 0 && count >= 2)
+       //     contacts[2].replace(contacts);
+        if (strcmp(buff, "ADD") == 0 && count < 2)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                contacts[i].add_new();
+                count++;
+            }
+        }
+        else if (strcmp(buff, "SEARCH") == 0)
+        {
+            for (int i = 0; i < 2; i++)
+                contacts[i].search(contacts, i);
+        }
+        else if (strcmp(buff, "EXIT") == 0)
+            return (0);
+    }
     return (0);
 }

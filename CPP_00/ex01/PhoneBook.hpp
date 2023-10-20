@@ -23,7 +23,15 @@ public:
 
     public:
 
-        void    bar(void);
+        void    add_new(void);
+        void    search(PhoneBook::Contact contacts[2], int i);
+        void    replace(PhoneBook::Contact contacts[2]);
+
+        char        name[512];
+        char        surname[512];
+        char        nickname[512];
+        char        phone_numer[512];
+        char        darkest_secret[512];
     
         Contact(void);
         ~Contact(void);
