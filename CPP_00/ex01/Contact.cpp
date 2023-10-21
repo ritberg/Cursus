@@ -76,7 +76,7 @@ void PhoneBook::Contact::search(PhoneBook::Contact contacts[2], int i) //change 
               << truncated_surname << "|" << truncated_nickname << std::endl;
 }
 
-void PhoneBook::Contact::search_index(PhoneBook::Contact contacts[2])
+void    PhoneBook::Contact::search_index(PhoneBook::Contact contacts[2])
 {
     int i;
     std::cout << "Enter a contact index" << std::endl;
@@ -90,5 +90,8 @@ void PhoneBook::Contact::search_index(PhoneBook::Contact contacts[2])
         std::cout << "Darkest secret: "<< contacts[i - 1].darkest_secret <<"" << std::endl;
     }
     else
+    {
         std::cout << "It must be a digit from 1 to 8!" << std::endl;
+        std::cin.clear();
+    }
 }

@@ -41,7 +41,7 @@ int main()
         {
             for (int i = 0; i < 2; i++)        //change to i < 8
                 contacts[i].search(contacts, i);
-            contacts[2].search_index(contacts);
+            contacts[2].search_index(contacts); //change to 8
         }
         else if (strcmp(buff, "EXIT") == 0)
             return (0);

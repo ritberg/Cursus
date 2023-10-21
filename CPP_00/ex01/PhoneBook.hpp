@@ -32,8 +32,6 @@ public:
         std::string nickname;
         std::string phone_number;
         std::string darkest_secret;
-
-      //  int contact_ind;
     
         Contact(void);
         ~Contact(void);
