@@ -24,14 +24,16 @@ public:
     public:
 
         void    add_new(void);
-        void    search(PhoneBook::Contact contacts[2], int i);
-        void    replace(PhoneBook::Contact contacts[2]);
+        void    search(PhoneBook::Contact contacts[2], int i); //change to 8
+        void    search_index(PhoneBook::Contact contacts[2]);  //change to 8
 
-        char        name[512];
-        char        surname[512];
-        char        nickname[512];
-        char        phone_numer[512];
-        char        darkest_secret[512];
+        std::string name;
+        std::string surname;
+        std::string nickname;
+        std::string phone_number;
+        std::string darkest_secret;
+
+      //  int contact_ind;
     
         Contact(void);
         ~Contact(void);
