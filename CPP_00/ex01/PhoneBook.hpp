@@ -20,12 +20,15 @@ public:
     PhoneBook(void);
     ~PhoneBook(void);
     class Contact {
+    private:
+        bool    _check_phone_number(std::string phone_number);
+        bool    _check_name_surname(std::string name_surname);
 
     public:
 
         void    add_new(void);
-        void    search(PhoneBook::Contact contacts[2], int i); //change to 8
-        void    search_index(PhoneBook::Contact contacts[2]);  //change to 8
+        void    search(PhoneBook::Contact contacts[8], int i);
+        void    search_index(PhoneBook::Contact contacts[8]);
 
         std::string name;
         std::string surname;

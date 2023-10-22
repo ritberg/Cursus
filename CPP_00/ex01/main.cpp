@@ -15,35 +15,33 @@
 
 int main()
 {
-    int     count = 0;
-    char    buff[512];
+    std::string buff;
+    int         count = 0;
+    int         flag = 0;
     
-    PhoneBook phonebook;
-    PhoneBook::Contact contacts[2];  //change to 8
+    PhoneBook           phonebook;
+    PhoneBook::Contact  contacts[8];
 
     while (true)
     {
         std::cin >> buff;
-        if (strcmp(buff, "ADD") == 0 && count == 2) // change count to 8
+        if (buff == "ADD" && count == 8 && flag == 0)
         {
-            contacts[1].add_new();
-            count = 3; //change count to 9
+            contacts[7].add_new();
+            flag = 1;
         }
-        else if (strcmp(buff, "ADD") == 0 && count < 2) //change to count < 8
+        else if (buff == "ADD" && count < 8)
         {
-            for (int i = 0; i < 2; i++) //change to i < 8
-            {
-                contacts[i].add_new();
-                count++;
-            }
+            contacts[count].add_new();
+            count++;
         }
-        else if (strcmp(buff, "SEARCH") == 0)
+        else if (buff == "SEARCH")
         {
-            for (int i = 0; i < 2; i++)        //change to i < 8
+            for (int i = 0; i < count; i++)       
                 contacts[i].search(contacts, i);
-            contacts[2].search_index(contacts); //change to 8
+            contacts[count].search_index(contacts);
         }
-        else if (strcmp(buff, "EXIT") == 0)
+        else if (buff == "EXIT")
             return (0);
     }
     return (0);
