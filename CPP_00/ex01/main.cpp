@@ -6,7 +6,7 @@
 /*   By: mmakarov <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:08:31 by mmakarov          #+#    #+#             */
-/*   Updated: 2023/10/18 17:08:33 by mmakarov         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:21:05 by mmakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <iostream>
@@ -27,7 +27,7 @@ int main()
         std::cin >> buff;
         if (buff == "ADD" && count == 8 && flag == 0)
         {
-            contacts[7].add_new();
+            contacts[0].add_new();
             flag = 1;
         }
         else if (buff == "ADD" && count < 8)
