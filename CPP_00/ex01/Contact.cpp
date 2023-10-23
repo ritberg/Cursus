@@ -15,18 +15,27 @@
 #include <string>
 #include "PhoneBook.hpp"
 
+/* Constructor */
 PhoneBook::Contact::Contact(void)
 {
     std::cout << "Constructor contact called" << std::endl;
     return;
 }
 
+/* Destructor */
 PhoneBook::Contact::~Contact(void)
 {
     std::cout << "Destructor contact called" << std::endl;
     return;
 }
 
+/* 
+    Function that adds a new contact to the phonebook.
+    Check if all names and surnames include only alphabetic characters.
+    If not, enter again till it is.
+    Check if the phone number include only digits.
+    If not, enter again till it is.
+*/
 void    PhoneBook::Contact::add_new(void)
 {
     std::cout << "Enter a name" << std::endl;
@@ -67,6 +76,7 @@ void    PhoneBook::Contact::add_new(void)
     std::cout << "Darkest secret: "<< darkest_secret <<"" << std::endl;
 }
 
+/* Finction that checks if name and surname include alphabetic chars */
 bool    PhoneBook::Contact::_check_name_surname(std::string name_surname)
 {
     for (int i = 0; i < name_surname.length(); i++)
@@ -82,6 +92,7 @@ bool    PhoneBook::Contact::_check_name_surname(std::string name_surname)
     return (true);
 }
 
+/* Finction that checks if phonenumber includes digits */
 bool    PhoneBook::Contact::_check_phone_number(std::string phone_number)
 {
     for (int i = 0; i < phone_number.length(); i++)
@@ -97,9 +108,21 @@ bool    PhoneBook::Contact::_check_phone_number(std::string phone_number)
     return (true);
 }
 
+/*
+    Function that prints the phonebook in a table format.
+
+    1. Creating std::string objects
+    Ex: std::string truncated_name = contacts[i].name;
+    2. Check if the length of the string object is greater than 10
+    If yes, truncate it to 9 characters and replace the 10th character with a dot.
+    3. Print the table
+    setw(10) sets the width to 10 characters for the truncated_smth objects (variables)
+    std::right align the table to the right
+    "|" divide the table into columns
+ 
+*/
 void PhoneBook::Contact::search(PhoneBook::Contact contacts[8], int i)
 {
-    // creating std::string objects using the character arrays with the 10-char substrings
     std::string truncated_name = contacts[i].name;
     std::string truncated_surname = contacts[i].surname;
     std::string truncated_nickname = contacts[i].nickname;
@@ -119,12 +142,17 @@ void PhoneBook::Contact::search(PhoneBook::Contact contacts[8], int i)
         truncated_nickname = contacts[i].nickname.substr(0, 9);
         truncated_nickname.replace(9, 1, ".");
     }
-
-    // setw(10) sets the width to 10 characters for the truncated_smth variables
     std::cout << std::setw(10) << std::right << i + 1 << "|" << truncated_name << "|"
             << truncated_surname << "|" << truncated_nickname << std::endl;
 }
 
+/*
+    Function that searches for a contact by index.
+    (activated automatically after the "SEARCH" command)
+    1. Enter a contact index
+    2. Check if the index >= 1 and index <= 8 and if the contact exists
+    3. If yes, print the contact, if not, error message.
+*/
 void    PhoneBook::Contact::search_index(PhoneBook::Contact contacts[8])
 {
     int i;
