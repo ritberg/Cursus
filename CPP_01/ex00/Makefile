@@ -3,14 +3,13 @@ PASTEL_MAGENTA	:= $(shell tput setaf 213)
 RESET			:= $(shell tput sgr0)
 
 SRCS	= main.cpp\
-		PhoneBook.cpp\
-		Contact.cpp\
+		Zombie.cpp\
 
 OBJS	= ${SRCS:.cpp=.o}
 
-INCL	= PhoneBook.hpp\
+INCL	= Zombie.hpp\
 
-NAME	= phonebook
+NAME	= zombies
 
 CC		= g++
 
