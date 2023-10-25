@@ -13,11 +13,12 @@
 #include <cstring>
 #include "PhoneBook.hpp"
 
+/* main corrected for ADD */
 int main()
 {
     std::string buff;
     int         count = 0;
-    int         flag = 0;
+    int         times = 0;
     
     PhoneBook           phonebook;
     PhoneBook::Contact  contacts[8];
@@ -25,15 +26,17 @@ int main()
     while (true)
     {
         std::cin >> buff;
-        if (buff == "ADD" && count == 8 && flag == 0)
-        {
-            contacts[0].add_new();
-            flag = 1;
-        }
-        else if (buff == "ADD" && count < 8)
+        if (buff == "ADD" && count < 8)
         {
             contacts[count].add_new();
             count++;
+        }
+        else if (buff == "ADD" && count >= 8) //corrected
+        {
+            contacts[times].add_new();
+            times++;
+            if (times == 8)
+              times = 0;
         }
         else if (buff == "SEARCH")
         {
